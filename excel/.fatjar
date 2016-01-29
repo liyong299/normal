@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Mon Jan 25 17:31:49 CST 2016
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=D\:\\Work\\Workspace\\scec_dis\\excel\\excel_fat3.jar
+manifest.mergeall=true
+manifest.mainclass=com.ly.test.excel.AttendanceManager
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=
