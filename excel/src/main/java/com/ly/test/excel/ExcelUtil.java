@@ -262,6 +262,103 @@ public class ExcelUtil
 		}
 		System.out.println("创建文件 office 2007 excel");
 	}
+	
+	/**
+	 * 将内容写入文件
+	 * 
+	 * @param filePath 文件路径
+	 * @param content 写入内容{sheet名称，内容}
+	 */
+	public void writeExcel2(String filePath, Map<String, String[][]> content)
+	{
+		// 定义工作表
+		XSSFWorkbook workBook = null;
+		InputStream is = null;
+
+		try
+		{
+			workBook = new XSSFWorkbook();
+			for (Map.Entry<String, String[][]> entry : content.entrySet())
+			{
+				System.out.println(entry.getKey());
+				XSSFSheet sheet = workBook.createSheet(entry.getKey());
+				
+				XSSFRow[] rows = new XSSFRow[entry.getValue().length];
+				
+				int rowIdx = 0;
+				for (String[] rowContent : entry.getValue())
+				{
+					rows[rowIdx] = sheet.createRow(rowIdx);  
+					int columnIdx = 0;
+					for (String cell : rowContent)
+					{
+						XSSFCell temp = rows[rowIdx].createCell(columnIdx);
+//						System.out.print(cell + " ");
+						if (cell.matches("(\\d*)|(\\d*.\\d*%)|(\\d*.\\d*)"))
+						{
+							temp.setCellType(XSSFCell.CELL_TYPE_NUMERIC);
+						}
+						temp.setCellValue(cell);
+						columnIdx++;
+					}
+					rowIdx++;
+//					System.out.println();
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (is != null)
+			{
+				try
+				{
+					is.close(); 
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+
+		FileOutputStream os = null;
+		try
+		{
+			os = new FileOutputStream(filePath);
+			workBook.write(os);
+			os.flush();
+		}
+		catch (Exception ex)
+		{
+			if (os != null)
+			{
+				try
+				{
+					os.close(); 
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+			if (workBook != null)
+			{
+				try
+				{
+					workBook.close();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("创建文件 office 2007 excel");
+	}
 
 	public void copyCell(XSSFCell src, XSSFCell dest)
 	{

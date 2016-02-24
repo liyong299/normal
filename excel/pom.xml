@@ -6,13 +6,25 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>excel考勤处理</description>
 
+	<properties>
+		<!-- 编译参数 -->
+		<jdk.version>1.7</jdk.version>
+		<encoding>UTF-8</encoding>
+		<plugin.compiler.version>3.1</plugin.compiler.version>
+		<plugin.resources.version>2.6</plugin.resources.version>
+		<plugin.war.version>2.4</plugin.war.version>
+		<plugin.source.version>2.2.1</plugin.source.version>
+		<plugin.javadoc.version>2.9.1</plugin.javadoc.version>
+		<plugin.release.version>2.5</plugin.release.version>
+		<plugin.assembly.version>2.4.1</plugin.assembly.version>
+		<svnjava.version>2.1.0</svnjava.version>
+		<!-- 公共包 -->
+		<logback.version>1.1.2</logback.version>
+		<slf4j.version>1.7.5</slf4j.version>
+	</properties>
+
 	<dependencies>
-		<!-- slf4j -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.5</version>
-		</dependency>
+
 		<!-- execel -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -31,7 +43,7 @@
 			<version>2.2</version>
 		</dependency>
 
-        <!-- commons-fileupload -->
+		<!-- commons-fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -45,5 +57,21 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
 	</dependencies>
 </project>

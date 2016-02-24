@@ -1,13 +1,15 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºexcel
- * ÎÄ¼þ°üÃû£ºexcel
- * ÎÄ¼þÃû³Æ£ºTest.java
- * °æ±¾ÐÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê1ÔÂ21ÈÕ ÏÂÎç7:19:00
- * Copyright (c) 2015-2015ÉîÛÚÊÐÌ©¾ÃÐÅÏ¢ÏµÍ³¹É·ÝÓÐÏÞ¹«Ë¾
+ * ï¿½ï¿½Ä¿ï¿½ï¿½Æ£ï¿½excel
+ * ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½excel
+ * ï¿½Ä¼ï¿½ï¿½ï¿½Æ£ï¿½Test.java
+ * ï¿½æ±¾ï¿½ï¿½Ï¢ï¿½ï¿½SCEC_Branches
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½2016ï¿½ï¿½1ï¿½ï¿½21ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½7:19:00
+ * Copyright (c) 2015-2015ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì©ï¿½ï¿½ï¿½ï¿½Ï¢ÏµÍ³ï¿½É·ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾
  * 
  */
 package excel;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
 
 /**
  * @author ly
@@ -18,10 +20,17 @@ public class Test
 
 	/**
 	 * @param args
+	 * @throws Exception 
 	 */
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
+		if ("2842".matches("(\\d*)|(\\d*.\\d*%)|(\\d*.\\d*)"))
+		{
+			System.out.println("---------");
+		}
+		System.out.println((4/5  * 100));
 		System.out.println("exe is run");
+		throw new Exception("test");
 	}
 
 }
