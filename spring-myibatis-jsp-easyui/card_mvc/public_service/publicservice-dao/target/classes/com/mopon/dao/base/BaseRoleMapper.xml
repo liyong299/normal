@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.base.BaseRoleMapper" >
+  <resultMap id="roleResultMap" type="com.mopon.entity.BaseRole" >
+    <result column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="system" property="system" />
+    <result column="createtime" property="createTime" />
+    <result column="creator" property="creator" />
+    <result column="modifieddate" property="modifiedDate" />
+    <result column="modifier" property="modifier" />
+  </resultMap>
+  
+  <sql id="fieldList">
+  	id,name,system,DATE_FORMAT(createtime,'%Y-%m-%d %H:%i:%s')  createtime,creator,DATE_FORMAT(modifieddate,'%Y-%m-%d %H:%i:%s')  modifieddate,modifier
+  </sql>
+  
+  <select id="query" parameterType="com.mopon.entity.BaseRole" resultMap="roleResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_role
+  	<where>
+  		1 = 1
+  		<if test="id != null and id != ''">
+  			and id = #{id}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="queryList" parameterType="com.mopon.entity.BaseRole" resultMap="roleResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_role
+  	<where>
+  		1=1
+  		<if test="name !=null and name !='' ">
+  			AND	 name like CONCAT('%',#{name},'%')
+  		</if>
+  	</where>
+  	order by modifieddate desc  	
+  </select>
+  
+  <select id="queryListOfPage" parameterType="com.mopon.util.Page" resultMap="roleResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_role
+  	<where>
+  		1 = 1
+	  	<if test="params.name != null and params.name != ''">
+	         and name LIKE CONCAT("%",#{params.name},"%")
+	    </if>
+  	</where>  	 
+  	order by modifieddate desc  
+  </select>
+  
+   <insert id="insert" parameterType="com.mopon.entity.BaseRole">
+      insert into base_role
+      (name,createtime,modifieddate)
+      values(#{name},#{createTime},#{createTime})
+  </insert>
+  
+  <delete id="delete" parameterType="java.lang.String">
+      delete from base_role
+      where id = #{id}
+  </delete>
+  
+  <update id="update">
+  	update base_role
+  	<set>
+  		<if test="name != null and name != ''">
+             name = #{name}
+          </if>
+  	</set>
+    where 
+    id = #{id}
+  </update>
+</mapper>

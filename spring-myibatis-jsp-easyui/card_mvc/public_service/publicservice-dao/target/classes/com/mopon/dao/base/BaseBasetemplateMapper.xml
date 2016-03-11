@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.base.BaseBasetemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.mopon.entity.BaseBasetemplate" >
+    <id column="TemplateID" property="templateid" />
+    <id column="TemplateKey" property="templatekey" />
+    <result column="TemplateName" property="templatename"  />
+    <result column="TemplateType" property="templatetype"  />
+    <result column="TemplateContent" property="templatecontent"  />
+    <result column="TemplateContent1" property="templatecontent1" />
+    <result column="Status" property="status"  />
+    <result column="CreateTime" property="createtime" />
+    <result column="TemplateClass" property="templateclass" />
+    <result column="TemplateDefine" property="templatedefine" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TemplateID,TemplateKey, TemplateName, TemplateType, TemplateContent, TemplateContent1, Status, 
+    CreateTime, TemplateClass, TemplateDefine
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.mopon.entity.BaseBasetemplate" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_basetemplate
+    <where>
+    	1=1
+    	 <if test="templateid !=null">AND TemplateID=#{templateid}</if>
+    	 <if test="templatekey !=null and templatekey !=''">AND TemplateKey=#{templatekey}</if>
+    	 <if test="templatename !=null and templatename !=''">AND TemplateName=#{templatename}</if>
+    </where>
+    order by TemplateID
+  </select>
+  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="com.mopon.util.Page" >
+   select t1.TemplateID,t1.TemplateKey,t1.TemplateName,t1.TemplateType,t2.TemplateTypeName,t1.TemplateContent,t1.TemplateContent1,t1.Status,t1.CreateTime,t1.TemplateClass,t2.TemplateClassName,t1.TemplateDefine 
+	from base_basetemplate t1 left join base_basetemplattribute t2 on t1.TemplateType = t2.TemplateType and t1.TemplateClass = t2.TemplateClass
+	<where>
+		1=1
+		<if test="params.templatename !=null">AND t1.TemplateName like CONCAT("%",#{params.templatename},"%") </if>
+	</where>
+	order by t1.TemplateID	 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_basetemplate
+    where TemplateID = #{templateid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mopon.entity.BaseBasetemplate" >
+    insert into base_basetemplate (TemplateID,TemplateKey, TemplateName, TemplateType, 
+      TemplateContent, TemplateContent1, Status, 
+      CreateTime, TemplateClass, TemplateDefine
+      )
+    values (#{templateid,jdbcType=INTEGER}, #{templatekey,jdbcType=VARCHAR},#{templatename,jdbcType=VARCHAR}, #{templatetype,jdbcType=INTEGER}, 
+      #{templatecontent,jdbcType=VARCHAR}, #{templatecontent1,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{templateclass,jdbcType=INTEGER}, #{templatedefine,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mopon.entity.BaseBasetemplate" >
+    insert into base_basetemplate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templateid != null" >
+        TemplateID,
+      </if>
+      <if test="templatekey != null" >
+        TemplateKey,
+      </if>
+      <if test="templatename != null" >
+        TemplateName,
+      </if>
+      <if test="templatetype != null" >
+        TemplateType,
+      </if>
+      <if test="templatecontent != null" >
+        TemplateContent,
+      </if>
+      <if test="templatecontent1 != null" >
+        TemplateContent1,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="templateclass != null" >
+        TemplateClass,
+      </if>
+      <if test="templatedefine != null" >
+        TemplateDefine,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="templateid != null" >
+        #{templateid,jdbcType=INTEGER},
+      </if>
+      <if test="templatekey != null" >
+        #{templatekey,jdbcType=VARCHAR},
+      </if>
+      <if test="templatename != null" >
+        #{templatename,jdbcType=VARCHAR},
+      </if>
+      <if test="templatetype != null" >
+        #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="templatecontent != null" >
+        #{templatecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="templatecontent1 != null" >
+        #{templatecontent1,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="templateclass != null" >
+        #{templateclass,jdbcType=INTEGER},
+      </if>
+      <if test="templatedefine != null" >
+        #{templatedefine,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mopon.entity.BaseBasetemplate" >
+    update base_basetemplate
+    <set >
+      <if test="templatename != null" >
+        TemplateName = #{templatename,jdbcType=VARCHAR},
+      </if>
+      <if test="templatetype != null" >
+        TemplateType = #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="templatecontent != null" >
+        TemplateContent = #{templatecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="templatecontent1 != null" >
+        TemplateContent1 = #{templatecontent1,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="templateclass != null" >
+        TemplateClass = #{templateclass,jdbcType=INTEGER},
+      </if>
+      <if test="templatedefine != null" >
+        TemplateDefine = #{templatedefine,jdbcType=INTEGER},
+      </if>
+    </set>
+    where TemplateID = #{templateid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mopon.entity.BaseBasetemplate" >
+    update base_basetemplate
+    set TemplateName = #{templatename,jdbcType=VARCHAR},
+      TemplateType = #{templatetype,jdbcType=INTEGER},
+      TemplateContent = #{templatecontent,jdbcType=VARCHAR},
+      TemplateContent1 = #{templatecontent1,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      TemplateClass = #{templateclass,jdbcType=INTEGER},
+      TemplateDefine = #{templatedefine,jdbcType=INTEGER}
+    where TemplateID = #{templateid,jdbcType=INTEGER}
+  </update>
+</mapper>

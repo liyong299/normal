@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.param.BaseParamSysMapper" >
+
+  <resultMap id="BaseResultMap" type="com.mopon.dao.entity.ParamSys" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="paramname" property="paramName" jdbcType="VARCHAR" />
+    <result column="paramvalue" property="paramValue" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, paramname, paramvalue, comment
+  </sql>
+    
+  <select id="queryParamSysList" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List"/>
+  	 from base_param_sys where  paramname = #{paramName}
+  </select>
+  
+</mapper>

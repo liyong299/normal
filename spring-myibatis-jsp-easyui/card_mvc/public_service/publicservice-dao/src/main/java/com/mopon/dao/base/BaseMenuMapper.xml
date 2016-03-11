@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.base.BaseMenuMapper" >
+  <resultMap id="menuResultMap" type="com.mopon.entity.BaseMenu" >
+    <result column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="parentid" property="parentId" />
+    <result column="position" property="position" />
+    <result column="controller" property="controller" />
+    <result column="action" property="action" />
+    <result column="code" property="code" />
+    <result column="status" property="status" />
+  </resultMap>
+  
+  <sql id="fieldList">
+  	id,name,parentid,position,controller,action,code,status
+  </sql>
+  <select id="queryList" parameterType="com.mopon.entity.BaseMenu" resultMap="menuResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_menu
+  	<where>
+  		1 = 1
+        <if test="parentId != null">
+             and parentid = #{parentId}
+        </if>
+        <if test="status != null and status != -1">
+             and status = #{status}
+        </if>
+  	</where>
+  	order by position
+  </select>
+  
+  <select id="query" parameterType="com.mopon.entity.BaseMenu" resultMap="menuResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_menu
+  	<where>
+  		1 = 1
+  		<if test="id != null and id != ''">
+             and id = #{id}
+        </if>
+  		<if test="controller != null and controller != ''">
+             and controller = #{controller}
+        </if>
+        <if test="action != null and action != ''">
+             and action = #{action}
+        </if>
+  	</where>
+  </select>
+</mapper>

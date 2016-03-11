@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.base.BaseBaseTemplAttributeMapper" >
+  <resultMap id="BaseResultMap" type="com.mopon.entity.BaseBaseTemplAttribute" >
+    <result column="TemplateType" property="templatetype" jdbcType="INTEGER" />
+    <result column="TemplateTypeName" property="templatetypename" jdbcType="VARCHAR" />
+    <result column="TemplateClass" property="templateclass" jdbcType="INTEGER" />
+    <result column="TemplateClassName" property="templateclassname" jdbcType="VARCHAR" />
+    <result column="TempSelectAttrs" property="tempselectattrs" jdbcType="VARCHAR" />
+    <result column="TempSeletedValues" property="tempseletedvalues" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Column_list">
+  	TemplateType,TemplateTypeName,TemplateClass,TemplateClassName,TempSelectAttrs,TempSeletedValues
+  </sql>
+  
+  <!-- 查询模板类型列表 -->
+  <select id="queryTemplateTypeList" resultMap="BaseResultMap" parameterType="com.mopon.entity.BaseBaseTemplAttribute" >
+   select distinct TemplateType,TemplateTypeName
+   from base_basetemplattribute
+  	<where>
+  		1=1
+  		<if test="templatetype !=null">AND TemplateType = #{templatetype}</if>
+  	</where>
+  </select>  
+  <!-- 查询业务类型列表 -->
+  <select id="queryTemplateClassList" resultMap="BaseResultMap" parameterType="com.mopon.entity.BaseBaseTemplAttribute" >
+   select distinct TemplateClass,TemplateClassName
+   from base_basetemplattribute
+  	<where>
+  		1=1
+  		<if test="templateclass !=null">AND TemplateClass = #{templateclass}</if>
+  	</where>
+  </select>  
+  
+  <!-- 查询列表 -->
+  <select id="queryTemplAttrList" resultMap="BaseResultMap" parameterType="com.mopon.entity.BaseBaseTemplAttribute" >
+   select
+   <include refid="Column_list"></include>
+   from base_basetemplattribute
+  	<where>
+  		1=1
+  		<if test="templateclass !=null">AND TemplateClass = #{templateclass}</if>
+  		<if test="templatetype !=null">AND TemplateType = #{templatetype}</if>
+  	</where>
+  </select>  
+  
+  <insert id="insert" parameterType="com.mopon.entity.BaseBaseTemplAttribute" >
+    insert into base_basetemplattribute (TemplateType, TemplateTypeName, TemplateClass, 
+      TemplateClassName, TempSelectAttrs, TempSeletedValues
+      )
+    values (#{templatetype,jdbcType=INTEGER}, #{templatetypename,jdbcType=VARCHAR}, #{templateclass,jdbcType=INTEGER}, 
+      #{templateclassname,jdbcType=VARCHAR}, #{tempselectattrs,jdbcType=VARCHAR}, #{tempseletedvalues,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mopon.entity.BaseBaseTemplAttribute" >
+    insert into base_basetemplattribute
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templatetype != null" >
+        TemplateType,
+      </if>
+      <if test="templatetypename != null" >
+        TemplateTypeName,
+      </if>
+      <if test="templateclass != null" >
+        TemplateClass,
+      </if>
+      <if test="templateclassname != null" >
+        TemplateClassName,
+      </if>
+      <if test="tempselectattrs != null" >
+        TempSelectAttrs,
+      </if>
+      <if test="tempseletedvalues != null" >
+        TempSeletedValues,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="templatetype != null" >
+        #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="templatetypename != null" >
+        #{templatetypename,jdbcType=VARCHAR},
+      </if>
+      <if test="templateclass != null" >
+        #{templateclass,jdbcType=INTEGER},
+      </if>
+      <if test="templateclassname != null" >
+        #{templateclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="tempselectattrs != null" >
+        #{tempselectattrs,jdbcType=VARCHAR},
+      </if>
+      <if test="tempseletedvalues != null" >
+        #{tempseletedvalues,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

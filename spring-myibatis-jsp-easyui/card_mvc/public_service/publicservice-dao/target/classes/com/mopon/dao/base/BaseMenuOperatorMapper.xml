@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.base.BaseMenuOperatorMapper" >
+  <resultMap id="menuOperatorResultMap" type="com.mopon.entity.BaseMenuOperator" >
+    <result column="id" property="id" />
+    <result column="menuid" property="menuId" />
+    <result column="operatorid" property="operatorId" />
+    <result column="controller" property="controller" />
+    <result column="action" property="action" />
+  </resultMap>
+  
+  <sql id="fieldList">
+  	id,menuid,operatorid,controller,action
+  </sql>
+  <select id="queryList" resultMap="menuOperatorResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_menuoperator
+  </select>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.log.BussinessLogDao" >
+
+<!-- 业务日志 -->
+	<resultMap type="com.mopon.entity.log.BusinessLog" id="BussLogsResultMap">
+		<id property="logID" column="LogID" />    
+		<result property="sysLogID" column="SysLogID" />
+		<result property="bizTypeValue" column="BizTypeValue" />
+		<result property="bizType" column="BizType" />
+		<result property="bizStepValue" column="BizStepValue" />
+		<result property="bizStep" column="BizStep" />
+		<result property="orderNo" column="OrderNo" />
+		<result property="voucherCode" column="VoucherCode" />
+		<result property="mobileNo" column="MobileNo" />
+		<result property="cinemaNo" column="CinemaNo" />
+		<result property="memo" column="Memo" />
+		<result property="logStatus" column="LogStatus" />
+		<result property="recTimeShow" column="RecTime" />
+	</resultMap>
+	
+	<sql id="fieldList" >
+	    LogID,
+	    SysLogID,
+	    BizTypeValue,
+	    BizType,
+	    BizStepValue,
+	    BizStep,
+	    OrderNo,
+	    VoucherCode,
+	    MobileNo,
+	    CinemaNo,
+	    Memo,
+	    LogStatus,
+	   FROM_UNIXTIME( RecTime, '%Y-%m-%d %H:%i:%s' ) as RecTime
+	</sql>
+	<select id="queryPageList" parameterType="com.mopon.util.Page" resultMap="BussLogsResultMap">
+		SELECT  
+     	<include refid="fieldList"></include>
+     	from log_BusinessLog
+		<where>
+			1=1
+	    	<if test="params.businessLog.orderNo !=null  and params.businessLog.orderNo!=''">
+	    	    and OrderNo LIKE CONCAT("%",#{params.businessLog.orderNo},"%")
+	    	</if>
+			<if test="params.businessLog.voucherCode!=null and params.businessLog.voucherCode!=''">
+				and VoucherCode LIKE CONCAT("%",#{params.businessLog.voucherCode},"%") 
+			</if>			
+			<if test="params.businessLog.cinemaNo !=null  and params.businessLog.cinemaNo!=''">
+	    	    and CinemaNO LIKE CONCAT("%",#{params.businessLog.cinemaNo},"%") 
+	    	</if>
+			<if test="params.businessLog.logStatus!=null and params.businessLog.logStatus!=''">
+				and LogStatus=#{params.businessLog.logStatus}
+			</if>
+			<if test="params.businessLog.createDateBagin != null and params.businessLog.createDateBagin !='' " >
+      			 and RecTime &gt;=  UNIX_TIMESTAMP(#{params.businessLog.createDateBagin})
+		      </if>
+		      <if test="params.businessLog.createDateEnd != null and params.businessLog.createDateEnd !='' " >
+		      			 and RecTime &lt;=  UNIX_TIMESTAMP(#{params.businessLog.createDateEnd})
+		      </if>
+		</where>		
+		ORDER BY RecTime DESC
+	</select>
+	
+	<select id="queryBussinessLogsById" parameterType="java.lang.String" resultMap="BussLogsResultMap">
+	     SELECT 
+	     <include refid="fieldList"></include>
+	     from log_BusinessLog
+	     WHERE 
+	     LogID = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.mopon.entity.log.BusinessLog">
+	 INSERT INTO log_BusinessLog
+     (
+	     
+	     BizTypeValue,
+	     BizType,
+	     BizStepValue,
+	     BizStep,
+	     OrderNo,
+	     VoucherCode,
+	     MobileNo,
+	     CinemaNo,
+	     Memo,
+	     LogStatus,
+	     RecTime
+     )
+     VALUES
+     (
+	     
+	     #{bizTypeValue},
+	     #{bizType},
+	     #{bizStepValue},
+	     #{bizStep},
+	     #{orderNo},
+	     #{voucherCode},
+	     #{mobileNo},
+	     #{cinemaNo},
+	     #{memo},
+	     #{logStatus},
+	     #{recTime}
+     )	
+	</insert>
+	
+	</mapper>

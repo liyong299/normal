@@ -1,0 +1,139 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mopon</groupId>
+		<artifactId>card_console</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>card_console-api</artifactId>
+	<packaging>war</packaging>
+	<name>card_console-api</name>
+	<description>一卡通定时对外接口模块</description>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<package.environment>dev</package.environment>
+		<!-- 编译参数 -->
+		<jdk.version>1.7</jdk.version>
+		<encoding>UTF-8</encoding>
+		<plugin.compiler.version>3.0</plugin.compiler.version>
+		<plugin.resources.version>2.6</plugin.resources.version>
+		<plugin.war.version>2.4</plugin.war.version>
+		<plugin.source.version>2.2.1</plugin.source.version>
+		<plugin.javadoc.version>2.9.1</plugin.javadoc.version>
+		<plugin.release.version>2.5</plugin.release.version>
+		<plugin.assembly.version>2.4.1</plugin.assembly.version>
+		<svnjava.version>2.1.0</svnjava.version>
+		<!-- 公共包 -->
+		<logback.version>1.1.2</logback.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<junit.version>4.11</junit.version>
+		<servlet.version>2.5</servlet.version>
+		<mysql.version>5.1.27</mysql.version>
+	</properties>
+	<profiles>
+		<profile>
+			<id>pro</id><!-- 生产环境 -->
+			<properties>
+				<package.environment>pro</package.environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id><!-- 开发环境 -->
+			<properties>
+				<package.environment>dev</package.environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id><!-- 测试环境 -->
+			<properties>
+				<package.environment>test</package.environment>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.mopon</groupId>
+			<artifactId>card_console-service</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mopon</groupId>
+			<artifactId>card_console-dao</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.atmosphere</groupId>
+			<artifactId>atmosphere-runtime</artifactId>
+			<version>2.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mopon</groupId>
+			<artifactId>publicservice-service</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mopon</groupId>
+			<artifactId>publicservice-dao</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- 入参校验 -->
+		<dependency>
+			<artifactId>hibernate-validator</artifactId>
+			<groupId>org.hibernate</groupId>
+			<version>5.2.1.Final</version>
+		</dependency>
+
+		<!-- redis缓存 -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.3.1.RELEASE</version>
+		</dependency>
+
+		<!-- xml 映射 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.5.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.3</version>
+		</dependency>
+
+	</dependencies>
+</project>

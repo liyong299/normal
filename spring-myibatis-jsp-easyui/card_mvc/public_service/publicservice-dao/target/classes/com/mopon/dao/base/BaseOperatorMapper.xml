@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.base.BaseOperatorMapper" >
+  <resultMap id="operatorResultMap" type="com.mopon.entity.BaseOperator" >
+    <result column="id" property="id" />
+    <result column="name" property="name" />
+  </resultMap>
+  
+  <sql id="fieldList">
+  	id,name
+  </sql>
+  <select id="queryList" resultMap="operatorResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_operator
+  </select>
+  
+  <select id="query" parameterType="com.mopon.entity.BaseOperator" resultMap="operatorResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_operator
+  	<where>
+  		1 = 1
+  		<if test="id != null">
+             and id = #{id}
+         </if>
+  		<if test="name != null and name != ''">
+             and name = #{name}
+         </if>
+  	</where>
+  </select>
+</mapper>
