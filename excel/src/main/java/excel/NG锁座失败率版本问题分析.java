@@ -34,15 +34,13 @@ public class NG锁座失败率版本问题分析
 
 			new File(fileName).delete();
 
-			String filePath = "E:/01_work/02_cec/03_需求/04_NGC/03_过年期间NG链接问题/101_ng_result2016-02-16_20_08_21.log";
-			String filePath2 = "E:/01_work/02_cec/03_需求/04_NGC/03_过年期间NG链接问题/102_ng_result2016-02-16_20_08_59.log";
-			String filePath3 = "E:/01_work/02_cec/03_需求/04_NGC/03_过年期间NG链接问题/250_ng_result2016-02-16_20_09_24.log";
+			String filePath = "E:/01_work/02_cec/03_需求/04_NGC/05_NGC腾讯云迁移后的锁座成功率/21_lock.txt";
+			String filePath2 = "E:/01_work/02_cec/03_需求/04_NGC/05_NGC腾讯云迁移后的锁座成功率/22_lock.txt";
 
 			Map<String, String[]> content = readSrc(filePath);
 			Map<String, String[]> content2 = readSrc(filePath2);
-			Map<String, String[]> content3 = readSrc(filePath3);
 
-			Map<String, String[][]> allContent = mergeSrc(content, content2, content3);
+			Map<String, String[][]> allContent = mergeSrc(content, content2);
 			new ExcelUtil().writeExcel2(fileName, allContent);
 		}
 		catch (Exception e)
@@ -52,7 +50,7 @@ public class NG锁座失败率版本问题分析
 	}
 
 	private static Map<String, String[][]> mergeSrc(Map<String, String[]> content,
-			Map<String, String[]> content2, Map<String, String[]> content3)
+			Map<String, String[]> content2)
 	{
 		Map<String, String[][]> xlsContent = new HashMap<String, String[][]>();
 		try
@@ -69,7 +67,6 @@ public class NG锁座失败率版本问题分析
 				String[] result = new String[value.length + 3];
 				
 				String[] value2 = content2.get(key);
-				String[] value3 = content3.get(key);
 				
 				StringBuilder sb1 = new StringBuilder();
 				StringBuilder sb2 = new StringBuilder();
@@ -81,18 +78,19 @@ public class NG锁座失败率版本问题分析
 				{
 					sb1.append(value[j]).append("     ");
 					value[j] = (Integer.valueOf(value[j]) + Integer.valueOf(value2[j])) + "";
-					value[j] = (Integer.valueOf(value[j]) + Integer.valueOf(value3[j])) + "";
 					sb2.append(value2[j]).append("     ");
-					sb3.append(value3[j]).append("     ");
 					sb4.append(value[j]).append("     ");
 					result[j+2] = value[j];
 				}
 				
 				DecimalFormat df   = new DecimalFormat("##.#");
-				result[effectiveLen + 2] = df.format((Double.valueOf(value[2]) / Integer.valueOf(value[0]) * 100)) + "%";
-				result[effectiveLen + 3] = df.format((Double.valueOf(value[5]) / Integer.valueOf(value[3]) * 100)) + "%";
-				result[effectiveLen + 4] = df.format(((Double.valueOf(value[5]) + Double.valueOf(value[2])) 
-						/ (Integer.valueOf(value[3]) + Integer.valueOf(value[0]))* 100)) + "%";
+				
+				result[effectiveLen + 2] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[2]), 
+						LockUtils.sumStr2Integer(value[0]), df);
+				result[effectiveLen + 3] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[5]), 
+						LockUtils.sumStr2Integer(value[3]), df);
+				result[effectiveLen + 4] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[2], value[5]), 
+						LockUtils.sumStr2Integer(value[3], value[0]), df);
 				
 				calcResult.put(key, result);
 				System.out.printf("------1111-------%10s \n ", sb1);
@@ -164,8 +162,8 @@ public class NG锁座失败率版本问题分析
 				String succ63Num = st.nextToken();
 
 				Date d1 = DateUtil.StringToDate(date + " " + min + "0", DateStyle.YYYY_MM_DD_HH_MM);
-				Date d2 = DateUtil.StringToDate(date + " 11:00", DateStyle.YYYY_MM_DD_HH_MM);
-				Date d3 = DateUtil.StringToDate(date + " 15:30", DateStyle.YYYY_MM_DD_HH_MM);
+				Date d2 = DateUtil.StringToDate(date + " 07:00", DateStyle.YYYY_MM_DD_HH_MM);
+				Date d3 = DateUtil.StringToDate(date + " 22:30", DateStyle.YYYY_MM_DD_HH_MM);
 				if (d1.after(d2) && d1.before(d3))
 				{
 					content.put(date + "" + min, new String[] { all50Num, fail50Num,succ50Num,all63Num, fail63Num,succ63Num, date, min});
