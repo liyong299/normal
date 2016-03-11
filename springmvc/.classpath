@@ -33,7 +33,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/jdk/jdk1.7.0_17/jre/lib/rt.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javax.servlet_3.0.0.v201112011016.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

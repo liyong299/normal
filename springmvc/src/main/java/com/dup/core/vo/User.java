@@ -3,6 +3,8 @@
  */
 package com.dup.core.vo;
 
+import com.dup.core.dao.entities.BaseAccount;
+
 /**
  * @author Liyong
  *
@@ -16,6 +18,15 @@ public class User {
 	private String updateUser;
 	private String createUser;
 	
+	public User()
+	{
+		
+	}
+	public User(BaseAccount baseAccount)
+	{
+		this.userName = baseAccount.getName();
+		this.createTime = baseAccount.getCreateTime().toString();
+	}
 	public String getUpdateUser() {
 		return updateUser;
 	}

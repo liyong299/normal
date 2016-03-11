@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.dup</groupId>
+	<groupId>ly.test</groupId>
 	<artifactId>mvc.core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -23,9 +23,26 @@
 		
 		<!-- data validate -->
 		<javax.validation.version>1.0.0.GA</javax.validation.version>
+		
+		<mybatis.version>3.1.1</mybatis.version>
+		<mybatis.spring.version>1.1.1</mybatis.spring.version>
+		<mybatis.generator.configurationFile>generatorConfig.xml</mybatis.generator.configurationFile>
+		<thoughtworks.xstream>1.4.7</thoughtworks.xstream>
 	</properties>
 
 	<dependencies>
+	<!-- jfreechart -->
+	<dependency>
+		<artifactId>jfreechart</artifactId>
+		<groupId>org.jfree</groupId>
+		<version>1.0.19</version>
+	</dependency>
+	<dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.23</version>
+        </dependency>
+	<!-- jfreechart end -->
 	<!-- 常见工具类 -->
 	<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -180,6 +197,23 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- spring 的基本依赖 结束 -->
+		<!-- mybatis begin -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis.spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${thoughtworks.xstream}</version>
+		</dependency>
+		<!-- mybatis end -->
 	</dependencies>
 
 </project>

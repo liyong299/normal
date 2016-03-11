@@ -119,4 +119,7 @@
 	<mvc:annotation-driven />
 
 	<context:component-scan base-package="com.dup.core.**" />
+	
+	<!-- 加载不同模块自己的spring配置 -->
+	<import resource="classpath:spring/spring_*_config.xml" />
 </beans>  
