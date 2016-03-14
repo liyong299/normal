@@ -25,7 +25,7 @@
 		<javax.validation.version>1.0.0.GA</javax.validation.version>
 		
 		<mybatis.version>3.1.1</mybatis.version>
-		<mybatis.spring.version>1.1.1</mybatis.spring.version>
+		<mybatis.spring.version>1.2.0</mybatis.spring.version>
 		<mybatis.generator.configurationFile>generatorConfig.xml</mybatis.generator.configurationFile>
 		<thoughtworks.xstream>1.4.7</thoughtworks.xstream>
 	</properties>

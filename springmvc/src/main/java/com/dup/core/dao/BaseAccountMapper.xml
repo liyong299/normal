@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mopon.dao.base.BaseAccountMapper" >
+  <resultMap id="accountResultMap" type="com.dup.core.daoentities.BaseAccount" >
+    <result column="id" property="id" />
+    <result column="roleid" property="roleID" />
+    <result column="name" property="name" />
+    <result column="password" property="password" />
+    <result column="fullname" property="fullName" />
+    <result column="status" property="status" />
+    <result column="logintimes" property="loginTimes" />
+    <result column="lasttime" property="lastTime" />
+    <result column="createtime" property="createTime" />
+    <result column="creator" property="creator" />
+    <result column="modifieddate" property="modifiedDate" />
+    <result column="modifier" property="modifier" />
+  </resultMap>
+  
+  <sql id="fieldList">
+  	id,roleid,name,password,fullname,status,logintimes,DATE_FORMAT(lasttime, '%Y-%m-%d %H:%i:%s') lasttime,DATE_FORMAT(createtime,'%Y-%m-%d %H:%i:%s') createtime,creator,DATE_FORMAT(modifieddate,'%Y-%m-%d %H:%i:%s') modifieddate,modifier
+  </sql>
+  
+  <select id="query" parameterType="com.mopon.entity.BaseAccount" resultMap="accountResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_account
+  	<where>
+  		1 = 1 
+  		<if test="id != null and id != ''">
+             and id = #{id}
+         </if>
+  		<if test="name != null and name != ''">
+             and name = #{name}
+         </if>        
+  	</where>
+  	order by modifieddate desc  
+  </select>
+  
+  <select id="exist" parameterType="com.mopon.entity.BaseAccount" resultType="Integer">
+  	select count(*)
+  	from base_account
+  	<where>
+  		1 = 1
+  		<if test="name != null and name != ''">
+             and name = #{name}
+         </if>
+  	</where>
+  </select>
+  
+  <select id="queryList" parameterType="com.mopon.util.Page" resultMap="accountResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from base_account
+  	<where>
+  		1 = 1
+  		<if test="params.name != null and params.name != ''">
+             and name LIKE CONCAT("%",#{params.name},"%")
+        </if>
+        <if test="params.fullName != null and params.fullName != ''">
+             and fullname LIKE CONCAT("%",#{params.fullName},"%")
+        </if>
+        <if test="params.roleID != null and params.roleID != -1">
+             and roleid = #{params.roleID}
+        </if>
+        <if test="params.status != null and params.status != -1">
+             and status = #{params.status}
+        </if>
+  	</where>
+  	order by modifieddate desc  
+  </select>
+  
+  <insert id="insert" parameterType="com.mopon.entity.BaseAccount">
+      insert into base_account
+      (roleid,name,password,fullname,status,logintimes,createtime,creator,modifieddate,modifier)
+    values(#{roleID},#{name},#{password},#{fullName},0,0,#{createTime},#{creator},#{createTime},#{creator})
+  </insert>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+      delete from base_account
+      where id = #{id}
+  </delete>
+  
+  <update id="update">
+      update base_account
+      <set>
+          <if test="roleID != null and roleID != ''">
+             roleid = #{roleID},
+          </if>
+          <if test="password != null and password != ''">
+             password = #{password},
+          </if>
+          <if test="fullName != null and fullName != ''">
+             fullname = #{fullName},
+          </if>
+          <if test="status != null and status != -1">
+             status = #{status},
+          </if>
+          <if test="lastTime != null and lastTime != ''">
+             logintimes = logintimes + 1,
+          </if>
+          <if test="lastTime != null and lastTime != ''">
+             lasttime = #{lastTime},
+          </if>
+          <if test="modifier != null and modifier != ''">
+          	 modifier = #{modifier},
+          </if>
+          <if test="modifiedDate != null and modifiedDate != ''">
+          	modifieddate = #{modifiedDate}
+          </if>
+      </set>
+      where
+      id = #{id}
+  </update>
+</mapper>
