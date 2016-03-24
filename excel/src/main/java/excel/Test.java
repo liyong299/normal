@@ -30,6 +30,8 @@ public class Test
 		}
 		System.out.println((4/5  * 100));
 		System.out.println("exe is run");
+		
+		
 		throw new Exception("test");
 	}
 

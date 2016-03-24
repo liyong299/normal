@@ -3,6 +3,7 @@ package excel;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +19,9 @@ import com.ly.test.util.DateUtil;
 
 public class NG锁座失败率版本问题分析
 {
-	static String[] title={"日期","时间点","5.0所有锁座","5.0异常失败","5.0成功锁座","6.3所有锁座","6.3异常失败","6.3成功锁座","5.0成功率","6.3成功率","总体成功率"};
+	static String[] title={"时间点","总体锁座数", "5.0所有锁座","5.0异常失败","5.0成功锁座","6.3所有锁座","6.3异常失败","6.3成功锁座","5.0成功率","6.3成功率","总体成功率"};
 	static int effectiveLen = 6;
+	static int startEffectIdx = 3;
 	/**
 	 * @param args
 	 */
@@ -34,13 +36,16 @@ public class NG锁座失败率版本问题分析
 
 			new File(fileName).delete();
 
-			String filePath = "E:/01_work/02_cec/03_需求/04_NGC/05_NGC腾讯云迁移后的锁座成功率/21_lock.txt";
-			String filePath2 = "E:/01_work/02_cec/03_需求/04_NGC/05_NGC腾讯云迁移后的锁座成功率/22_lock.txt";
+			String filePath = "E:/01_work/02_cec/03_需求/04_NGC/05_NGC腾讯云迁移后的锁座成功率/21_lock_nocache.txt";
+//			String filePath2 = "E:/01_work/02_cec/03_需求/04_NGC/05_NGC腾讯云迁移后的锁座成功率/22_lock.txt";
 
 			Map<String, String[]> content = readSrc(filePath);
-			Map<String, String[]> content2 = readSrc(filePath2);
+//			Map<String, String[]> content2 = readSrc(filePath2);
 
-			Map<String, String[][]> allContent = mergeSrc(content, content2);
+//			mergeSrc(content, content2);
+			
+			Map<String, String[][]> allContent = parse(content);
+			
 			new ExcelUtil().writeExcel2(fileName, allContent);
 		}
 		catch (Exception e)
@@ -49,8 +54,7 @@ public class NG锁座失败率版本问题分析
 		}
 	}
 
-	private static Map<String, String[][]> mergeSrc(Map<String, String[]> content,
-			Map<String, String[]> content2)
+	private static Map<String, String[][]> parse(Map<String, String[]> content)
 	{
 		Map<String, String[][]> xlsContent = new HashMap<String, String[][]>();
 		try
@@ -64,39 +68,29 @@ public class NG锁座失败率版本问题分析
 //				System.out.printf("------1111-------%10s   %10s   %10s   %10s \n", value[0], value[1], value[2], value[3]);
 				
 				// 保存每行记录和每次计算结果
-				String[] result = new String[value.length + 3];
+				String[] result = new String[value.length + 4];
 				
-				String[] value2 = content2.get(key);
-				
-				StringBuilder sb1 = new StringBuilder();
-				StringBuilder sb2 = new StringBuilder();
-				StringBuilder sb3 = new StringBuilder();
-				StringBuilder sb4 = new StringBuilder();
 				result[0] = value[effectiveLen + 0];
 				result[1] = value[effectiveLen + 1] + "0";
+				result[2] = LockUtils.sumStr2Integer(value[0], value[3]) + "";
+				
 				for (int j = 0; j < effectiveLen; j++)
 				{
-					sb1.append(value[j]).append("     ");
-					value[j] = (Integer.valueOf(value[j]) + Integer.valueOf(value2[j])) + "";
-					sb2.append(value2[j]).append("     ");
-					sb4.append(value[j]).append("     ");
-					result[j+2] = value[j];
+					result[j + startEffectIdx] = value[j];
 				}
 				
 				DecimalFormat df   = new DecimalFormat("##.#");
 				
-				result[effectiveLen + 2] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[2]), 
+				result[effectiveLen + 3] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[2]), 
 						LockUtils.sumStr2Integer(value[0]), df);
-				result[effectiveLen + 3] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[5]), 
+				
+				result[effectiveLen + 4] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[5]), 
 						LockUtils.sumStr2Integer(value[3]), df);
-				result[effectiveLen + 4] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[2], value[5]), 
+				
+				result[effectiveLen + 5] = LockUtils.calcPerc(LockUtils.sumStr2Double(value[2], value[5]), 
 						LockUtils.sumStr2Integer(value[3], value[0]), df);
 				
 				calcResult.put(key, result);
-				System.out.printf("------1111-------%10s \n ", sb1);
-				System.out.printf("------2222-------%10s \n ", sb2);
-				System.out.printf("------3333-------%10s \n ", sb3);
-				System.out.printf("------4444-------%10s \n ", sb4);
 			}
 			
 			// 将合并结果转化保存，以方便写入xls
@@ -125,7 +119,7 @@ public class NG锁座失败率版本问题分析
 				arr[idx++] = title;
 				for (String[] tmparr : value)
 				{
-					arr[idx++] = tmparr;
+					arr[idx++] = Arrays.copyOfRange(tmparr, 1, tmparr.length);
 				}
 				
 				xlsContent.put(entry.getKey(), arr);
@@ -138,6 +132,32 @@ public class NG锁座失败率版本问题分析
 		}
 
 		return xlsContent;
+	}
+
+
+   static void mergeSrc(Map<String, String[]> content,
+			Map<String, String[]> content2)
+	{
+		try
+		{
+			// 合并三个机器计算结果
+			for (Map.Entry<String, String[]> entry : content.entrySet())
+			{
+				String key = entry.getKey();
+				String[] value = entry.getValue();
+								
+				String[] value2 = content2.get(key);
+								
+				for (int j = 0; j < effectiveLen; j++)
+				{
+					if (value2 != null) value[j] = (Integer.valueOf(value[j]) + Integer.valueOf(value2[j])) + "";
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	private static Map<String, String[]> readSrc(String srcFile)
@@ -162,8 +182,9 @@ public class NG锁座失败率版本问题分析
 				String succ63Num = st.nextToken();
 
 				Date d1 = DateUtil.StringToDate(date + " " + min + "0", DateStyle.YYYY_MM_DD_HH_MM);
-				Date d2 = DateUtil.StringToDate(date + " 07:00", DateStyle.YYYY_MM_DD_HH_MM);
-				Date d3 = DateUtil.StringToDate(date + " 22:30", DateStyle.YYYY_MM_DD_HH_MM);
+				Date d2 = DateUtil.StringToDate(date + " 00:00", DateStyle.YYYY_MM_DD_HH_MM);
+				Date d3 = DateUtil.StringToDate(date + " 15:30", DateStyle.YYYY_MM_DD_HH_MM);
+				
 				if (d1.after(d2) && d1.before(d3))
 				{
 					content.put(date + "" + min, new String[] { all50Num, fail50Num,succ50Num,all63Num, fail63Num,succ63Num, date, min});
