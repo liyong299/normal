@@ -25,9 +25,42 @@ public class 灵活的CPU
 	 */
 	public static void main(String[] args) throws InterruptedException
 	{
-		test();
-		
+//		test直线();
+//		test数组除();
+//		System.out.println(Runtime.getRuntime().freeMemory());
+		test一数两段();
 	}
+	
+	public static void test一数两段() throws InterruptedException
+	{
+		int a = 10, b=64;
+		int c = a|b;
+		System.out.println(Integer.toBinaryString(c));
+		
+		int d = c & 0x0f;
+		System.out.println(Integer.toBinaryString(d));
+	}
+	
+	public static void test数组除() throws InterruptedException
+	{
+		int[] arr = {3,2,34,34,53,23,1221,322};
+		int x = 0;
+		for (int i = 0; i < arr.length; i++)  // 结果错误
+		{
+			x = arr[i] / arr[0];
+			arr[i] = arr[i] / arr[0];
+			System.out.println(x + ",   " + arr[i]);
+		}
+		
+		arr = new int[]{3,2,34,34,53,23,1221,322};
+		for (int i = arr.length - 1; i >= 0; i--)  // 结果正确
+		{
+			x = arr[i] / arr[0];
+			arr[i] = arr[i] / arr[0];
+			System.out.println(x + ",   " + arr[i]);
+		}
+	}
+	
 	public static void test() throws InterruptedException
 	{
 		long i = 1;
@@ -37,6 +70,14 @@ public class 灵活的CPU
 			for(i = 0; i < 13200000000l; i++);
 			Thread.currentThread().sleep(30);
 //			System.out.println(System.currentTimeMillis() - start);
+		}
+	}
+	public static void test直线() throws InterruptedException
+	{
+		while(true)
+		{
+			for(int i = 0; i < 13200000000l; i++);
+			Thread.currentThread().sleep(7);
 		}
 	}
 }
