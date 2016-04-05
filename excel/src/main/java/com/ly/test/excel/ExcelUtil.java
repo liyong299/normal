@@ -294,7 +294,7 @@ public class ExcelUtil
 					{
 						XSSFCell temp = rows[rowIdx].createCell(columnIdx);
 //						System.out.print(cell + " ");
-						if (cell.matches("(\\d*)|(\\d*.\\d*%)|(\\d*.\\d*)"))
+						if (cell != null && cell.matches("(\\d*)|(\\d*.\\d*%)|(\\d*.\\d*)"))
 						{
 							temp.setCellType(XSSFCell.CELL_TYPE_NUMERIC);
 						}
