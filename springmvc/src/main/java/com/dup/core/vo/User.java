@@ -10,6 +10,9 @@ import com.dup.core.dao.entities.BaseAccount;
  *
  */
 public class User {
+	{
+		System.out.println("-----------当前加载的类 ：：：：" + getClass());
+	}
 
 	private String userName;
 	private String password;
