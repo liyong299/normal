@@ -20,31 +20,34 @@
 		<commons.lang3.version>3.3.2</commons.lang3.version>
 		<commons.codec.version>1.10</commons.codec.version>
 		<joda.time.version>2.6</joda.time.version>
-		
+
 		<!-- data validate -->
-		<javax.validation.version>1.0.0.GA</javax.validation.version>
-		
+		<javax.validation.version>1.1.0.Final</javax.validation.version>
+		<hibernate.validator>5.2.1.Final</hibernate.validator>
+
 		<mybatis.version>3.1.1</mybatis.version>
 		<mybatis.spring.version>1.2.0</mybatis.spring.version>
 		<mybatis.generator.configurationFile>generatorConfig.xml</mybatis.generator.configurationFile>
 		<thoughtworks.xstream>1.4.7</thoughtworks.xstream>
+
+		<mysql.version>5.1.27</mysql.version>
 	</properties>
 
 	<dependencies>
-	<!-- jfreechart -->
-	<dependency>
-		<artifactId>jfreechart</artifactId>
-		<groupId>org.jfree</groupId>
-		<version>1.0.19</version>
-	</dependency>
-	<dependency>
-            <groupId>org.jfree</groupId>
-            <artifactId>jcommon</artifactId>
-            <version>1.0.23</version>
-        </dependency>
-	<!-- jfreechart end -->
-	<!-- 常见工具类 -->
-	<dependency>
+		<!-- jfreechart -->
+		<dependency>
+			<artifactId>jfreechart</artifactId>
+			<groupId>org.jfree</groupId>
+			<version>1.0.19</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jcommon</artifactId>
+			<version>1.0.23</version>
+		</dependency>
+		<!-- jfreechart end -->
+		<!-- 常见工具类 -->
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons.lang3.version}</version>
@@ -59,8 +62,8 @@
 			<artifactId>joda-time</artifactId>
 			<version>${joda.time.version}</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -74,7 +77,7 @@
 			<artifactId>freemarker</artifactId>
 			<version>${freemarker.version}</version>
 		</dependency>
-		
+
 		<!-- jxls apache poi -->
 		<dependency>
 			<groupId>net.sf.jxls</groupId>
@@ -116,17 +119,17 @@
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
+			<version>${javax.validation.version}</version>
 			<type>jar</type>
 			<classifier>sources</classifier>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
+			<version>${javax.validation.version}</version>
 			<type>jar</type>
 		</dependency>
-		
+
 		<!-- spring 的基本依赖 开始 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -214,6 +217,38 @@
 			<version>${thoughtworks.xstream}</version>
 		</dependency>
 		<!-- mybatis end -->
+
+		<!-- 数据库连接池配置 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<!-- 数据库连接池配置 end -->
+		<!-- mvc web 入参校验 -->
+		<dependency>
+			<artifactId>hibernate-validator</artifactId>
+			<groupId>org.hibernate</groupId>
+			<version>${hibernate.validator}</version>
+		</dependency>
+		<!-- mvc web 入参校验 end -->
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
