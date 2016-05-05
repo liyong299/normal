@@ -33,10 +33,20 @@ public class AccountFacade
 	/**
 	 * 查询用户
 	 */
+	@Transactional
 	public UserReply queryUser(UserQuery query)
 	{
-		BaseAccountExt user = accountService.query(query.getAppCode());
+		BaseAccountExt user = null;
+		try
+		{
+			user = accountService.query(query.getAppCode());
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 
+		System.out.println("-----------------------分割线-------------------------------");
 		return new UserReply(user);
 	}
 

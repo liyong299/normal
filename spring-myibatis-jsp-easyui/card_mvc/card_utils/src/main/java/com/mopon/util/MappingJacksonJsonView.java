@@ -2,8 +2,10 @@ package com.mopon.util;
 
 import java.util.Map;
 
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+
 public class MappingJacksonJsonView extends
-		org.springframework.web.servlet.view.json.MappingJacksonJsonView {
+		MappingJackson2JsonView {
 	
 	//public static final String DEFAULT_CONTENT_TYPE = "application/json";
 	

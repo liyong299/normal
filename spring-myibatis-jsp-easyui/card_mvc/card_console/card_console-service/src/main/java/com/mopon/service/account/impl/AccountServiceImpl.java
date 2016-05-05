@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.aspectj.util.LangUtil.ProcessController.Thrown;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mopon.entity.BaseAccount;
 import com.mopon.entity.common.Result;
@@ -94,12 +97,31 @@ public class AccountServiceImpl implements AccountService{
      * @param name
      * @return
      */
+    @Transactional
     public BaseAccountExt query(String name){
+
+    	BaseAccount baseAccountExt = new BaseAccount();
+    	baseAccountExt.setFullName("abcd");
+    	baseAccountExt.setName(baseAccountExt.getName());
+    	baseAccountService.update(baseAccountExt);
+    	
+        throw new RuntimeException("当前对象不为空！");
+    }
+    
+    /**
+     * 根据账户登录名获取账户信息
+     * @param name
+     * @return
+     */
+    @Transactional
+    public BaseAccountExt queryByName(String name)
+    {
     	BaseAccountExt where = new BaseAccountExt();
     	where.setName(name);
     	
     	return query(where);
     }
+    
     
     /**
      * 获取用户信息

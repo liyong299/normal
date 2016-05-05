@@ -24,6 +24,7 @@ public class UserVo implements Serializable
 	 *            服务器图片路径
 	 */
 	public UserVo(BaseAccountExt user) {
+		if (user == null) return;
 		this.userName = user.getName();
 	}
 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.TransactionException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,7 +32,6 @@ public abstract class ApiAction
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 	protected ObjectMapper mapper = new ObjectMapper();
 	
-
 	/**
 	 * 异常拦截处理。
 	 * 
@@ -61,6 +61,9 @@ public abstract class ApiAction
 			}
 			reply = new ApiReply(ApiReplyCode.PARAMS_VALIDATE_FAILED);
 			reply.setMsg(StringUtil.join(errorMsgs, "|"));
+		}
+		if (ex instanceof TransactionException) {
+			reply = new ApiReply(ApiReplyCode.TRANSACTIONEXCEPTION);
 		}
 		logError(request, reply, ex);
 		return reply;

@@ -32,6 +32,13 @@
 		<junit.version>4.11</junit.version>
 		<servlet.version>2.5</servlet.version>
 		<mysql.version>5.1.27</mysql.version>
+		<commons.lang3.version>3.3.2</commons.lang3.version>
+
+		<!-- 验证问题，临时加的 -->
+		<hibernate.version>5.0.1.Final</hibernate.version>
+		<hibernate.search.version>5.5.0.Final</hibernate.search.version>
+		<hibernate.validator.version>5.2.1.Final</hibernate.validator.version>
+		<lucene.version>5.3.0</lucene.version>
 	</properties>
 	<profiles>
 		<profile>
@@ -74,6 +81,16 @@
 			<artifactId>card_console-dao</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.mopon</groupId>
+			<artifactId>publicservice-service</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mopon</groupId>
+			<artifactId>publicservice-dao</artifactId>
+			<version>1.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -84,6 +101,11 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons.lang3.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -97,16 +119,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.mopon</groupId>
-			<artifactId>publicservice-service</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.mopon</groupId>
-			<artifactId>publicservice-dao</artifactId>
-			<version>1.0</version>
-		</dependency>
+
 
 		<!-- 入参校验 -->
 		<dependency>
@@ -128,12 +141,43 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.5.3</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.5.3</version>
 		</dependency>
+
+
+
+		<!-- hibernate持久化 验证问题，临时增加 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search</artifactId>
+			<version>${hibernate.search.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-queryparser</artifactId>
+			<version>${lucene.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 
 	</dependencies>
 </project>

@@ -49,8 +49,9 @@ public class ApiQueryInterceptor extends HandlerInterceptorAdapter
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		String appCode = request.getParameter("appCode");
+		appCode = appCode == null ? "admin" : appCode;
 		request.getParameterMap();
-		BaseAccountExt user = accountService.query(appCode);
+		BaseAccountExt user = accountService.queryByName(appCode);
 		
 		if (user == null)
 		{
@@ -170,7 +171,7 @@ public class ApiQueryInterceptor extends HandlerInterceptorAdapter
 		String paramSignStr = genParamSignStr(request);
 		String secKey = user.getKey();
 		String targetSign = MD5.md5(secKey + paramSignStr + secKey);
-		
+		if (origSign == null) return;
 		// 前面判断，需要在测试的时候关闭。 当前缺少开关。  TODO
 		if (!origSign.equals(targetSign) && false) {
 			ApiException.thrown(ApiReplyCode.SIGN_VERIFY_FAILED);

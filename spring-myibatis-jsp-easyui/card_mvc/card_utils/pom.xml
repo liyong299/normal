@@ -11,13 +11,17 @@
 	<description>系统工具集</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>3.2.2.RELEASE</spring.version>
+		<spring.version>4.1.4.RELEASE</spring.version>
 		<mybatis.version>3.1.1</mybatis.version>
 		<junit.version>4.11</junit.version>
 		<mybatis.generator.configurationFile>generatorConfig.xml</mybatis.generator.configurationFile>
 		<axis2.version>1.6.2</axis2.version>
 
 		<freemarker.version>2.3.22</freemarker.version>
+		<jackson.version>1.9.5</jackson.version>
+		<fasterxml.jackson.version>2.5.3</fasterxml.jackson.version>
+
+
 	</properties>
 	<dependencies>
 		<!-- spring begin -->
@@ -95,11 +99,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.10</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -246,6 +245,29 @@
 			<artifactId>json-lib</artifactId>
 			<version>2.3</version>
 			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- xml 映射 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${fasterxml.jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.ezmorph</groupId>
@@ -442,8 +464,7 @@
 			<groupId>com.mopon</groupId>
 			<artifactId>mtssdk</artifactId>
 			<version>1.0</version>
-			<!-- <scope>system</scope>
-			<systemPath>E:\01_work\02_cec\03_需求\00_小院线/mtssdk-1.0.jar</systemPath> -->
+			<!-- <scope>system</scope> <systemPath>E:\01_work\02_cec\03_需求\00_小院线/mtssdk-1.0.jar</systemPath> -->
 		</dependency>
 		<!-- freemarker -->
 		<dependency>
@@ -452,5 +473,7 @@
 			<version>${freemarker.version}</version>
 		</dependency>
 		<!-- freemarker end -->
+
+
 	</dependencies>
 </project>

@@ -7,11 +7,13 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StopWatch;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mopon.card.api.actions.api.APIAuth;
 import com.mopon.card.api.actions.api.ApiAction;
+import com.mopon.card.api.bean.HallVo;
 import com.mopon.card.api.facade.AccountFacade;
 import com.mopon.card.api.facade.v1.UserQuery;
 import com.mopon.card.api.facade.v1.UserReply;
@@ -40,6 +42,27 @@ public class DemoApiV1Action extends ApiAction {
 		StopWatch watch = new StopWatch();
 		watch.start();
 		UserReply result = accountFacade.queryUser(query);
+		watch.stop();
+		
+		result.setCostTime(watch.getTotalTimeMillis());
+		
+		return result;
+	}
+
+	/**
+	 * JS对象转为JAVA对象
+	 * 
+	 * @param query
+	 *            请求对象
+	 * @return 返回响应对象。
+	 */
+	@RequestMapping("jsonChange")
+	@ApiMethodAuth(APIAuth.QUERY_USERBYCODE)
+	public @ResponseBody UserReply jsonChange(@RequestBody HallVo hall) {
+		StopWatch watch = new StopWatch();
+		watch.start();
+		System.out.println(hall);
+		UserReply result = new UserReply();
 		watch.stop();
 		
 		result.setCostTime(watch.getTotalTimeMillis());

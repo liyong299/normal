@@ -22,6 +22,9 @@ public class UserReply extends ApiReply
 		this.user = new UserVo(user);
 	}
 
+	public UserReply() {
+	}
+
 	/**
 	 * @return the user
 	 */
