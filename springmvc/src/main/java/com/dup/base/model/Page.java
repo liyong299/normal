@@ -1,8 +1,11 @@
 package com.dup.base.model;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 分页对象。
@@ -32,6 +35,7 @@ public class Page<T> implements Serializable {
 	private List<T> contents = new ArrayList<T>();
 	/** 页数序号 */
 	private List<Integer> indexs = new ArrayList<Integer>();
+	private Map<String, Object> params = new HashMap<String, Object>();//其他的参数我们把它封装成一个Map对象  
 
 	/**
 	 * 初始化一个新的分页对象，该构造方法通常用于生成一个空的分页对象。
@@ -148,5 +152,47 @@ public class Page<T> implements Serializable {
 
 	public void setIndexs(List<Integer> indexs) {
 		this.indexs = indexs;
+	}
+
+	/**
+	 * @return the params
+	 */
+	public Map<String, Object> getParams(){
+	    Class c;  
+	    try  
+	    {  
+	      c = Class.forName(getClass().getName());  
+	      Method[] m = c.getMethods();  
+	      for (int i = 0; i < m.length; i++)  
+	      {  
+	        String method = m[i].getName();  
+	        if (method.startsWith("get"))  
+	        {  
+	          try{  
+	          Object value = m[i].invoke(this);  
+	          if (value != null)  
+	          {  
+	            String key=method.substring(3);  
+//	            key=key.substring(0,1).toUpperCase()+key.substring(1); 
+	            params.put(key, value);  
+	          }  
+	          }catch (Exception e) {
+	            System.out.println("error:"+method);  
+	          }  
+	        }  
+	      }  
+	    }  
+	    catch (Exception e)  
+	    {
+	      e.printStackTrace();  
+	    }  
+	    return params;
+	}
+
+	/**
+	 * @param params the params to set
+	 */
+	public void setParams(Map<String, Object> params) {
+	    this.params = params;
 	}
 }

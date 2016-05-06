@@ -20,6 +20,8 @@
 		<commons.lang3.version>3.3.2</commons.lang3.version>
 		<commons.codec.version>1.10</commons.codec.version>
 		<joda.time.version>2.6</joda.time.version>
+		<fasterxml.jackson.version>2.5.3</fasterxml.jackson.version>
+		<codehaus.jackson.version>1.9.5</codehaus.jackson.version>
 
 		<!-- data validate -->
 		<javax.validation.version>1.1.0.Final</javax.validation.version>
@@ -63,13 +65,52 @@
 			<version>${joda.time.version}</version>
 		</dependency>
 
+        <!-- xml 映射 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${codehaus.jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${codehaus.jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-joda</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+		<!-- xml 映射 end-->
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
+		
 
 		<!-- freemarker -->
 		<dependency>

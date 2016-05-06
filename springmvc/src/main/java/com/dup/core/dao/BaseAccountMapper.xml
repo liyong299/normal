@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mopon.dao.base.BaseAccountMapper" >
-  <resultMap id="accountResultMap" type="com.dup.core.daoentities.BaseAccount" >
+  <resultMap id="accountResultMap" type="com.dup.core.dao.entities.BaseAccount" >
     <result column="id" property="id" />
     <result column="roleid" property="roleID" />
     <result column="name" property="name" />
@@ -20,7 +20,7 @@
   	id,roleid,name,password,fullname,status,logintimes,DATE_FORMAT(lasttime, '%Y-%m-%d %H:%i:%s') lasttime,DATE_FORMAT(createtime,'%Y-%m-%d %H:%i:%s') createtime,creator,DATE_FORMAT(modifieddate,'%Y-%m-%d %H:%i:%s') modifieddate,modifier
   </sql>
   
-  <select id="query" parameterType="com.mopon.entity.BaseAccount" resultMap="accountResultMap">
+  <select id="query" parameterType="com.dup.core.dao.entities.BaseAccount" resultMap="accountResultMap">
   	select
   	<include refid="fieldList"></include>
   	from base_account
@@ -36,7 +36,7 @@
   	order by modifieddate desc  
   </select>
   
-  <select id="exist" parameterType="com.mopon.entity.BaseAccount" resultType="Integer">
+  <select id="exist" parameterType="com.dup.core.dao.entities.BaseAccount" resultType="Integer">
   	select count(*)
   	from base_account
   	<where>
@@ -47,7 +47,7 @@
   	</where>
   </select>
   
-  <select id="queryList" parameterType="com.mopon.util.Page" resultMap="accountResultMap">
+  <select id="queryList" parameterType="com.dup.base.model.Page" resultMap="accountResultMap">
   	select
   	<include refid="fieldList"></include>
   	from base_account
@@ -69,7 +69,7 @@
   	order by modifieddate desc  
   </select>
   
-  <insert id="insert" parameterType="com.mopon.entity.BaseAccount">
+  <insert id="insert" parameterType="com.dup.core.dao.entities.BaseAccount">
       insert into base_account
       (roleid,name,password,fullname,status,logintimes,createtime,creator,modifieddate,modifier)
     values(#{roleID},#{name},#{password},#{fullName},0,0,#{createTime},#{creator},#{createTime},#{creator})

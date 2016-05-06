@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dup.server.daos.CinemaMapper" >
+  <resultMap id="cinemaResultMap" type="com.dup.server.daos.entities.Cinema" >
+    <result column="id" property="id" />
+    <result column="code" property="code" />
+    <result column="name" property="name" />
+    <result column="hallCount" property="hallCount" />
+    <result column="address" property="address" />
+    <result column="url" property="url" />
+    <result column="tel" property="tel" />
+    <result column="devicePos" property="devicePos" />
+    <result column="grade" property="grade" />
+    <result column="intro" property="intro" />
+    <result column="busLine" property="busLine" />
+    <result column="longitude" property="longitude" />
+    <result column="latitude" property="latitude" />
+    <result column="feature" property="feature" />
+    <result column="ordinal" property="ordinal" />
+    <result column="salable" property="salable" />
+    <result column="ticketSetted" property="ticketSetted" />
+    <result column="memberSetted" property="memberSetted" />
+    <result column="createtime" property="createTime" />
+    <result column="creator" property="creator" />
+    <result column="modifieddate" property="modifiedDate" />
+    <result column="modifier" property="modifier" />
+  </resultMap>
+  
+  <sql id="fieldList">
+  	id,code,name,hallCount,address,url,tel,devicePos,grade, intro, busLine, longitude, latitude, feature, ordinal, 
+  	salable, ticketSetted, memberSetted,DATE_FORMAT(createtime,'%Y-%m-%d %H:%i:%s') createtime,creator,DATE_FORMAT(modifieddate,'%Y-%m-%d %H:%i:%s') modifieddate,modifier
+  </sql>
+  
+  <select id="query" parameterType="com.dup.server.daos.entities.Cinema" resultMap="cinemaResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from CEC_Cinema2
+  	<where>
+  		1 = 1 
+  		<if test="id != null and id != ''">
+             and id = #{id}
+         </if>
+  		<if test="name != null and name != ''">
+             and name = #{name}
+         </if>        
+  	</where>
+  	order by modifieddate desc  
+  </select>
+  
+  <select id="exist" parameterType="com.dup.server.daos.entities.Cinema" resultType="Integer">
+  	select count(*)
+  	from CEC_Cinema2
+  	<where>
+  		1 = 1
+  		<if test="name != null and name != ''">
+             and name = #{name}
+         </if>
+  	</where>
+  </select>
+  
+  <select id="queryList" parameterType="com.dup.base.model.Page" resultMap="cinemaResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	from CEC_Cinema2
+  	<where>
+  		1 = 1
+  		<if test="params.name != null and params.name != ''">
+             and name LIKE CONCAT("%",#{params.name},"%")
+        </if>
+  	</where>
+  	order by modifieddate desc  
+  </select>
+  
+  
+  <insert id="insert" parameterType="com.dup.server.daos.entities.Cinema">
+      insert into CEC_Cinema2
+      (code,name,hallCount,address,url,tel,devicePos,grade, intro, busLine, longitude, latitude, feature, ordinal, 
+      salable, ticketSetted, memberSetted,creator,modifieddate,modifier)
+    values(#{code},#{name},#{hallCount},#{address},#{url},#{tel},#{devicePos},#{grade},#{intro},#{busLine},#{longitude},#{latitude},#{feature},#{ordinal}
+    ,#{salable},#{ticketSetted},#{memberSetted},#{creator},#{modifieddate},#{modifier})
+  </insert>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+      delete from CEC_Cinema2
+      where id = #{id}
+  </delete>
+  
+  
+</mapper>
