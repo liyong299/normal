@@ -11,6 +11,7 @@ import com.dup.server.daos.entities.Cinema;
 @Repository
 public interface CinemaMapper {
 	public List<Cinema> queryList(Page<Cinema> page);
+	public List<Cinema> queryCinemasTest();
 	public BaseAccount query(BaseAccount account);
 	public Integer exist(BaseAccount account);
 	public Integer  insert(BaseAccount account);

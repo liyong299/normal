@@ -32,6 +32,16 @@
 		<property name="jdbcUrl" value="${dbOne.jdbc.url}" />
 		<property name="user" value="${dbOne.jdbc.user}" />
 		<property name="password" value="${dbOne.jdbc.password}" />
+		
+		<property name="minPoolSize" value="5" />
+		<property name="maxPoolSize" value="30" />
+		<property name="initialPoolSize" value="10" />
+		<property name="maxIdleTime" value="100" />
+		<property name="acquireIncrement" value="5" />
+		<property name="maxStatements" value="0" />
+		<property name="idleConnectionTestPeriod" value="60" />
+		<property name="acquireRetryAttempts" value="30" />
+		<property name="breakAfterAcquireFailure" value="true" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

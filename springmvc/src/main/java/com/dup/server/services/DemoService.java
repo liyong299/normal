@@ -37,5 +37,8 @@ public class DemoService extends AbstractService {
 	return cinemaMapper.queryList(page);
     }
     
-    
+    public List<Cinema> queryCinemasTest(Cinema query)
+    {
+	return cinemaMapper.queryCinemasTest();
+    }
 }

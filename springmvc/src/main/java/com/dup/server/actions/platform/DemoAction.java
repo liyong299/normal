@@ -54,4 +54,21 @@ public class DemoAction extends APIAction {
 	result.setCostTime(watch.getTotalTimeMillis());
 	return result;
     }
+    
+    /**
+     * 查询影院列表。
+     * 请求示例：http://localhost:8080/api/v1/demo/queryCinemasTest.json?channelCode=0001&sign=0002
+     * @param query
+     *            请求对象
+     * @return 返回响应对象。
+     */
+    @RequestMapping("queryCinemasTest")
+    public CinemasReply queryCinemasTest(@Valid CinemasQuery query, HttpServletRequest req, HttpServletResponse resp) {
+	StopWatch watch = new StopWatch();
+	watch.start();
+	CinemasReply result = demoFacade.queryCinemasTest(query);
+	watch.stop();
+	result.setCostTime(watch.getTotalTimeMillis());
+	return result;
+    }
 }

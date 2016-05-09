@@ -36,4 +36,11 @@ public class DemoFacade extends APIFacade {
 	
 	return new CinemasReply(list, "http://www.baidu.com");
     }
+    
+    public CinemasReply queryCinemasTest(CinemasQuery query)
+    {
+	List<Cinema> list = demoService.queryCinemasTest(new Cinema());
+	
+	return new CinemasReply(list, "http://www.baidu.com");
+    }
 }

@@ -58,6 +58,8 @@
   	</where>
   </select>
   
+  
+  
   <select id="queryList" parameterType="com.dup.base.model.Page" resultMap="cinemaResultMap">
   	select
   	<include refid="fieldList"></include>
@@ -69,6 +71,14 @@
         </if>
   	</where>
   	order by modifieddate desc  
+  </select>
+  
+   <select id="queryCinemasTest" resultMap="cinemaResultMap">
+  	select
+  	<include refid="fieldList"></include>
+  	 from CEC_Cinema2 a,
+  	 (SELECT cinemaId from CEC_TicketOrder cto where createTime > '2016-01-06' ORDER BY createTime desc limit 5000) b
+  	 where a.id = b.cinemaId
   </select>
   
   
