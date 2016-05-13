@@ -33,8 +33,8 @@ class DelayedObj implements Delayed
     }
     
     public int compareTo(Delayed o) {
-	if (o == null) throw new RuntimeException("对象不能为空");
-	if (!(o instanceof DelayedObj))  throw new RuntimeException("对象类型不对， cls : " + o.getClass());
+	if (o == null) throw new RuntimeException("????????????");
+	if (!(o instanceof DelayedObj))  throw new RuntimeException("?????????????? cls : " + o.getClass());
 	return this.level.compareTo(((DelayedObj)o).getLevel());
     }
 

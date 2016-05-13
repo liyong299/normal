@@ -1,10 +1,10 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºjava
- * ÎÄ¼ş°üÃû£ºcom.ly.java.other
- * ÎÄ¼şÃû³Æ£ºÖ÷¼üÉú³ÉÆ÷.java
- * °æ±¾ĞÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê3ÔÂ11ÈÕ ÉÏÎç11:14:59
- * Copyright (c) 2015-2015ÉîÛÚÊĞÌ©¾ÃĞÅÏ¢ÏµÍ³¹É·İÓĞÏŞ¹«Ë¾
+ * é¡¹ç›®åç§°ï¼šjava
+ * æ–‡ä»¶åŒ…åï¼šcom.ly.java.other
+ * æ–‡ä»¶åç§°ï¼šä¸»é”®ç”Ÿæˆå™¨.java
+ * ç‰ˆæœ¬ä¿¡æ¯ï¼šSCEC_Branches
+ * ç”Ÿæˆæ—¥æœŸï¼š2016å¹´3æœˆ11æ—¥ ä¸Šåˆ11:14:59
+ * Copyright (c) 2015-2015æ·±åœ³å¸‚æ³°ä¹…ä¿¡æ¯ç³»ç»Ÿè‚¡ä»½æœ‰é™å…¬å¸
  * 
  */
 package com.ly.java.other;
@@ -13,13 +13,13 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * ¹¦ÄÜÃèÊö£º<p color="red">ÓÃÒÔÉú³ÉÖ÷¼ü</p>
- * ÎÄ¼şÃû³Æ£ºÖ÷¼üÉú³ÉÆ÷.java
+ * åŠŸèƒ½æè¿°ï¼š<p color="red">ç”¨ä»¥ç”Ÿæˆä¸»é”®</p>
+ * æ–‡ä»¶åç§°ï¼šä¸»é”®ç”Ÿæˆå™¨.java
  * @author ly
  */
-public class Ö÷¼üÉú³ÉÆ÷
+public class ä¸»é”®ç”Ÿæˆå™¨
 {	
-	// ¶ÔÏóËø
+	// å¯¹è±¡é”
     private static final Lock LOCK = new ReentrantLock();
     private static long lastTime = System.currentTimeMillis();
     private static int count = 0;
@@ -54,7 +54,7 @@ public class Ö÷¼üÉú³ÉÆ÷
     }
     public static void main(String[] args)
     {
-        //²âÊÔ
+        //æµ‹è¯•
         for(int i=0;i<1000;i++)
         {
             System.out.println(nextId());

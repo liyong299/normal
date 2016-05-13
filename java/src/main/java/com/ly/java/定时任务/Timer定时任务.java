@@ -1,6 +1,6 @@
-package com.ly.java.定时任务;
+package com.ly.java.瀹氭椂浠诲姟;
 
-public class Timer定时任务
+public class Timer瀹氭椂浠诲姟
 {
 
 	public static void main(String[] args)

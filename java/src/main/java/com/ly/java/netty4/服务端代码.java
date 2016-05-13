@@ -6,10 +6,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class ·şÎñ¶Ë´úÂë {
+public class æœåŠ¡ç«¯ä»£ç  {
 
     /**
-     * ·şÎñ¶Ë¼àÌıµÄ¶Ë¿ÚµØÖ·
+     * æœåŠ¡ç«¯ç›‘å¬çš„ç«¯å£åœ°å€
      */
     private static final int portNumber = 7878;
 
@@ -20,14 +20,14 @@ public class ·şÎñ¶Ë´úÂë {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup);
             b.channel(NioServerSocketChannel.class);
-            b.childHandler(new ·şÎñ¶ËÒµÎñChannelÀà());
+            b.childHandler(new æœåŠ¡ç«¯ä¸šåŠ¡Channelç±»());
 
-            // ·şÎñÆ÷°ó¶¨¶Ë¿Ú¼àÌı
+            // æœåŠ¡å™¨ç»‘å®šç«¯å£ç›‘å¬
             ChannelFuture f = b.bind(portNumber).sync();
-            // ¼àÌı·şÎñÆ÷¹Ø±Õ¼àÌı
+            // ç›‘å¬æœåŠ¡å™¨å…³é—­ç›‘å¬
             f.channel().closeFuture().sync();
 
-            // ¿ÉÒÔ¼òĞ´Îª
+            // å¯ä»¥ç®€å†™ä¸º
             /* b.bind(portNumber).sync().channel().closeFuture().sync(); */
         } finally {
             bossGroup.shutdownGracefully();

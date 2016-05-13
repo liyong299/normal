@@ -11,26 +11,26 @@ import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
-public class ¿Í»§¶ËÒµÎñChannelÀà extends ChannelInitializer<SocketChannel> {
+public class å®¢æˆ·ç«¯ä¸šåŠ¡Channelç±» extends ChannelInitializer<SocketChannel> {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
-	log.debug("method¡¾initChannel¡¿  " + ch.toString());
+	log.debug("methodã€initChannelã€‘  " + ch.toString());
         ChannelPipeline pipeline = ch.pipeline();
 
         /*
-         * Õâ¸öµØ·½µÄ ±ØĞëºÍ·şÎñ¶Ë¶ÔÓ¦ÉÏ¡£·ñÔòÎŞ·¨Õı³£½âÂëºÍ±àÂë
+         * è¿™ä¸ªåœ°æ–¹çš„ å¿…é¡»å’ŒæœåŠ¡ç«¯å¯¹åº”ä¸Šã€‚å¦åˆ™æ— æ³•æ­£å¸¸è§£ç å’Œç¼–ç 
          * 
-         * ½âÂëºÍ±àÂë ÎÒ½«»áÔÚÏÂÒ»ÕÂÎª´ó¼ÒÏêÏ¸µÄ½²½â¡£ÔÙ´ËÔİÊ±²»×öÏêÏ¸µÄÃèÊö
+         * è§£ç å’Œç¼–ç  æˆ‘å°†ä¼šåœ¨ä¸‹ä¸€ç« ä¸ºå¤§å®¶è¯¦ç»†çš„è®²è§£ã€‚å†æ­¤æš‚æ—¶ä¸åšè¯¦ç»†çš„æè¿°
          */
         pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192,
                 Delimiters.lineDelimiter()));
         pipeline.addLast("decoder", new StringDecoder());
         pipeline.addLast("encoder", new StringEncoder());
 
-        // ¿Í»§¶ËµÄÂß¼­
-        pipeline.addLast("handler", new ¿Í»§¶ËÒµÎñHandlerÀà());
+        // å®¢æˆ·ç«¯çš„é€»è¾‘
+        pipeline.addLast("handler", new å®¢æˆ·ç«¯ä¸šåŠ¡Handlerç±»());
     }
 }

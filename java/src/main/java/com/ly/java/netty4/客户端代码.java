@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ¿Í»§¶Ë´úÂë {
+public class å®¢æˆ·ç«¯ä»£ç  {
 
     public static String host = "127.0.0.1";
     public static int port = 7878;
@@ -26,12 +26,12 @@ public class ¿Í»§¶Ë´úÂë {
         try {
             Bootstrap b = new Bootstrap();
             b.group(group).channel(NioSocketChannel.class)
-                    .handler(new ¿Í»§¶ËÒµÎñChannelÀà());
+                    .handler(new å®¢æˆ·ç«¯ä¸šåŠ¡Channelç±»());
 
-            // Á¬½Ó·şÎñ¶Ë
+            // è¿æ¥æœåŠ¡ç«¯
             Channel ch = b.connect(host, port).sync().channel();
 
-            // ¿ØÖÆÌ¨ÊäÈë
+            // æ§åˆ¶å°è¾“å…¥
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     System.in));
             for (;;) {
@@ -40,9 +40,9 @@ public class ¿Í»§¶Ë´úÂë {
                     continue;
                 }
                 /*
-                 * Ïò·şÎñ¶Ë·¢ËÍÔÚ¿ØÖÆÌ¨ÊäÈëµÄÎÄ±¾ ²¢ÓÃ"\r\n"½áÎ² Ö®ËùÒÔÓÃ\r\n½áÎ² ÊÇÒòÎªÎÒÃÇÔÚhandlerÖĞÌí¼ÓÁË
-                 * DelimiterBasedFrameDecoder Ö¡½âÂë¡£
-                 * Õâ¸ö½âÂëÆ÷ÊÇÒ»¸ö¸ù¾İ\n·ûºÅÎ»·Ö¸ô·ûµÄ½âÂëÆ÷¡£ËùÒÔÃ¿ÌõÏûÏ¢µÄ×îºó±ØĞë¼ÓÉÏ\n·ñÔòÎŞ·¨Ê¶±ğºÍ½âÂë
+                 * å‘æœåŠ¡ç«¯å‘é€åœ¨æ§åˆ¶å°è¾“å…¥çš„æ–‡æœ¬ å¹¶ç”¨"\r\n"ç»“å°¾ ä¹‹æ‰€ä»¥ç”¨\r\nç»“å°¾ æ˜¯å› ä¸ºæˆ‘ä»¬åœ¨handlerä¸­æ·»åŠ äº†
+                 * DelimiterBasedFrameDecoder å¸§è§£ç ã€‚
+                 * è¿™ä¸ªè§£ç å™¨æ˜¯ä¸€ä¸ªæ ¹æ®\nç¬¦å·ä½åˆ†éš”ç¬¦çš„è§£ç å™¨ã€‚æ‰€ä»¥æ¯æ¡æ¶ˆæ¯çš„æœ€åå¿…é¡»åŠ ä¸Š\nå¦åˆ™æ— æ³•è¯†åˆ«å’Œè§£ç 
                  */
                 ch.writeAndFlush(line + "\r\n");
             }

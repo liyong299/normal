@@ -4,14 +4,14 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
-public class 客户端业务类 extends IoHandlerAdapter {
-    public 客户端业务类() {
+public class 瀹㈡埛绔笟鍔＄被 extends IoHandlerAdapter {
+    public 瀹㈡埛绔笟鍔＄被() {
     }
 
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
 	System.out.println("messageReceived method was called!");
-	System.out.println(message);// 显示接收到的消息
+	System.out.println(message);// 鏄剧ず鎺ユ敹鍒扮殑娑堟伅
     }
 
     @Override

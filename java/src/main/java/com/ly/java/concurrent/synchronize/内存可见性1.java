@@ -1,36 +1,36 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºjava
- * ÎÄ¼þ°üÃû£ºcom.ly.java.concurrent.synchronize
- * ÎÄ¼þÃû³Æ£ºÄÚ´æ¿É¼ûÐÔ.java
- * °æ±¾ÐÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê4ÔÂ24ÈÕ ÏÂÎç3:00:15
- * Copyright (c) 2015-2015ÉîÛÚÊÐÌ©¾ÃÐÅÏ¢ÏµÍ³¹É·ÝÓÐÏÞ¹«Ë¾
+ * é¡¹ç›®åç§°ï¼šjava
+ * æ–‡ä»¶åŒ…åï¼šcom.ly.java.concurrent.synchronize
+ * æ–‡ä»¶åç§°ï¼šå†…å­˜å¯è§æ€§.java
+ * ç‰ˆæœ¬ä¿¡æ¯ï¼šSCEC_Branches
+ * ç”Ÿæˆæ—¥æœŸï¼š2016å¹´4æœˆ24æ—¥ ä¸‹åˆ3:00:15
+ * Copyright (c) 2015-2015æ·±åœ³å¸‚æ³°ä¹…ä¿¡æ¯ç³»ç»Ÿè‚¡ä»½æœ‰é™å…¬å¸
  * 
  */
 package com.ly.java.concurrent.synchronize;
 
 /**
- * ¹¦ÄÜÃèÊö£º
+ * åŠŸèƒ½æè¿°ï¼š
  * <p color="red">
- * ¶ÔÏóMÉÏÓÐÁ½¸ö±äÁ¿xºÍy£¬µ±A½øÈë´úÂë¿é£¬Ëø¶¨M£¬¶ÔxºÍy£¬½øÐÐ±à¼­¡£Ïß³ÌBÍ¬Ê±½øÈë´úÂë¿é£¬¿ÉÒÔ¿´µ½A×öµÄ²Ù×÷¡£
+ * å¯¹è±¡Mä¸Šæœ‰ä¸¤ä¸ªå˜é‡xå’Œyï¼Œå½“Aè¿›å…¥ä»£ç å—ï¼Œé”å®šMï¼Œå¯¹xå’Œyï¼Œè¿›è¡Œç¼–è¾‘ã€‚çº¿ç¨‹BåŒæ—¶è¿›å…¥ä»£ç å—ï¼Œå¯ä»¥çœ‹åˆ°Aåšçš„æ“ä½œã€‚
  * </p>
- * ÎÄ¼þÃû³Æ£ºÄÚ´æ¿É¼ûÐÔ.java
+ * æ–‡ä»¶åç§°ï¼šå†…å­˜å¯è§æ€§.java
  * 
  * @author ly
  */
-public class ÄÚ´æ¿É¼ûÐÔ1 {
+public class å†…å­˜å¯è§æ€§1 {
 
     /**
      * <p>
-     * ¹¦ÄÜÃèÊö£º±¾ÀýÊÇÏß³ÌËø¶¨ÁË±»²Ù×÷¶ÔÏóobj£¬±»²Ù×÷¶ÔÏóobjµÄ¶ÔÏó±äÁ¿£¬ÔÚÏß³ÌËø¶¨ÆÚ¼ä£¬¶¼±£³ÖÒ»ÖÂ¡£
+     * åŠŸèƒ½æè¿°ï¼šæœ¬ä¾‹æ˜¯çº¿ç¨‹é”å®šäº†è¢«æ“ä½œå¯¹è±¡objï¼Œè¢«æ“ä½œå¯¹è±¡objçš„å¯¹è±¡å˜é‡ï¼Œåœ¨çº¿ç¨‹é”å®šæœŸé—´ï¼Œéƒ½ä¿æŒä¸€è‡´ã€‚
      * <p>
-     * ·½·¨¹¦ÄÜ
+     * æ–¹æ³•åŠŸèƒ½
      * </p>
      * </p>
      * <p>
-     * ÊµÏÖÂß¼­£º
+     * å®žçŽ°é€»è¾‘ï¼š
      * <p>
-     * ÊµÏÖ²½Öè
+     * å®žçŽ°æ­¥éª¤
      * </p>
      * </p>
      * 

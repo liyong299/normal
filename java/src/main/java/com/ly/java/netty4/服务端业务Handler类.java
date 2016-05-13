@@ -8,28 +8,28 @@ import org.slf4j.LoggerFactory;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-public class ·şÎñ¶ËÒµÎñHandlerÀà extends SimpleChannelInboundHandler<String> {
+public class æœåŠ¡ç«¯ä¸šåŠ¡Handlerç±» extends SimpleChannelInboundHandler<String> {
     private final Logger log = LoggerFactory.getLogger(getClass());
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg)
             throws Exception {
-        // ÊÕµ½ÏûÏ¢Ö±½Ó´òÓ¡Êä³ö
-        log.debug("method¡¾channelRead0¡¿  " + ctx.channel().remoteAddress() + " Say : " + msg);
+        // æ”¶åˆ°æ¶ˆæ¯ç›´æ¥æ‰“å°è¾“å‡º
+        log.debug("methodã€channelRead0ã€‘  " + ctx.channel().remoteAddress() + " Say : " + msg);
 
-        // ·µ»Ø¿Í»§¶ËÏûÏ¢ - ÎÒÒÑ¾­½ÓÊÕµ½ÁËÄãµÄÏûÏ¢
+        // è¿”å›å®¢æˆ·ç«¯æ¶ˆæ¯ - æˆ‘å·²ç»æ¥æ”¶åˆ°äº†ä½ çš„æ¶ˆæ¯
         ctx.writeAndFlush("Received your message ! [" + msg + "] \n");
     }
 
     /*
      * 
-     * ¸²¸Ç channelActive ·½·¨ ÔÚchannel±»ÆôÓÃµÄÊ±ºò´¥·¢ (ÔÚ½¨Á¢Á¬½ÓµÄÊ±ºò)
+     * è¦†ç›– channelActive æ–¹æ³• åœ¨channelè¢«å¯ç”¨çš„æ—¶å€™è§¦å‘ (åœ¨å»ºç«‹è¿æ¥çš„æ—¶å€™)
      * 
-     * channelActive ºÍ channelInActive ÔÚºóÃæµÄÄÚÈİÖĞ½²Êö£¬ÕâÀïÏÈ²»×öÏêÏ¸µÄÃèÊö
+     * channelActive å’Œ channelInActive åœ¨åé¢çš„å†…å®¹ä¸­è®²è¿°ï¼Œè¿™é‡Œå…ˆä¸åšè¯¦ç»†çš„æè¿°
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
 
-        log.debug("method¡¾channelActive¡¿  RamoteAddress : " + ctx.channel().remoteAddress()
+        log.debug("methodã€channelActiveã€‘  RamoteAddress : " + ctx.channel().remoteAddress()
                 + " active !");
 
         ctx.writeAndFlush("Welcome to "

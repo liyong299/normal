@@ -6,25 +6,25 @@ import org.slf4j.LoggerFactory;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-public class øÕªß∂À“µŒÒHandler¿‡ extends SimpleChannelInboundHandler<String> {
+public class ÂÆ¢Êà∑Á´Ø‰∏öÂä°HandlerÁ±ª extends SimpleChannelInboundHandler<String> {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         
-        log.debug("method°æchannelRead0°ø  " + "Server say : " + msg);
+        log.debug("method„ÄêchannelRead0„Äë  " + "Server say : " + msg);
     }
     
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.debug("method°æchannelActive°ø  " + "Client channelActive ");
+        log.debug("method„ÄêchannelActive„Äë  " + "Client channelActive ");
         super.channelActive(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        log.debug("method°æchannelInactive°ø  " + "Client close ");
+        log.debug("method„ÄêchannelInactive„Äë  " + "Client close ");
         super.channelInactive(ctx);
     }
 }

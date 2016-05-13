@@ -1,15 +1,15 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºjava
- * ÎÄ¼ş°üÃû£ºcom.ly.java.netty
- * ÎÄ¼şÃû³Æ£ºpackage-info.java
- * °æ±¾ĞÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê4ÔÂ27ÈÕ ÉÏÎç10:20:04
- * Copyright (c) 2015-2015ÉîÛÚÊĞÌ©¾ÃĞÅÏ¢ÏµÍ³¹É·İÓĞÏŞ¹«Ë¾
+ * é¡¹ç›®åç§°ï¼šjava
+ * æ–‡ä»¶åŒ…åï¼šcom.ly.java.netty
+ * æ–‡ä»¶åç§°ï¼špackage-info.java
+ * ç‰ˆæœ¬ä¿¡æ¯ï¼šSCEC_Branches
+ * ç”Ÿæˆæ—¥æœŸï¼š2016å¹´4æœˆ27æ—¥ ä¸Šåˆ10:20:04
+ * Copyright (c) 2015-2015æ·±åœ³å¸‚æ³°ä¹…ä¿¡æ¯ç³»ç»Ÿè‚¡ä»½æœ‰é™å…¬å¸
  * 
  */
 /**
- * ¹¦ÄÜÃèÊö£º<p color="red">ÊµÏÖ¼ÓÔØ</p>
- * ÎÄ¼şÃû³Æ£ºpackage-info.java
+ * åŠŸèƒ½æè¿°ï¼š<p color="red">å®ç°åŠ è½½</p>
+ * æ–‡ä»¶åç§°ï¼špackage-info.java
  * @author ly
  */
 package com.ly.java.netty4;

@@ -1,13 +1,13 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºjava
- * ÎÄ¼ş°üÃû£ºcom.ly.java.javanio.channel
- * ÎÄ¼şÃû³Æ£ºDatagramChannelÁ·Ï°.java
- * °æ±¾ĞÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê5ÔÂ5ÈÕ ÏÂÎç7:53:50
- * Copyright (c) 2015-2015ÉîÛÚÊĞÌ©¾ÃĞÅÏ¢ÏµÍ³¹É·İÓĞÏŞ¹«Ë¾
+ * é¡¹ç›®åç§°ï¼šjava
+ * æ–‡ä»¶åŒ…åï¼šcom.ly.java.javanio.channel
+ * æ–‡ä»¶åç§°ï¼šDatagramChannelç»ƒä¹ .java
+ * ç‰ˆæœ¬ä¿¡æ¯ï¼šSCEC_Branches
+ * ç”Ÿæˆæ—¥æœŸï¼š2016å¹´5æœˆ5æ—¥ ä¸‹åˆ7:53:50
+ * Copyright (c) 2015-2015æ·±åœ³å¸‚æ³°ä¹…ä¿¡æ¯ç³»ç»Ÿè‚¡ä»½æœ‰é™å…¬å¸
  * 
  */
-package com.ly.java.javanio.channel;
+package com.ly.java.javanio.c02channel;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -16,15 +16,15 @@ import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
 /**
- * ¹¦ÄÜÃèÊö£º
+ * åŠŸèƒ½æè¿°ï¼š
  * <p color="red">
- * DatagramChannelµÄÁ·Ï°
+ * DatagramChannelçš„ç»ƒä¹ 
  * </p>
- * ÎÄ¼şÃû³Æ£ºDatagramChannelÁ·Ï°.java
+ * æ–‡ä»¶åç§°ï¼šDatagramChannelç»ƒä¹ .java
  * 
  * @author ly
  */
-public class DatagramChannelÁ·Ï°1¿Í»§¶Ë {
+public class DatagramChannelç»ƒä¹ 1å®¢æˆ·ç«¯ {
 
     /**
      * 
@@ -42,7 +42,7 @@ public class DatagramChannelÁ·Ï°1¿Í»§¶Ë {
 
     private static void send() throws IOException {
 	DatagramChannel channel = DatagramChannel.open();
-	ByteBuffer buffer = ByteBuffer.wrap("Õâ¸öÏÄÌì²»Ì«ÈÈ".getBytes("UTF-8"));
+	ByteBuffer buffer = ByteBuffer.wrap("è¿™ä¸ªå¤å¤©ä¸å¤ªçƒ­".getBytes("UTF-8"));
 	channel.send(buffer, new InetSocketAddress("localhost", 8888));
 	channel.close();
     }

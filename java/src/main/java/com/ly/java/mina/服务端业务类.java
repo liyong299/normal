@@ -1,10 +1,10 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºjava
- * ÎÄ¼ş°üÃû£ºcom.ly.java.mina
- * ÎÄ¼şÃû³Æ£º·şÎñ¶Ë´úÂë.java
- * °æ±¾ĞÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê4ÔÂ26ÈÕ ÏÂÎç2:41:28
- * Copyright (c) 2015-2015ÉîÛÚÊĞÌ©¾ÃĞÅÏ¢ÏµÍ³¹É·İÓĞÏŞ¹«Ë¾
+ * é¡¹ç›®åç§°ï¼šjava
+ * æ–‡ä»¶åŒ…åï¼šcom.ly.java.mina
+ * æ–‡ä»¶åç§°ï¼šæœåŠ¡ç«¯ä»£ç .java
+ * ç‰ˆæœ¬ä¿¡æ¯ï¼šSCEC_Branches
+ * ç”Ÿæˆæ—¥æœŸï¼š2016å¹´4æœˆ26æ—¥ ä¸‹åˆ2:41:28
+ * Copyright (c) 2015-2015æ·±åœ³å¸‚æ³°ä¹…ä¿¡æ¯ç³»ç»Ÿè‚¡ä»½æœ‰é™å…¬å¸
  * 
  */
 package com.ly.java.mina;
@@ -16,17 +16,17 @@ import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
 /**
- * ¹¦ÄÜÃèÊö£º
+ * åŠŸèƒ½æè¿°ï¼š
  * <p color="red">
- * ÊµÏÖ¼ÓÔØ
+ * å®ç°åŠ è½½
  * </p>
- * ÎÄ¼şÃû³Æ£º·şÎñ¶Ë´úÂë.java
+ * æ–‡ä»¶åç§°ï¼šæœåŠ¡ç«¯ä»£ç .java
  * 
  * @author ly
  */
-public class ·şÎñ¶ËÒµÎñÀà extends IoHandlerAdapter {
+public class æœåŠ¡ç«¯ä¸šåŠ¡ç±» extends IoHandlerAdapter {
 
-    // Á¬½ÓÒì³£Ê±´¦Àí·½·¨
+    // è¿æ¥å¼‚å¸¸æ—¶å¤„ç†æ–¹æ³•
     @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
 	System.out.println("exceptionCaught method was called!");
@@ -37,7 +37,7 @@ public class ·şÎñ¶ËÒµÎñÀà extends IoHandlerAdapter {
     public void messageReceived(IoSession session, Object message) throws Exception {
 	System.out.println("messageReceived method was called!");
 	String str = message.toString();
-	System.out.println("½ÓÊÕµ½µÄ×Ö·û´®£º" + str);
+	System.out.println("æ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ï¼š" + str);
 	if (str.trim().equalsIgnoreCase("quit")) {
 //	    session.close(true);
 	    session.closeNow();

@@ -16,14 +16,14 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
- * ¹¦ÄÜÃèÊö£º<p color="red">ÊµÏÖ¼ÓÔØ</p>
- * ÎÄ¼şÃû³Æ£ºNIOComparator.java
+ * åŠŸèƒ½æè¿°ï¼š<p color="red">å®ç°åŠ è½½</p>
+ * æ–‡ä»¶åç§°ï¼šNIOComparator.java
  * @author ly
  */
 public class NIOComparator {
     /**
-     * <p>¹¦ÄÜÃèÊö£º<p>Ö±½ÓÍ¨¹ıIOÁ÷½øĞĞ¶ÁĞ´</p></p>
-     * <p>ÊµÏÖÂß¼­£º<p>ÊµÏÖ²½Öè</p></p>
+     * <p>åŠŸèƒ½æè¿°ï¼š<p>ç›´æ¥é€šè¿‡IOæµè¿›è¡Œè¯»å†™</p></p>
+     * <p>å®ç°é€»è¾‘ï¼š<p>å®ç°æ­¥éª¤</p></p>
      * @param TPATH
      */
     public void IOMethod(String TPATH) {
@@ -31,7 +31,7 @@ public class NIOComparator {
 	try {
 	    DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(new File(TPATH))));
 	    for (int i = 0; i < 4000000; i++) {
-		dos.writeInt(i);// Ğ´Èë 4000000 ¸öÕûÊı
+		dos.writeInt(i);// å†™å…¥ 4000000 ä¸ªæ•´æ•°
 	    }
 	    if (dos != null) {
 		dos.close();
@@ -42,7 +42,7 @@ public class NIOComparator {
 	    e.printStackTrace();
 	}
 	long end = System.currentTimeMillis();
-	System.out.println("IOMethod Ğ´ÈëºÄÊ± £º " + (end - start));
+	System.out.println("IOMethod å†™å…¥è€—æ—¶ ï¼š " + (end - start));
 	start = System.currentTimeMillis();
 	try {
 	    DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(new File(TPATH))));
@@ -59,25 +59,25 @@ public class NIOComparator {
 	}
 
 	end = System.currentTimeMillis();
-	System.out.println("IOMethod ¶ÁÈ¡ºÄÊ± £º " + (end - start));
+	System.out.println("IOMethod è¯»å–è€—æ—¶ ï¼š " + (end - start));
     }
 
     /**
-     * <p>¹¦ÄÜÃèÊö£º<p>Í¨¹ıÎÄ¼şµÄFileChannel²Ù×÷¶ÁĞ´</p></p>
-     * <p>ÊµÏÖÂß¼­£º<p>ÊµÏÖ²½Öè</p></p>
+     * <p>åŠŸèƒ½æè¿°ï¼š<p>é€šè¿‡æ–‡ä»¶çš„FileChannelæ“ä½œè¯»å†™</p></p>
+     * <p>å®ç°é€»è¾‘ï¼š<p>å®ç°æ­¥éª¤</p></p>
      * @param TPATH
      */
     public void ByteMethod(String TPATH) {
 	long start = System.currentTimeMillis();
 	try {
 	    FileOutputStream fout = new FileOutputStream(new File(TPATH));
-	    FileChannel fc = fout.getChannel();// µÃµ½ÎÄ¼şÍ¨µÀ
-	    ByteBuffer byteBuffer = ByteBuffer.allocate(4000000 * 4);// ·ÖÅä
+	    FileChannel fc = fout.getChannel();// å¾—åˆ°æ–‡ä»¶é€šé“
+	    ByteBuffer byteBuffer = ByteBuffer.allocate(4000000 * 4);// åˆ†é…
 								     // Buffer
 	    for (int i = 0; i < 4000000; i++) {
-		byteBuffer.put(int2byte(i));// ½«ÕûÊı×ªÎªÊı×é
+		byteBuffer.put(int2byte(i));// å°†æ•´æ•°è½¬ä¸ºæ•°ç»„
 	    }
-	    byteBuffer.flip();// ×¼±¸Ğ´
+	    byteBuffer.flip();// å‡†å¤‡å†™
 	    fc.write(byteBuffer);
 	    if (fout != null) {
 		fout.close();
@@ -88,22 +88,22 @@ public class NIOComparator {
 	    e.printStackTrace();
 	}
 	long end = System.currentTimeMillis();
-	System.out.println("ByteMethod Ğ´ÈëºÄÊ± £º " + (end - start));
+	System.out.println("ByteMethod å†™å…¥è€—æ—¶ ï¼š " + (end - start));
 
 	start = System.currentTimeMillis();
 	FileInputStream fin;
 	try {
 	    fin = new FileInputStream(new File(TPATH));
-	    FileChannel fc = fin.getChannel();// È¡µÃÎÄ¼şÍ¨µÀ
-	    ByteBuffer byteBuffer = ByteBuffer.allocate(4000000 * 4);// ·ÖÅä
+	    FileChannel fc = fin.getChannel();// å–å¾—æ–‡ä»¶é€šé“
+	    ByteBuffer byteBuffer = ByteBuffer.allocate(4000000 * 4);// åˆ†é…
 								     // Buffer
-	    fc.read(byteBuffer);// ¶ÁÈ¡ÎÄ¼şÊı¾İ
+	    fc.read(byteBuffer);// è¯»å–æ–‡ä»¶æ•°æ®
 	    fc.close();
-	    byteBuffer.flip();// ×¼±¸¶ÁÈ¡Êı¾İ
+	    byteBuffer.flip();// å‡†å¤‡è¯»å–æ•°æ®
 	    while (byteBuffer.hasRemaining()) {
-		byte2int(byteBuffer.get(), byteBuffer.get(), byteBuffer.get(), byteBuffer.get());// ½«
+		byte2int(byteBuffer.get(), byteBuffer.get(), byteBuffer.get(), byteBuffer.get());// å°†
 												 // byte
-												 // ×ªÎªÕûÊı
+												 // è½¬ä¸ºæ•´æ•°
 	    }
 	} catch (FileNotFoundException e) {
 	    e.printStackTrace();
@@ -111,17 +111,17 @@ public class NIOComparator {
 	    e.printStackTrace();
 	}
 	end = System.currentTimeMillis();
-	System.out.println("ByteMethod  ¶ÁÈ¡ºÄÊ± £º " + (end - start));
+	System.out.println("ByteMethod  è¯»å–è€—æ—¶ ï¼š " + (end - start));
     }
 
     /**
-     * <p>¹¦ÄÜÃèÊö£º<p>Í¨¹ıFileChannle½«ÎÄ¼şÈ«²¿Ó³Éäµ½ÄÚ´æ£¬È»ºó½øĞĞ¶ÁĞ´</p></p>
-     * <p>ÊµÏÖÂß¼­£º<p>ÊµÏÖ²½Öè</p></p>
+     * <p>åŠŸèƒ½æè¿°ï¼š<p>é€šè¿‡FileChannleå°†æ–‡ä»¶å…¨éƒ¨æ˜ å°„åˆ°å†…å­˜ï¼Œç„¶åè¿›è¡Œè¯»å†™</p></p>
+     * <p>å®ç°é€»è¾‘ï¼š<p>å®ç°æ­¥éª¤</p></p>
      * @param TPATH
      */
     public void mapMethod(String TPATH) {
 	long start = System.currentTimeMillis();
-	// ½«ÎÄ¼şÖ±½ÓÓ³Éäµ½ÄÚ´æµÄ·½·¨
+	// å°†æ–‡ä»¶ç›´æ¥æ˜ å°„åˆ°å†…å­˜çš„æ–¹æ³•
 	try {
 	    RandomAccessFile randomAccessFile = new RandomAccessFile(TPATH, "rw");
 	    FileChannel fc = randomAccessFile.getChannel();
@@ -141,7 +141,7 @@ public class NIOComparator {
 	    e.printStackTrace();
 	}
 	long end = System.currentTimeMillis();
-	System.out.println("mapMethod  Ğ´ÈëºÄÊ± £º " + (end - start));
+	System.out.println("mapMethod  å†™å…¥è€—æ—¶ ï¼š " + (end - start));
 
 	start = System.currentTimeMillis();
 	try {
@@ -165,15 +165,15 @@ public class NIOComparator {
 	    e.printStackTrace();
 	}
 	end = System.currentTimeMillis();
-	System.out.println("mapMethod  ¶ÁÈ¡ºÄÊ± £º " + (end - start));
+	System.out.println("mapMethod  è¯»å–è€—æ—¶ ï¼š " + (end - start));
     }
 
     public static byte[] int2byte(int res) {
 	byte[] targets = new byte[4];
-	targets[3] = (byte) (res & 0xff);// ×îµÍÎ»
-	targets[2] = (byte) ((res >> 8) & 0xff);// ´ÎµÍÎ»
-	targets[1] = (byte) ((res >> 16) & 0xff);// ´Î¸ßÎ»
-	targets[0] = (byte) ((res >>> 24));// ×î¸ßÎ»£¬ÎŞ·ûºÅÓÒÒÆ
+	targets[3] = (byte) (res & 0xff);// æœ€ä½ä½
+	targets[2] = (byte) ((res >> 8) & 0xff);// æ¬¡ä½ä½
+	targets[1] = (byte) ((res >> 16) & 0xff);// æ¬¡é«˜ä½
+	targets[0] = (byte) ((res >>> 24));// æœ€é«˜ä½ï¼Œæ— ç¬¦å·å³ç§»
 	return targets;
     }
 

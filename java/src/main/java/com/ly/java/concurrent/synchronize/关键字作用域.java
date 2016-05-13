@@ -1,10 +1,10 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºjava
- * ÎÄ¼ş°üÃû£ºcom.ly.java.concurrent.synchronize
- * ÎÄ¼şÃû³Æ£º¹Ø¼ü×Ö×÷ÓÃÓò.java
- * °æ±¾ĞÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê4ÔÂ19ÈÕ ÉÏÎç9:26:37
- * Copyright (c) 2015-2015ÉîÛÚÊĞÌ©¾ÃĞÅÏ¢ÏµÍ³¹É·İÓĞÏŞ¹«Ë¾
+ * é¡¹ç›®åç§°ï¼šjava
+ * æ–‡ä»¶åŒ…åï¼šcom.ly.java.concurrent.synchronize
+ * æ–‡ä»¶åç§°ï¼šå…³é”®å­—ä½œç”¨åŸŸ.java
+ * ç‰ˆæœ¬ä¿¡æ¯ï¼šSCEC_Branches
+ * ç”Ÿæˆæ—¥æœŸï¼š2016å¹´4æœˆ19æ—¥ ä¸Šåˆ9:26:37
+ * Copyright (c) 2015-2015æ·±åœ³å¸‚æ³°ä¹…ä¿¡æ¯ç³»ç»Ÿè‚¡ä»½æœ‰é™å…¬å¸
  * 
  */
 package com.ly.java.concurrent.synchronize;
@@ -12,11 +12,11 @@ package com.ly.java.concurrent.synchronize;
 import java.util.Date;
 
 /**
- * ¹¦ÄÜÃèÊö£º<p color="red">ÊµÏÖ¼ÓÔØ</p>
- * ÎÄ¼şÃû³Æ£º¹Ø¼ü×Ö×÷ÓÃÓò.java
+ * åŠŸèƒ½æè¿°ï¼š<p color="red">å®ç°åŠ è½½</p>
+ * æ–‡ä»¶åç§°ï¼šå…³é”®å­—ä½œç”¨åŸŸ.java
  * @author ly
  */
-public class ¹Ø¼ü×Ö×÷ÓÃÓò {
+public class å…³é”®å­—ä½œç”¨åŸŸ {
 
     public static void main(String[] args)
     {
@@ -26,10 +26,10 @@ public class ¹Ø¼ü×Ö×÷ÓÃÓò {
 	    new MyThread(demo).start();
 	}
 	
-	test×èÈû´úÂë¿é²»Ó°Ïì·Ç×èÈû´úÂë¿é();
+	testé˜»å¡ä»£ç å—ä¸å½±å“éé˜»å¡ä»£ç å—();
     }
     
-    public static void test×èÈû´úÂë¿é²»Ó°Ïì·Ç×èÈû´úÂë¿é()
+    public static void testé˜»å¡ä»£ç å—ä¸å½±å“éé˜»å¡ä»£ç å—()
     {
 	Demo1 demo = new Demo1();
 	new MyThread(demo).start();

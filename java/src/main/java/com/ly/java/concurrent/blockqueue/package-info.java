@@ -1,20 +1,20 @@
 /**
- * ��Ŀ���ƣ�java
- * �ļ�������com.ly.java.concurrent.blockqueue
- * �ļ����ƣ�package-info.java
- * �汾��Ϣ��SCEC_Branches
- * �������ڣ�2016��4��15�� ����8:47:42
- * Copyright (c) 2015-2015������̩����Ϣϵͳ�ɷ����޹�˾
+ * 项目名称：java
+ * 文件包名：com.ly.java.concurrent.blockqueue
+ * 文件名称：package-info.java
+ * 版本信息：SCEC_Branches
+ * 生成日期：2016年4月15日 上午8:47:42
+ * Copyright (c) 2015-2015深圳市泰久信息系统股份有限公司
  * 
  */
 /**
- * ����������<p color="red">ʹ�÷��������е�ʱ����һ���ܴ�������ǣ�������Ե�ǰ�̲߳�����������ô���������������-�����ߵ�ģ��ʱ��
- * �ͱ�������ʵ��ͬ�������Լ��̼߳份�Ѳ��ԣ����ʵ�������ͷǳ��鷳��
- * ���������������оͲ�һ���ˣ�����Ե�ǰ�̲߳�������������һ���̴߳�һ���յ�����������ȡԪ�أ���ʱ�̻߳ᱻ����ֱ����������������Ԫ�ء�
- * ����������Ԫ�غ� ���������̻߳��Զ������ѣ�����Ҫ���Ǳ�д����ȥ���ѣ��������ṩ�˼���ķ����ԡ�
- *  �����Ƚ���һ��java.util.concurrent�����ṩ��Ҫ�ļ����������У�Ȼ��������������кͷ��������е��еĸ���������
- *  ���ŷ������������е�ʵ��ԭ������������һ��ʵ�����Ӻͼ���ʹ�ó�����</p>
- * �ļ����ƣ�package-info.java
+ * 功能描述：<p color="red">使用非阻塞队列的时候有一个很大问题就是：它不会对当前线程产生阻塞，那么在面对类似消费者-生产者的模型时，
+ * 就必须额外地实现同步策略以及线程间唤醒策略，这个实现起来就非常麻烦。
+ * 但是有了阻塞队列就不一样了，它会对当前线程产生阻塞，比如一个线程从一个空的阻塞队列中取元素，此时线程会被阻塞直到阻塞队列中有了元素。
+ * 当队列中有元素后， 被阻塞的线程会自动被唤醒（不需要我们编写代码去唤醒）。这样提供了极大的方便性。
+ *  本文先讲述一下java.util.concurrent包下提供主要的几种阻塞队列，然后分析了阻塞队列和非阻塞队列的中的各个方法，
+ *  接着分析了阻塞队列的实现原理，最后给出了一个实际例子和几个使用场景。</p>
+ * 文件名称：package-info.java
  * @author ly
  */
 package com.ly.java.concurrent.blockqueue;

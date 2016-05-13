@@ -1,19 +1,19 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºjava
- * ÎÄ¼ş°üÃû£ºcom.ly.java.ÔËËã
- * ÎÄ¼şÃû³Æ£ºÓëÔËËã.java
- * °æ±¾ĞÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê3ÔÂ2ÈÕ ÏÂÎç2:36:34
- * Copyright (c) 2015-2015ÉîÛÚÊĞÌ©¾ÃĞÅÏ¢ÏµÍ³¹É·İÓĞÏŞ¹«Ë¾
+ * é¡¹ç›®åç§°ï¼šjava
+ * æ–‡ä»¶åŒ…åï¼šcom.ly.java.è¿ç®—
+ * æ–‡ä»¶åç§°ï¼šä¸è¿ç®—.java
+ * ç‰ˆæœ¬ä¿¡æ¯ï¼šSCEC_Branches
+ * ç”Ÿæˆæ—¥æœŸï¼š2016å¹´3æœˆ2æ—¥ ä¸‹åˆ2:36:34
+ * Copyright (c) 2015-2015æ·±åœ³å¸‚æ³°ä¹…ä¿¡æ¯ç³»ç»Ÿè‚¡ä»½æœ‰é™å…¬å¸
  * 
  */
-package com.ly.java.ÔËËã;
+package com.ly.java.è¿ç®—;
 
 /**
  * @author ly
  *
  */
-public class ÓëÔËËã
+public class ä¸è¿ç®—
 {
 
 	/**
@@ -21,12 +21,12 @@ public class ÓëÔËËã
 	 */
 	public static void main(String[] args)
 	{
-		test1ÓëÔËËã»ñÈ¡Ö¸¶¨Î»Êı();
-		test2ÓëÔËËã»ñÈ¡Ö¸¶¨Î»Êı();
-		test3ÆæÅ¼ÅĞ¶Ï();
+		test1ä¸è¿ç®—è·å–æŒ‡å®šä½æ•°();
+		test2ä¸è¿ç®—è·å–æŒ‡å®šä½æ•°();
+		test3å¥‡å¶åˆ¤æ–­();
 	}
 
-	public static void test1ÓëÔËËã»ñÈ¡Ö¸¶¨Î»Êı()
+	public static void test1ä¸è¿ç®—è·å–æŒ‡å®šä½æ•°()
 	{
 		System.out.println(123 & 0xff);
 		System.out.println(329 & 0xff);
@@ -34,11 +34,11 @@ public class ÓëÔËËã
 	}
 	
 	/**
-	 * ¶ş½øÖÆÊıÊ¹ÓÃ²¹Âë±íÊ¾£¬×î¸ßÎ»Îª·ûºÅÎ»£¬ÕıÊıµÄ·ûºÅÎ»Îª0£¬¸ºÊıÎª1
-	 * ÓëÔËËã¹æÔò£ºÁ½¸ö²Ù×÷ÊıÖĞÎ»¶¼Îª1£¬½á¹û²ÅÎª1£¬·ñÔò½á¹ûÎª0
+	 * äºŒè¿›åˆ¶æ•°ä½¿ç”¨è¡¥ç è¡¨ç¤ºï¼Œæœ€é«˜ä½ä¸ºç¬¦å·ä½ï¼Œæ­£æ•°çš„ç¬¦å·ä½ä¸º0ï¼Œè´Ÿæ•°ä¸º1
+	 * ä¸è¿ç®—è§„åˆ™ï¼šä¸¤ä¸ªæ“ä½œæ•°ä¸­ä½éƒ½ä¸º1ï¼Œç»“æœæ‰ä¸º1ï¼Œå¦åˆ™ç»“æœä¸º0
 	 * 
 	 */
-	public static void test2ÓëÔËËã»ñÈ¡Ö¸¶¨Î»Êı()
+	public static void test2ä¸è¿ç®—è·å–æŒ‡å®šä½æ•°()
 	{
 		System.out.println(Integer.toBinaryString(329));
 		System.out.println(Integer.toBinaryString(-123));
@@ -48,7 +48,7 @@ public class ÓëÔËËã
 		System.out.println(-123 & 255);
 	}
 	
-	public static void test3ÆæÅ¼ÅĞ¶Ï()
+	public static void test3å¥‡å¶åˆ¤æ–­()
 	{
 		int a = 232;
 		System.out.println((a & 1) == 1);

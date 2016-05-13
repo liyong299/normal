@@ -1,15 +1,16 @@
 /**
- * ÏîÄ¿Ãû³Æ£ºjava
- * ÎÄ¼ş°üÃû£ºcom.ly.java.javanio
- * ÎÄ¼şÃû³Æ£ºpackage-info.java
- * °æ±¾ĞÅÏ¢£ºSCEC_Branches
- * Éú³ÉÈÕÆÚ£º2016Äê4ÔÂ28ÈÕ ÏÂÎç3:11:08
- * Copyright (c) 2015-2015ÉîÛÚÊĞÌ©¾ÃĞÅÏ¢ÏµÍ³¹É·İÓĞÏŞ¹«Ë¾
+ * é¡¹ç›®åç§°ï¼šjava
+ * æ–‡ä»¶åŒ…åï¼šcom.ly.java.javanio
+ * æ–‡ä»¶åç§°ï¼špackage-info.java
+ * ç‰ˆæœ¬ä¿¡æ¯ï¼šSCEC_Branches
+ * ç”Ÿæˆæ—¥æœŸï¼š2016å¹´4æœˆ28æ—¥ ä¸‹åˆ3:11:08
+ * Copyright (c) 2015-2015æ·±åœ³å¸‚æ³°ä¹…ä¿¡æ¯ç³»ç»Ÿè‚¡ä»½æœ‰é™å…¬å¸
  * 
  */
 /**
- * ¹¦ÄÜÃèÊö£º<p color="red">ÊµÏÖ¼ÓÔØ</p>
- * ÎÄ¼şÃû³Æ£ºpackage-info.java
+ * åŠŸèƒ½æè¿°ï¼š<p color="red">å­¦ä¹ JAVAçš„nioåŒ…çš„ä¸€äº›å¸¸ç”¨ç±»å’Œä¹ æƒ¯ç”¨æ³•ç¤ºä¾‹</p>
+ * å­¦ä¹ èµ„æ–™åœ°å€ï¼šhttp://ifeve.com/buffers/#basicusage
+ * æ–‡ä»¶åç§°ï¼špackage-info.java
  * @author ly
  */
 package com.ly.java.javanio;
