@@ -27,14 +27,22 @@
 	</properties>
 
 	<dependencies>
-	    <!-- netty包 -->
-	    <dependency>
+		<!-- charset tool -->
+		<dependency>
+			<groupId>net.sourceforge.jchardet</groupId>
+			<artifactId>jchardet</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- charset tool end -->
+
+		<!-- netty包 -->
+		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
 			<version>${netty.version}</version>
-			 <scope>compile</scope>
+			<scope>compile</scope>
 		</dependency>
-	    <!-- netty包 end -->
+		<!-- netty包 end -->
 		<!-- mina需要的包 -->
 		<dependency>
 			<groupId>org.rxtx</groupId>
@@ -42,7 +50,7 @@
 			<version>2.1.7</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- mina需要的包 end -->
 
 		<!-- 常见工具类 -->
