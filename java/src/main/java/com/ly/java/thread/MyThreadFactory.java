@@ -39,9 +39,9 @@ class MyRunnable implements Runnable
 	
 	public void run()
 	{
-	    while (a < 1000)
+	    while (a < 10)
 	    {
-	    	System.out.println(a++);
+	    	System.out.println(Thread.currentThread().getName() + "————————" + a++);
 	    }
 	}
 
