@@ -1,3 +1,64 @@
+<<<<<<< .mine
+///**
+// * œÓƒø√˚≥∆£∫java
+// * Œƒº˛∞¸√˚£∫com.ly.java.mina
+// * Œƒº˛√˚≥∆£∫∑˛ŒÒ∂À¥˙¬Î2.java
+// * ∞Ê±æ–≈œ¢£∫SCEC_Branches
+// * …˙≥…»’∆⁄£∫2016ƒÍ4‘¬26»’ œ¬ŒÁ2:59:50
+// * Copyright (c) 2015-2015…Ó€⁄ –Ã©æ√–≈œ¢œµÕ≥π…∑›”–œﬁπ´Àæ
+// * 
+// */
+//package com.ly.java.mina;
+//
+//import java.io.IOException;
+//import java.net.InetSocketAddress;
+//import java.nio.charset.Charset;
+//
+//import org.apache.mina.core.service.IoAcceptor;
+//import org.apache.mina.core.session.IdleStatus;
+//import org.apache.mina.example.gettingstarted.timeserver.TimeServerHandler;
+//import org.apache.mina.filter.codec.ProtocolCodecFilter;
+//import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
+//import org.apache.mina.filter.logging.LoggingFilter;
+//import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
+//
+///**
+// * π¶ƒ‹√Ë ˆ£∫
+// * <p color="red">
+// *  µœ÷º”‘ÿ
+// * </p>
+// * Œƒº˛√˚≥∆£∫∑˛ŒÒ∂À¥˙¬Î2.java
+// * 
+// * @author ly
+// */
+//public class ∑˛ŒÒ∂À¥˙¬Î {
+//
+//    private static final int PORT = 9123;
+//
+//    public static void main(String[] args) throws IOException {
+//	// ¥¥Ω®∑˛ŒÒ∆˜º‡Ã˝
+//	IoAcceptor acceptor = new NioSocketAcceptor();
+//
+//	// ‘ˆº”»’÷æπ˝¬À∆˜
+//	acceptor.getFilterChain().addLast("logger", new LoggingFilter());
+//	
+//	// ‘ˆº”±‡¬Îπ˝¬À∆˜
+//	acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
+//
+//	// ÷∏∂®“µŒÒ¬ﬂº≠¥¶¿Ì∆˜
+//	acceptor.setHandler(new ∑˛ŒÒ∂À“µŒÒ¿‡());
+//	
+//	// …Ë÷√bufferµƒ≥§∂»
+//	acceptor.getSessionConfig().setReadBufferSize(2048);
+//	
+//	// …Ë÷√¡¨Ω”≥¨ ± ±º‰
+//	acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
+//
+//	// ∞Û∂®∂Àø⁄
+//	acceptor.bind(new InetSocketAddress(PORT));
+//    }
+//}
+=======
 /**
  * È°πÁõÆÂêçÁß∞Ôºöjava
  * Êñá‰ª∂ÂåÖÂêçÔºöcom.ly.java.mina
@@ -57,3 +118,4 @@ public class ÊúçÂä°Á´Ø‰ª£Á†Å {
 	acceptor.bind(new InetSocketAddress(PORT));
     }
 }
+>>>>>>> .r35

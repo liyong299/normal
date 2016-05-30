@@ -1,3 +1,51 @@
+<<<<<<< .mine
+///**
+// * œÓƒø√˚≥∆£∫java
+// * Œƒº˛∞¸√˚£∫com.ly.java.mina
+// * Œƒº˛√˚≥∆£∫øÕªß∂À¥˙¬Î.java
+// * ∞Ê±æ–≈œ¢£∫SCEC_Branches
+// * …˙≥…»’∆⁄£∫2016ƒÍ4‘¬26»’ œ¬ŒÁ2:41:18
+// * Copyright (c) 2015-2015…Ó€⁄ –Ã©æ√–≈œ¢œµÕ≥π…∑›”–œﬁπ´Àæ
+// * 
+// */
+//package com.ly.java.mina;
+//
+//import java.net.InetSocketAddress;
+//import java.nio.charset.Charset;
+//
+//import org.apache.mina.core.future.ConnectFuture;
+//import org.apache.mina.filter.codec.ProtocolCodecFilter;
+//import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
+//import org.apache.mina.filter.logging.LoggingFilter;
+//import org.apache.mina.transport.socket.nio.NioSocketConnector;
+//
+///**
+// * π¶ƒ‹√Ë ˆ£∫
+// * <p color="red">
+// *  µœ÷º”‘ÿ
+// * </p>
+// * Œƒº˛√˚≥∆£∫øÕªß∂À¥˙¬Î.java
+// * 
+// * @author ly
+// */
+//public class øÕªß∂À¥˙¬Î {
+//
+//    public static void main(String[] args) {
+//	// ¥¥Ω®øÕªß∂À¡¨Ω”∆˜.
+//	NioSocketConnector connector = new NioSocketConnector();
+//	connector.getFilterChain().addLast("logger", new LoggingFilter());
+//	connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8")))); // …Ë÷√±‡¬Îπ˝¬À∆˜
+//	connector.setConnectTimeout(30);
+//	connector.setHandler(new øÕªß∂À“µŒÒ¿‡());// …Ë÷√ ¬º˛¥¶¿Ì∆˜
+//	ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 9123));// Ω®¡¢¡¨Ω”
+//	cf.awaitUninterruptibly();// µ»¥˝¡¨Ω”¥¥Ω®ÕÍ≥…
+//	cf.getSession().write("hello");// ∑¢ÀÕœ˚œ¢
+//	cf.getSession().write("quit");// ∑¢ÀÕœ˚œ¢
+//	cf.getSession().getCloseFuture().awaitUninterruptibly();// µ»¥˝¡¨Ω”∂œø™
+//	connector.dispose();
+//    }
+//}
+=======
 /**
  * È°πÁõÆÂêçÁß∞Ôºöjava
  * Êñá‰ª∂ÂåÖÂêçÔºöcom.ly.java.mina
@@ -44,3 +92,4 @@ public class ÂÆ¢Êà∑Á´Ø‰ª£Á†Å {
 	connector.dispose();
     }
 }
+>>>>>>> .r35
