@@ -37,7 +37,7 @@ public class CallAbleTest {
 	testOOM4();
     }
 
- // 申请固定大小的线程池，存在部分线程处理时间较长，但是线程之间可能需要等待，但是线程池每次使用完成之后，都不会关闭
+    // 申请固定大小的线程池，存在部分线程处理时间较长，但是线程之间可能需要等待，但是线程池每次使用完成之后，都不会关闭
     // 线程数会增加，会发生OOM
     public static void testOOM5() throws Exception {
    	int idx = 0;

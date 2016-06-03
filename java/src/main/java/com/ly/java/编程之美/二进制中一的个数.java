@@ -29,7 +29,7 @@ public class 二进制中一的个数
 	 */
 	public static void main(String[] args)
 	{
-		test4();
+	    test4();
 	}
 	
 	// a变成b需要改变多少位bit。即，a和b有多少位不同
