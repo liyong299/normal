@@ -10,12 +10,6 @@
         <dependent-module archiveName="card_console-dao-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/card_console-dao/card_console-dao">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="publicservice-service-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/publicservice-service/publicservice-service">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="publicservice-dao-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/publicservice-dao/publicservice-dao">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="card-utils-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/card-utils/card-utils">
             <dependency-type>uses</dependency-type>
         </dependent-module>

@@ -15,7 +15,6 @@
 	<url>http://maven.apache.org</url>
 	
 	<properties>
-	    <package.environment>dev</package.environment>	
 		<!-- 编译参数 -->
 		<jdk.version>1.7</jdk.version>
 		<encoding>UTF-8</encoding>
@@ -35,26 +34,6 @@
 		<ngc.version>1.6-SNAPSHOT</ngc.version>
 		<mysql.version>5.1.27</mysql.version>
 	</properties>
-	<profiles>
-		<profile>
-			<id>pro</id><!-- 生产环境 -->
-			<properties>  
-                 <package.environment>pro</package.environment>
-           </properties>  
-		</profile>
-		<profile>
-			<id>dev</id><!-- 开发环境 -->
-			<properties>  
-                 <package.environment>dev</package.environment>
-           </properties>  
-		</profile>
-		<profile>
-			<id>test</id><!-- 测试环境 -->
-			<properties>  
-                 <package.environment>test</package.environment>
-           </properties>  
-		</profile>
-	</profiles>
 	
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
