@@ -33,9 +33,24 @@
 		<thoughtworks.xstream>1.4.7</thoughtworks.xstream>
 
 		<mysql.version>5.1.27</mysql.version>
+		<jsoup.version>1.9.1</jsoup.version>
+		<httpclient.version>4.3.5</httpclient.version>
 	</properties>
 
 	<dependencies>
+		<!-- http tools -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>${jsoup.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+		<!-- http tools end -->
+
 		<!-- jfreechart -->
 		<dependency>
 			<artifactId>jfreechart</artifactId>
@@ -65,7 +80,7 @@
 			<version>${joda.time.version}</version>
 		</dependency>
 
-        <!-- xml 映射 -->
+		<!-- xml 映射 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -77,40 +92,40 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${fasterxml.jackson.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${codehaus.jackson.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 			<version>${codehaus.jackson.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 			<version>${fasterxml.jackson.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-joda</artifactId>
 			<version>${fasterxml.jackson.version}</version>
 		</dependency>
-		<!-- xml 映射 end-->
-		
+		<!-- xml 映射 end -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
-		
+
+
 
 		<!-- freemarker -->
 		<dependency>

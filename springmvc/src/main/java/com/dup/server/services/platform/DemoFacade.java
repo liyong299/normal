@@ -34,7 +34,7 @@ public class DemoFacade extends APIFacade {
     {
 	List<Cinema> list = demoService.queryCinemas(new Cinema());
 	
-	return new CinemasReply(list, "http://www.baidu.com");
+		return new CinemasReply(list.subList(0, 2), "http://www.baidu.com");
     }
     
     public CinemasReply queryCinemasTest(CinemasQuery query)

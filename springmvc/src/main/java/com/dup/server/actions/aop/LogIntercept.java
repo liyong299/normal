@@ -86,6 +86,7 @@ public class LogIntercept {
 //    }
 
     private void printLog(String str){
-	log.warn(str);
+//	log.warn(str);
+	System.out.println(str);
     }
 }
