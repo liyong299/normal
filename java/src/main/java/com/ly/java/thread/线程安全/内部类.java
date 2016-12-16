@@ -1,8 +1,5 @@
 package com.ly.java.thread.线程安全;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.ly.java.thread.线程安全.FinalConstructorTest.A;
 
 public class 内部类 {
@@ -12,8 +9,8 @@ public class 内部类 {
 	    final String bb = null;
 	    new A() {
 	        public void display() {
-	            aa = 2;
-	            bb = "cc";
+				//	            aa = 2;
+				//	            bb = "cc";
 	            System.out.println(a);
 	        }
 	    };
