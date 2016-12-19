@@ -8,7 +8,7 @@
  * 
  */
 /**
- * 功能描述：<p color="red">实现加载</p>
+ * 功能描述：<p color="red">JAVA分布式事务</p>
  * 文件名称：package-info.java
  * @author ly
  */

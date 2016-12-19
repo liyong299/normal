@@ -4,6 +4,7 @@
 	<groupId>ly.test</groupId>
 	<artifactId>java</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<description>java 的一些常见问题、功能测试类</description>
 
 	<properties>
@@ -27,22 +28,22 @@
 	</properties>
 
 	<dependencies>
-	<!-- http://mvnrepository.com/artifact/javax.transaction/jta -->
-	<dependency>
-		<groupId>javax.transaction</groupId>
-		<artifactId>jta</artifactId>
-		<version>1.1</version>
-	</dependency>
-	<!-- http://mvnrepository.com/artifact/javax.transaction/jta end -->
-	
-	<!-- http://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>5.1.39</version>
-</dependency>
+		<!-- http://mvnrepository.com/artifact/javax.transaction/jta -->
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<!-- http://mvnrepository.com/artifact/javax.transaction/jta end -->
+
+		<!-- http://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.39</version>
+		</dependency>
 		<!-- http://mvnrepository.com/artifact/mysql/mysql-connector-java end -->
-		
+
 
 		<!-- charset tool -->
 		<dependency>
@@ -228,5 +229,35 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- spring 的基本依赖 结束 -->
+
+		<!-- https://mvnrepository.com/artifact/org.fusesource/sigar -->
+		<dependency>
+			<groupId>org.fusesource</groupId>
+			<artifactId>sigar</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		
+		<!-- thrift begin -->
+		<dependency>  
+            <groupId>org.apache.thrift</groupId>  
+            <artifactId>libthrift</artifactId>  
+            <version>0.9.2</version>  
+        </dependency>   
+        <!-- thrift end -->
 	</dependencies>
+	
+	 <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <!-- Disable annotation processing for ourselves. -->
+                    <compilerArgument>-proc:none</compilerArgument>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

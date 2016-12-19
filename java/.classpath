@@ -27,20 +27,14 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/02_study/02_java/sigar.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-core-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-example-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-filter-compression-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-http-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-integration-beans-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-integration-jmx-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-integration-ognl-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-integration-xbean-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-statemachine-2.0.13.jar"/>
-	<classpathentry kind="lib" path="E:/02_study/02_java/15_mina/apache-mina-2.0.13/dist/mina-transport-apr-2.0.13.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path=".apt_generated">
+		<attributes>
+			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
