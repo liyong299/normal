@@ -16,8 +16,10 @@ import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpHeaders.Values;
 import io.netty.handler.codec.http.HttpRequest;
 
+import java.io.File;
 import java.net.InetAddress;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -67,13 +69,17 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
 
 			String res = uri + "   ::::    I am OK";
 
+			res = FileUtils.readFileToString(new File("C:/Users/hugoyang/Desktop/配置管理中心.htm"));
+
 			FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(res
 					.getBytes("UTF-8")));
-			response.headers().set(CONTENT_TYPE, "text/plain");
+
+			response.headers().set(CONTENT_TYPE, "text/html");
 			response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
 			if (HttpHeaders.isKeepAlive(request)) {
 				response.headers().set(CONNECTION, Values.KEEP_ALIVE);
 			}
+
 			ctx.write(response);
 			ctx.flush();
 		}
@@ -93,5 +99,4 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
 		log.error(cause.getMessage());
 		ctx.close();
 	}
-
 }
