@@ -1,4 +1,4 @@
-package com.ly.java.thrift.TThreadPoolServer;
+package com.ly.java.thrift.inflectServer2;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.TProcessor;
@@ -7,8 +7,6 @@ import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
 
-import com.ly.java.thrift.HelloWorld;
-import com.ly.java.thrift.HelloWorldImpl;
 
 /** 
  * 注册服务端 
@@ -20,7 +18,7 @@ public class HelloTThreadPoolServer {
 
 	public static void main(String[] args) throws TException {
 
-		TProcessor tprocessor = new HelloWorld.Processor<HelloWorld.Iface>(new HelloWorldImpl());
+		TProcessor tprocessor = new Processor<Iface>(new HelloWorldImpl());
 		// 阻塞IO  
 		TServerSocket serverTransport = new TServerSocket(SERVER_PORT);
 		//多线程服务模型  

@@ -1,4 +1,4 @@
-package com.ly.java.thrift.tSimpleServer;
+package com.ly.java.thrift.TSimpleServer;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

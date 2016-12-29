@@ -1,11 +1,9 @@
-package com.ly.java.thrift.TThreadPoolServer;
+package com.ly.java.thrift.inflectServer;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
-
-import com.ly.java.thrift.HelloWorld;
 
 /** 
  * 客户端调用HelloTSimpleServer,HelloTThreadPoolServer 
@@ -23,12 +21,11 @@ public class HelloClient {
 		//使用二进制协议   
 		TProtocol protocol = new TBinaryProtocol(transport);
 		//创建Client  
-		HelloWorld.Client client = new HelloWorld.Client(protocol);
+		Client client = new Client(protocol);
 		try {
 
 			transport.open();
 			String result = client.sayHello(userName);
-			//			System.out.println(Thread.currentThread().getName() + "  result : " + result);
 
 		} catch (Exception e) {
 			e.printStackTrace();
