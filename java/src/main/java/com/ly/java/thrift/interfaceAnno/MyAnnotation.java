@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ly.java.thrift.anno;
+package com.ly.java.thrift.interfaceAnno;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,7 +14,6 @@ import java.lang.annotation.Target;
  */
 @Target(value = { ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SAASServerMap {
-	public String value();
+public @interface MyAnnotation {
 
 }

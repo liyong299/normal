@@ -24,12 +24,12 @@ public class PackageUtil {
 			SAASServerMap ann = (SAASServerMap) cls.getAnnotation(SAASServerMap.class);
 			if (ann != null) {
 				System.out.println(className);
-				String urlPrefix = ann.uri();
+				String urlPrefix = ann.value();
 				Method[] methods = cls.getMethods();
 				for (Method method : methods) {
 					SAASServerMap methodAnn = method.getAnnotation(SAASServerMap.class);
 					if (methodAnn != null) {
-						String url = urlPrefix + methodAnn.uri();
+						String url = urlPrefix + methodAnn.value();
 						map.put(url, new String[] { className, method.getName() });
 						System.out.println(url);
 					}
