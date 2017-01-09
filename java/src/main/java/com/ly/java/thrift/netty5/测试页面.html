@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/javascript" src="jquery-2.1.4.min.js"></script>
+<title></title>
+<script type="application/javascript">
+
+$(document).ready(function(){
+$.fn.serializeObject = function()    
+{    
+   var o = {};    
+   var a = this.serializeArray();    
+   $.each(a, function() {
+       if (o[this.name]) {    
+           if (!o[this.name].push) {    
+               o[this.name] = [o[this.name]];    
+           }    
+           o[this.name].push(this.value || '');    
+       } else {    
+           o[this.name] = this.value || '';    
+       }    
+   });    
+   return o;    
+}; 
+
+function onClikPOST(){
+        var jsonuserinfo = $('#ajaxform').serializeObject();  
+		var pageNumber = $("#pageNumber").val();
+		var pageSize = $("#pageSize").val();
+		var pagination = {"pageNumber" : pageNumber, "pageSize" : pageSize, "queryParams" : jsonuserinfo};
+        console.log(JSON.stringify(pagination));  
+		
+		var port = $("#test_port").val();
+        var url = "http://localhost:" + port + "/site/ticket/v1/createChannel";
+        $.post(url, {"pagination" : JSON.stringify(pagination)},function(result) {
+				$("#content").html(JSON.stringify(result));
+			});
+}
+
+function onClikGET(){
+        var jsonuserinfo = $('#ajaxform').serializeObject();  
+		var pageNumber = $("#pageNumber").val();
+		var pageSize = $("#pageSize").val();
+		var pagination = {"pageNumber" : pageNumber, "pageSize" : pageSize, "queryParams" : jsonuserinfo};
+        console.log(JSON.stringify(pagination));  
+		
+		var port = $("#test_port").val();
+        var url = "http://localhost:" + port + "/site/ticket/v1/createChannel?AA=BB";
+        $.get(url, {"pagination" : JSON.stringify(pagination)},function(result) {
+				$("#content").html(JSON.stringify(result));
+			});
+}
+
+$("#submitID").bind("click", onClikPOST);
+$("#submitID2").bind("click", onClikGET);
+});
+
+</script>
+</head>
+
+<body>
+    <input type="text" name="test_port" id="test_port" value="3344" />
+	
+	<form id="ajaxform" name="ajaxform" method="post" action="http://localhost:8082/site/benefitcard/v1/editBenefitCardTypeInfo" target="_blank">
+		
+		<p>
+			query:<textarea name="query" id="query" > {"memberLevels":[
+ {"levelCode":"4567896688889","dailyDiscountCount":55,"rate":"5","totalDiscountCount":99,"rechargeAmount":77,"name":"888888","initAmount":66},
+ {"levelCode":"45678988886","dailyDiscountCount":55,"rate":"6","totalDiscountCount":99,"rechargeAmount":77,"name":"888888","initAmount":66}],
+ "benefitCardType":{"validMonth":"3.5","code":"ASEE58888","prefix":"008","id":"e15f70bb-aa8d-4b1a-becd-19c87db4df14","name":"镀铁影卡"}}</textarea>
+		</p>
+
+		
+	</form>
+	
+	<p>
+			<input type="submit" name="submit" id="submitID"  value="post测试" />
+			<input type="submit" name="submit" id="submitID2" value="get测试" />
+		</p>
+		
+		
+    <div><p> 结果输出： </p></div>
+	<div id="content" >  </div>
+</body>
+</html>
