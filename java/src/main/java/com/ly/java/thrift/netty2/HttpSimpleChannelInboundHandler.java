@@ -14,12 +14,14 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpResponse;
+import io.netty.handler.codec.http.HttpContent;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpObject;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.HttpVersion;
+import io.netty.handler.codec.http.LastHttpContent;
 import io.netty.handler.codec.http.QueryStringDecoder;
 import io.netty.handler.codec.http.cookie.Cookie;
 import io.netty.handler.codec.http.cookie.ServerCookieDecoder;
@@ -35,6 +37,7 @@ import io.netty.util.CharsetUtil;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -57,11 +60,13 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 
 	private HttpRequest orgRequest;
 
+	private MyHttpRequest myHttpRequest;
+
 	private boolean readingChunks;
 
 	private final StringBuilder responseContent = new StringBuilder();
 
-	private static final HttpDataFactory factory = new DefaultHttpDataFactory(DefaultHttpDataFactory.MINSIZE); //Disk
+	private static final HttpDataFactory factory = new DefaultHttpDataFactory(DefaultHttpDataFactory.MINSIZE); // Disk
 
 	private HttpPostRequestDecoder decoder;
 
@@ -77,10 +82,15 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 
 		if (msg instanceof HttpRequest) {
 			this.orgRequest = (HttpRequest) msg;
+			decoder = new HttpPostRequestDecoder(factory, orgRequest);
 			URI uri = new URI(orgRequest.getUri());
 
 			if (uri.getPath().equals("/favicon.ico")) {
 				return;
+			}
+
+			if (myHttpRequest == null) {
+				myHttpRequest = new MyHttpRequest(HttpVersion.HTTP_1_1, orgRequest.getMethod(), uri.toString());
 			}
 		}
 
@@ -94,43 +104,12 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 			System.out.println("HEADER: " + entry.getKey() + '=' + entry.getValue() + "\r\n");
 		}
 
-		/**
-		 * 服务器端返回信息
-		 */
-		responseContent.setLength(0);
-		responseContent.append("WELCOME TO THE WILD WILD WEB SERVER\r\n");
-		responseContent.append("===================================\r\n");
-
-		responseContent.append("VERSION: " + orgRequest.getProtocolVersion().text() + "\r\n");
-		responseContent.append("REQUEST_URI: " + orgRequest.getUri() + "\r\n\r\n");
-		responseContent.append("\r\n\r\n");
-		for (Map.Entry<String, String> entry : orgRequest.headers()) {
-			responseContent.append("HEADER: " + entry.getKey() + '=' + entry.getValue() + "\r\n");
-		}
-		responseContent.append("\r\n\r\n");
-
-
 		if (orgRequest.getMethod().equals(HttpMethod.GET)) {
-			//get请求
-			QueryStringDecoder decoderQuery = new QueryStringDecoder(orgRequest.getUri());
-			Map<String, List<String>> uriAttributes = decoderQuery.parameters();
-			for (Map.Entry<String, List<String>> attr : uriAttributes.entrySet()) {
-				for (String attrVal : attr.getValue()) {
-					responseContent.append("URI: " + attr.getKey() + '=' + attrVal + "\r\n");
-				}
-			}
-
-			responseContent.append("\r\n\r\n");
-
-			responseContent.append("\r\n\r\nEND OF GET CONTENT\r\n");
-
-			return;
+			// get请求
 		} else if (orgRequest.getMethod().equals(HttpMethod.POST)) {
-			//post请求
-			decoder = new HttpPostRequestDecoder(factory, orgRequest);
+			// post请求
+
 			readingChunks = HttpHeaders.isTransferEncodingChunked(orgRequest);
-			responseContent.append("Is Chunked: " + readingChunks + "\r\n");
-			responseContent.append("IsMultipart: " + decoder.isMultipart() + "\r\n");
 
 			try {
 				while (decoder.hasNext()) {
@@ -146,30 +125,111 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 			} catch (EndOfDataDecoderException e1) {
 				responseContent.append("\r\n\r\nEND OF POST CONTENT\r\n\r\n");
 			}
-
-			return;
 		}
 
-		String content = this.dispatcherService.service(orgRequest);
+		if (decoder != null && msg instanceof HttpContent) {
+			HttpContent chunk = (HttpContent) msg;
+			try {
+				this.decoder.offer(chunk);
+			} catch (HttpPostRequestDecoder.ErrorDataDecoderException e1) {
+				this.responseContent.append(e1.getMessage());
+				ctx.channel().close();
+				return;
+			}
+
+			try {
+				while (this.decoder.hasNext()) {
+					InterfaceHttpData data = this.decoder.next();
+					if (data != null) {
+						try {
+							bindRequestParamer(data);
+						} finally {
+							data.release();
+						}
+					}
+				}
+			} catch (HttpPostRequestDecoder.EndOfDataDecoderException e1) {
+			}
+			if ((chunk instanceof LastHttpContent)) {
+				QueryStringDecoder decoderQuery = new QueryStringDecoder(this.orgRequest.getUri());
+				Map<String, List<String>> uriAttributes = decoderQuery.parameters();
+				for (String key : uriAttributes.keySet()) {
+					this.myHttpRequest.resolveMultipart(key, (List) uriAttributes.get(key));
+				}
+
+				invoke(ctx);
+
+				reset();
+			}
+		}
+	}
+
+	private void bindRequestParamer(InterfaceHttpData data) {
+		if (data.getHttpDataType() == InterfaceHttpData.HttpDataType.Attribute) {
+			Attribute attribute = (Attribute) data;
+			String value = null;
+			try {
+				value = attribute.getValue();
+			} catch (IOException e1) {
+				System.err.println("解析参数异常：" + attribute.getHttpDataType().name());
+				e1.printStackTrace();
+				return;
+			}
+			List<String> attValueList = this.myHttpRequest.getParameterValues(attribute.getName());
+			if (null != attValueList) {
+				this.myHttpRequest.getParameterValues(attribute.getName()).add(value);
+			} else {
+				List<String> attValue = new ArrayList();
+				attValue.add(value);
+				this.myHttpRequest.resolveMultipart(attribute.getName(), attValue);
+			}
+		} else if (data.getHttpDataType() == InterfaceHttpData.HttpDataType.FileUpload) {
+
+		} else if (data.getHttpDataType() == InterfaceHttpData.HttpDataType.InternalAttribute) {
+			System.err.println("待完成：" + InterfaceHttpData.HttpDataType.InternalAttribute);
+		}
+	}
+
+	/**
+	 * GET POST 方法的具体调用
+	 * 
+	 * @param ctx
+	 */
+	private void invoke(ChannelHandlerContext ctx) {
+
+		QueryStringDecoder decoderQuery = new QueryStringDecoder(this.orgRequest.getUri());
+		Map<String, List<String>> uriAttributes = decoderQuery.parameters();
+		for (String key : uriAttributes.keySet()) {
+			this.myHttpRequest.resolveMultipart(key, (List) uriAttributes.get(key));
+		}
+
+		System.out.println(myHttpRequest.getMultipartParameters());
+
+		String content = this.dispatcherService.service(myHttpRequest);
 
 		System.out.println("------------------------");
+
 		writeResponse(ctx.channel(), content);
 
 		System.out.println("-------------2-----------");
+
 		reset();
 	}
 
 	private void reset() {
 		orgRequest = null;
-		decoder.destroy();
-		decoder = null;
+		if (myHttpRequest != null)
+			myHttpRequest = null;
+		if (decoder != null) {
+			decoder.destroy();
+			decoder = null;
+		}
 	}
 
 	private void writeHttpData(InterfaceHttpData data) {
 
 		/**
-		 * HttpDataType有三种类型
-		 * Attribute, FileUpload, InternalAttribute
+		 * HttpDataType有三种类型 Attribute, FileUpload, InternalAttribute
 		 */
 		if (data.getHttpDataType() == HttpDataType.Attribute) {
 			Attribute attribute = (Attribute) data;
@@ -194,15 +254,13 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 
 	/**
 	 * http返回响应数据
-	 *
+	 * 
 	 * @param channel
-	 * @param content 
+	 * @param content
 	 */
 	private void writeResponse(Channel channel, String content) {
 		// Convert the response content to a ChannelBuffer.
 		ByteBuf buf = Unpooled.copiedBuffer(content, CharsetUtil.UTF_8);
-
-		responseContent.setLength(0);
 
 		// Decide whether to close the connection or not.
 		boolean close = orgRequest.headers().contains(CONNECTION, HttpHeaders.Values.CLOSE, true)
@@ -210,8 +268,8 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 				&& !orgRequest.headers().contains(CONNECTION, HttpHeaders.Values.KEEP_ALIVE, true);
 
 		// Build the response object.
-		FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK,
-				buf);
+		FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, buf);
+
 		response.headers().set(CONTENT_TYPE, "text/plain; charset=UTF-8");
 
 		if (!close) {
