@@ -17,7 +17,6 @@ import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
-
 /**
  * @功能描述：
  * @文件名称：HttpChannelHandler.java
@@ -28,7 +27,7 @@ public class HttpChannelInitializer extends ChannelInitializer<SocketChannel> {
 	/**
 	 * 任务分发服务
 	 */
-	private NettyServiceInfer nettyDispatcherService = new MyServiceImpl();
+	private ServiceDispatchInfer nettyDispatcherService = new ServiceDispatchImpl();
 
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {
@@ -39,14 +38,13 @@ public class HttpChannelInitializer extends ChannelInitializer<SocketChannel> {
 		// server端接收到的是httpRequest，所以要使用HttpRequestDecoder进行解码
 		channelPipeline.addLast(new HttpRequestDecoder());
 
-		//		channelPipeline.addLast("decoder", new HttpRequestDecoder());
+		// channelPipeline.addLast("decoder", new HttpRequestDecoder());
 
 		/*
-		* 压缩
-		* Compresses an HttpMessage and an HttpContent in gzip or deflate encoding
-		* while respecting the "Accept-Encoding" header.
-		* If there is no matching encoding, no compression is done.
-		*/
+		 * 压缩 Compresses an HttpMessage and an HttpContent in gzip or deflate
+		 * encoding while respecting the "Accept-Encoding" header. If there is
+		 * no matching encoding, no compression is done.
+		 */
 		channelPipeline.addLast("deflater", new HttpContentCompressor());
 		/*
 		 * 支持异步发送大的 码流（大文件等）
@@ -54,7 +52,7 @@ public class HttpChannelInitializer extends ChannelInitializer<SocketChannel> {
 		channelPipeline.addLast("chunkedWriter", new ChunkedWriteHandler());
 
 		/*
-		 * 绑定消息处理器 
+		 * 绑定消息处理器
 		 */
 		channelPipeline.addLast("handler", new HttpSimpleChannelInboundHandler(nettyDispatcherService));
 	}

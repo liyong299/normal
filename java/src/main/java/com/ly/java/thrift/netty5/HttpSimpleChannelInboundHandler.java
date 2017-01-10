@@ -52,9 +52,9 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 	/**
 	 * 具体的业务分发处理
 	 */
-	private NettyServiceInfer dispatcherService;
+	private ServiceDispatchInfer dispatcherService;
 
-	public HttpSimpleChannelInboundHandler(NettyServiceInfer nettyDispatcherService) {
+	public HttpSimpleChannelInboundHandler(ServiceDispatchInfer nettyDispatcherService) {
 		this.dispatcherService = nettyDispatcherService;
 	}
 

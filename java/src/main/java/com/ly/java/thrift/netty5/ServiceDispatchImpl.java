@@ -1,6 +1,6 @@
 package com.ly.java.thrift.netty5;
 
-public class MyServiceImpl implements NettyServiceInfer {
+public class ServiceDispatchImpl implements ServiceDispatchInfer {
 
 	/**
 	 * http消息处理服务分发器

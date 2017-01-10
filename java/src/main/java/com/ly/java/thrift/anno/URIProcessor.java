@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
 /**
  * @功能描述：加载类和注解
  * @文件名称：URIProcessor.java
@@ -20,20 +18,22 @@ public class URIProcessor {
 
 	private static URIProcessor processor = new URIProcessor();
 
-	private URIProcessor() {}
+	// 应该是单例，暂时先放开
+	public URIProcessor() {
+	}
 
 	public static URIProcessor getIntance() {
 		return processor;
 	}
+
 	@SuppressWarnings("rawtypes")
-	public void process(Class cls) throws ClassNotFoundException, IOException,
-			NoSuchMethodException,
-			SecurityException, InstantiationException, IllegalAccessException {
-		
+	public void process(Class cls) throws ClassNotFoundException, IOException, NoSuchMethodException, SecurityException, InstantiationException,
+			IllegalAccessException {
+
 		List<Class<?>> classList = ClassUtil.getClasses(cls);
-		for (Class clazz : classList){
+		for (Class clazz : classList) {
 			SAASServerMap ann = (SAASServerMap) clazz.getAnnotation(SAASServerMap.class);
-			if (ann != null){
+			if (ann != null) {
 				Constructor constructor = clazz.getConstructor(); // 必须包含无参构造函数
 				if (constructor == null) {
 					System.out.println("不包含无参构造函数！！！");
@@ -46,8 +46,7 @@ public class URIProcessor {
 					SAASServerMap methodAnn = method.getAnnotation(SAASServerMap.class);
 					if (methodAnn != null) {
 						serverURI = serverURI + methodAnn.value();
-						System.out.println("url : " + serverURI + " | method : " + clazz.getName() + "."
-								+ method.getName());
+						System.out.println("url : " + serverURI + " | method : " + clazz.getName() + "." + method.getName());
 						URI_OBJECT_MAP.put(serverURI, new URIBean(obj, method));
 					}
 				}

@@ -1,6 +1,6 @@
 package com.ly.java.thrift.netty5;
 
-public interface NettyServiceInfer {
+public interface ServiceDispatchInfer {
 
 	/**
 	 * http消息处理服务分发器

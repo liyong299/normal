@@ -4,14 +4,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
 
+public class ClassLoadUtil {
 
-public class Test
-{
-
-	public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException,
-			SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException
-	{
+	public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		InterfaceDemo.class.getClassLoader().loadClass(InterfaceDemo.class.getName());
 
 		Constructor[] list = InterfaceDemo.class.getConstructors();
@@ -22,9 +18,7 @@ public class Test
 		}
 		System.out.println(list);
 
-		Object proxy = Proxy.newProxyInstance(InterfaceDemo.class.getClassLoader(),
-				new Class[] { InterfaceDemo.class },
-				new MyProxy());
+		Object proxy = Proxy.newProxyInstance(InterfaceDemo.class.getClassLoader(), new Class[] { InterfaceDemo.class }, new MyProxy());
 
 		System.out.println(proxy);
 	}
