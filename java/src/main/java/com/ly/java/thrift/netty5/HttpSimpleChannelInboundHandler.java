@@ -37,6 +37,7 @@ import io.netty.util.CharsetUtil;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,9 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 
 	private MyHttpRequest myRequest;
 
-	private static final HttpDataFactory factory = new DefaultHttpDataFactory(DefaultHttpDataFactory.MINSIZE); //Disk
+	private MyHttpResponse myResponse;
+
+	private static final HttpDataFactory factory = new DefaultHttpDataFactory(DefaultHttpDataFactory.MINSIZE); // Disk
 
 	private HttpPostRequestDecoder decoder;
 
@@ -75,8 +78,7 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 	}
 
 	public void messageReceived(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
-		System.out.println("==========messageReceived========当前值：  " + count.incrementAndGet()
-				+ ", msg's class " + msg.getClass().getName());
+		System.out.println("==========messageReceived========当前值：  " + count.incrementAndGet() + ", msg's class " + msg.getClass().getName());
 
 		// 服务端第一次读取客户端内容
 		if (msg instanceof HttpRequest) {
@@ -90,25 +92,28 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 			}
 
 			this.myRequest = new MyHttpRequest(orgRequest);
+			this.myResponse = new MyHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+
+			logRequest();
+			fillResponse();
 
 			decoder = new HttpPostRequestDecoder(factory, orgRequest);
-
-			logRequest(orgRequest);
 		}
 
 		// 服务端第二次读取客户端内容
 		if (msg instanceof HttpContent) {
 			HttpContent content = (HttpContent) msg;
-			decoder.offer(content); // Initialized the internals from a new chunk
+			decoder.offer(content); // Initialized the internals from a new
+									// chunk
 
 			// 服务端第三次读取客户端内容
 			if (content instanceof LastHttpContent) {
 
 				parseParam(content);
 
-				String respContent = this.dispatcherService.service(this.myRequest);
+				this.dispatcherService.service(this.myRequest, this.myResponse);
 
-				writeResponse(ctx.channel(), respContent);
+				writeResponse(ctx.channel());
 
 				reset();
 				return;
@@ -117,23 +122,55 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 	}
 
 	/**
+	 * 设置相应对象头部
+	 */
+	private void fillResponse() {
+		// 不设置Access-Control-Allow-Origin，则localhost请求无返回。
+		myResponse.headers().set(CONTENT_TYPE, "text/plain; charset=UTF-8").set("Access-Control-Allow-Origin", "*");
+		Set<Cookie> cookies;
+		String value = this.myRequest.headers().get(COOKIE);
+		if (value == null) {
+			cookies = Collections.emptySet();
+		} else {
+			cookies = ServerCookieDecoder.LAX.decode(value);
+		}
+		if (!cookies.isEmpty()) {
+			// Reset the cookies if necessary.
+			for (Cookie cookie : cookies) {
+				myResponse.headers().add(SET_COOKIE, ServerCookieEncoder.LAX.encode(cookie));
+			}
+		}
+	}
+
+	/**
 	 * 参数处理，post和get请求处理方式不同
+	 * 
 	 * @param messageOfClient
 	 */
 	private void parseParam(HttpContent content) {
 		if (HttpMethod.GET.equals(this.myRequest.getMethod())) {
-			// 解析请求参数  
+			// 解析请求参数
 			QueryStringDecoder queryStringDecoder = new QueryStringDecoder(this.myRequest.getUri());
 			Map<String, List<String>> params = queryStringDecoder.parameters();
 			if (!params.isEmpty()) {
 				for (Entry<String, List<String>> p : params.entrySet()) {
 					String key = p.getKey();
 					List<String> vals = p.getValue();
+					this.myRequest.offer(key, vals);
 					for (String val : vals) {
 						System.out.println("PARAM: " + key + " = " + val + "\r\n");
 					}
 				}
 			}
+
+			// 重置URI
+			try {
+				URI uri = new URI(myRequest.getUri());
+				myRequest.setUri(uri.getPath());
+			} catch (URISyntaxException e) {
+				throw new RuntimeException(e);
+			}
+
 		} else if (HttpMethod.POST.equals(this.myRequest.getMethod())) {
 			try {
 				List<InterfaceHttpData> datas = decoder.getBodyHttpDatas();
@@ -154,18 +191,22 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 
 	/**
 	 * 仅仅用来打印Reques中信息
+	 * 
 	 * @param orgRequest
 	 */
-	private void logRequest(HttpRequest orgRequest) {
+	private void logRequest() {
 		/**
 		 * 在服务器端打印请求信息
 		 */
-		//		System.out.println("VERSION: " + orgRequest.getProtocolVersion().text() + "\r\n");
-		//		System.out.println("REQUEST_URI: " + orgRequest.getUri() + "\r\n\r\n");
-		//		System.out.println("\r\n\r\n");
-		//		for (Map.Entry<String, String> entry : orgRequest.headers()) {
-		//			System.out.println("HEADER: " + entry.getKey() + '=' + entry.getValue() + "\r\n");
-		//		}
+		// System.out.println("VERSION: " +
+		// orgRequest.getProtocolVersion().text() + "\r\n");
+		// System.out.println("REQUEST_URI: " + orgRequest.getUri() +
+		// "\r\n\r\n");
+		// System.out.println("\r\n\r\n");
+		// for (Map.Entry<String, String> entry : orgRequest.headers()) {
+		// System.out.println("HEADER: " + entry.getKey() + '=' +
+		// entry.getValue() + "\r\n");
+		// }
 	}
 
 	private void reset() {
@@ -180,19 +221,19 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 		System.out.println("==========writeHttpData========当前值：  " + count.incrementAndGet());
 
 		/**
-		 * HttpDataType有三种类型
-		 * Attribute, FileUpload, InternalAttribute
+		 * HttpDataType有三种类型 Attribute, FileUpload, InternalAttribute
 		 */
 		if (data.getHttpDataType() == HttpDataType.Attribute) {
 			Attribute attribute = (Attribute) data;
 			String value;
 			try {
 				value = attribute.getValue();
+				this.myRequest.offer(attribute.getName(), value);
 				System.out.println("PARAM: " + attribute.getName() + " = " + value + "\r\n");
 			} catch (IOException e1) {
 				e1.printStackTrace();
-				logger.error("\r\nBODY Attribute: " + attribute.getHttpDataType().name() + ":"
-						+ attribute.getName() + " Error while reading value: " + e1.getMessage() + "\r\n");
+				logger.error("\r\nBODY Attribute: " + attribute.getHttpDataType().name() + ":" + attribute.getName() + " Error while reading value: "
+						+ e1.getMessage() + "\r\n");
 				return;
 			}
 		}
@@ -200,15 +241,21 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 
 	/**
 	 * http返回响应数据
-	 *
+	 * 
 	 * @param channel
-	 * @param content 
+	 * @param content
 	 */
-	private void writeResponse(Channel channel, String content) {
+	private void writeResponse(Channel channel) {
 		System.out.println("==========writeResponse========当前值：  " + count.incrementAndGet());
 
-		// Convert the response content to a ChannelBuffer.
-		ByteBuf buf = Unpooled.copiedBuffer(content, CharsetUtil.UTF_8);
+		String content = myResponse.getContent();
+		ByteBuf buf = null;
+		if (content != null) {
+			// Convert the response content to a ChannelBuffer.
+			buf = Unpooled.copiedBuffer(this.myResponse.getContent(), CharsetUtil.UTF_8);
+		} else {
+			buf = Unpooled.copiedBuffer("", CharsetUtil.UTF_8);
+		}
 
 		// Decide whether to close the connection or not.
 		boolean close = this.myRequest.headers().contains(CONNECTION, HttpHeaders.Values.CLOSE, true)
@@ -216,12 +263,9 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 				&& !this.myRequest.headers().contains(CONNECTION, HttpHeaders.Values.KEEP_ALIVE, true);
 
 		// Build the response object.
-		FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK,
-				buf);
+		FullHttpResponse response = new DefaultFullHttpResponse(myResponse.getProtocolVersion(), myResponse.getStatus(), buf);
 
-		// 不设置Access-Control-Allow-Origin，则localhost请求无返回。
-		response.headers().set(CONTENT_TYPE, "text/plain; charset=UTF-8")
-				.set("Access-Control-Allow-Origin", "*");
+		response.headers().add(this.myResponse.headers());
 
 		if (!close) {
 			// There's no need to add 'Content-Length' header
@@ -229,19 +273,6 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 			response.headers().set(CONTENT_LENGTH, buf.readableBytes());
 		}
 
-		Set<Cookie> cookies;
-		String value = this.myRequest.headers().get(COOKIE);
-		if (value == null) {
-			cookies = Collections.emptySet();
-		} else {
-			cookies = ServerCookieDecoder.LAX.decode(value);
-		}
-		if (!cookies.isEmpty()) {
-			// Reset the cookies if necessary.
-			for (Cookie cookie : cookies) {
-				response.headers().add(SET_COOKIE, ServerCookieEncoder.LAX.encode(cookie));
-			}
-		}
 		// Write the response.
 		ChannelFuture future = channel.writeAndFlush(response);
 		// Close the connection after the write operation is done if necessary.
@@ -264,6 +295,7 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 	}
 
 	private AtomicInteger count;
+
 	/**
 	 * 
 	 * @see io.netty.channel.ChannelInboundHandlerAdapter#channelRegistered(io.netty.channel.ChannelHandlerContext)
@@ -304,5 +336,5 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 		super.channelReadComplete(ctx);
 		System.out.println("==========channelReadComplete========当前值：  " + count.incrementAndGet());
 	}
-	
+
 }

@@ -26,7 +26,7 @@ import java.util.TreeMap;
  */
 public class MyHttpRequest extends DefaultHttpRequest {
 
-	private Map<String, List<String>> postmap = new TreeMap<>();
+	private Map<String, List<String>> parameterMap = new TreeMap<>();
 
 	public MyHttpRequest(HttpRequest orgRequest) {
 		super(orgRequest.getProtocolVersion(), orgRequest.getMethod(), orgRequest.getUri());
@@ -37,7 +37,7 @@ public class MyHttpRequest extends DefaultHttpRequest {
 	}
 
 	public List<String> getParameterValue(String name) {
-		List<String> values = postmap.get(name);
+		List<String> values = parameterMap.get(name);
 		if (values != null) {
 			return values;
 		}
@@ -45,15 +45,15 @@ public class MyHttpRequest extends DefaultHttpRequest {
 	}
 
 	public Map<String, List<String>> getParameterValues() {
-		return postmap;
+		return parameterMap;
 	}
 
 	public void offer(String key, List<String> values) {
-		this.postmap.put(key, values);
+		this.parameterMap.put(key, values);
 	}
 
 	public void offer(String key, String value) {
-		List<String> values = this.postmap.get(key);
+		List<String> values = this.parameterMap.get(key);
 		if (values == null) {
 			values = new ArrayList<String>();
 		}
