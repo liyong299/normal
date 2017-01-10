@@ -17,8 +17,6 @@ import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
-import com.ly.java.thrift.netty2.MyServiceImpl;
-import com.ly.java.thrift.netty2.NettyServiceInfer;
 
 /**
  * @功能描述：
@@ -59,6 +57,5 @@ public class HttpChannelInitializer extends ChannelInitializer<SocketChannel> {
 		 * 绑定消息处理器 
 		 */
 		channelPipeline.addLast("handler", new HttpSimpleChannelInboundHandler(nettyDispatcherService));
-
 	}
 }

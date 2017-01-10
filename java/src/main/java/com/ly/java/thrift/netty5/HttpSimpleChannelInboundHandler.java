@@ -46,13 +46,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.log4j.Logger;
 
-import com.ly.java.thrift.netty2.NettyServiceInfer;
-
-/**
- * @功能描述：
- * @文件名称：HttpSimpleChannelInboundHandler.java
- * @author ly
- */
 public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler<HttpObject> {
 
 	/**
@@ -66,9 +59,7 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 
 	private final Logger logger = Logger.getLogger(getClass());
 
-	private HttpRequest orgRequest;
-
-	private boolean readingChunks;
+	private MyHttpRequest myRequest;
 
 	private static final HttpDataFactory factory = new DefaultHttpDataFactory(DefaultHttpDataFactory.MINSIZE); //Disk
 
@@ -77,19 +68,19 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		if (decoder != null) {
-			decoder.cleanFiles();
+			if (decoder.hasNext())
+				decoder.cleanFiles();
 		}
 		System.out.println("==========channelInactive========当前值：  " + count.incrementAndGet());
 	}
 
 	public void messageReceived(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
-		//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		System.out.println("==========messageReceived========当前值：  " + count.incrementAndGet()
 				+ ", msg's class " + msg.getClass().getName());
 
 		// 服务端第一次读取客户端内容
 		if (msg instanceof HttpRequest) {
-			this.orgRequest = (HttpRequest) msg;
+			HttpRequest orgRequest = (HttpRequest) msg;
 			URI uri = new URI(orgRequest.getUri());
 
 			orgRequest.headers().add("orgRequest", "*");
@@ -98,25 +89,24 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 				return;
 			}
 
+			this.myRequest = new MyHttpRequest(orgRequest);
+
+			decoder = new HttpPostRequestDecoder(factory, orgRequest);
+
 			logRequest(orgRequest);
 		}
 
 		// 服务端第二次读取客户端内容
 		if (msg instanceof HttpContent) {
 			HttpContent content = (HttpContent) msg;
-			ByteBuf buf = content.content();
-			String messageOfClient = buf.toString(io.netty.util.CharsetUtil.UTF_8);
-			System.out.println("orgRequest : " + orgRequest);
-			System.out.println("messageOfClient : " + messageOfClient);
+			decoder.offer(content); // Initialized the internals from a new chunk
 
 			// 服务端第三次读取客户端内容
 			if (content instanceof LastHttpContent) {
 
-				parseParam(messageOfClient);
+				parseParam(content);
 
-				String respContent = this.dispatcherService.service(orgRequest);
-
-				System.out.println("------------------------");
+				String respContent = this.dispatcherService.service(this.myRequest);
 
 				writeResponse(ctx.channel(), respContent);
 
@@ -130,10 +120,10 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 	 * 参数处理，post和get请求处理方式不同
 	 * @param messageOfClient
 	 */
-	private void parseParam(String messageOfClient) {
-		if (HttpMethod.GET.equals(orgRequest.getMethod())) {
+	private void parseParam(HttpContent content) {
+		if (HttpMethod.GET.equals(this.myRequest.getMethod())) {
 			// 解析请求参数  
-			QueryStringDecoder queryStringDecoder = new QueryStringDecoder(orgRequest.getUri());
+			QueryStringDecoder queryStringDecoder = new QueryStringDecoder(this.myRequest.getUri());
 			Map<String, List<String>> params = queryStringDecoder.parameters();
 			if (!params.isEmpty()) {
 				for (Entry<String, List<String>> p : params.entrySet()) {
@@ -144,26 +134,20 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 					}
 				}
 			}
-		} else if (HttpMethod.POST.equals(orgRequest.getMethod())) {
-			decoder = new HttpPostRequestDecoder(factory, orgRequest);
-			readingChunks = HttpHeaders.isTransferEncodingChunked(orgRequest);
-			System.out.println("decoder1   :  " + decoder);
-
+		} else if (HttpMethod.POST.equals(this.myRequest.getMethod())) {
 			try {
-				while (decoder.hasNext()) {
-					System.out.println("decoder2   :  " + decoder);
-					InterfaceHttpData data = decoder.next();
+				List<InterfaceHttpData> datas = decoder.getBodyHttpDatas();
+				for (InterfaceHttpData data : datas) {
 					if (data != null) {
 						try {
 							writeHttpData(data);
 						} finally {
-							data.release();
+							data.release(); // 释放资源
 						}
 					}
 				}
 			} catch (EndOfDataDecoderException e1) {
-				e1.printStackTrace();
-				throw new RuntimeException(e1);
+				logger.debug("END OF CONTENT CHUNK BY CHUNK");
 			}
 		}
 	}
@@ -186,9 +170,8 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 
 	private void reset() {
 		System.out.println("==========reset========当前值：  " + count.incrementAndGet());
-		orgRequest = null;
+		this.myRequest = null;
 		if (decoder != null) {
-			decoder.destroy();
 			decoder = null;
 		}
 	}
@@ -228,9 +211,9 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 		ByteBuf buf = Unpooled.copiedBuffer(content, CharsetUtil.UTF_8);
 
 		// Decide whether to close the connection or not.
-		boolean close = orgRequest.headers().contains(CONNECTION, HttpHeaders.Values.CLOSE, true)
-				|| orgRequest.getProtocolVersion().equals(HttpVersion.HTTP_1_0)
-				&& !orgRequest.headers().contains(CONNECTION, HttpHeaders.Values.KEEP_ALIVE, true);
+		boolean close = this.myRequest.headers().contains(CONNECTION, HttpHeaders.Values.CLOSE, true)
+				|| this.myRequest.getProtocolVersion().equals(HttpVersion.HTTP_1_0)
+				&& !this.myRequest.headers().contains(CONNECTION, HttpHeaders.Values.KEEP_ALIVE, true);
 
 		// Build the response object.
 		FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK,
@@ -247,7 +230,7 @@ public class HttpSimpleChannelInboundHandler extends SimpleChannelInboundHandler
 		}
 
 		Set<Cookie> cookies;
-		String value = orgRequest.headers().get(COOKIE);
+		String value = this.myRequest.headers().get(COOKIE);
 		if (value == null) {
 			cookies = Collections.emptySet();
 		} else {
