@@ -56,4 +56,18 @@ public class HttpChannelInitializer extends ChannelInitializer<SocketChannel> {
 		 */
 		channelPipeline.addLast("handler", new HttpSimpleChannelInboundHandler(nettyDispatcherService));
 	}
+
+	/**
+	 * @return the nettyDispatcherService
+	 */
+	public ServiceDispatchInfer getNettyDispatcherService() {
+		return nettyDispatcherService;
+	}
+
+	/**
+	 * @param nettyDispatcherService the nettyDispatcherService to set
+	 */
+	public void setNettyDispatcherService(ServiceDispatchInfer nettyDispatcherService) {
+		this.nettyDispatcherService = nettyDispatcherService;
+	}
 }

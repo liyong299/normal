@@ -19,9 +19,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.ly.java.thrift.anno.MyProcessor;
 import com.ly.java.thrift.anno.URIProcessor;
-import com.ly.java.thrift.netty5.HelloWorldServer;
+import com.ly.java.thrift.netty5.HelloWorldAction;
 import com.ly.java.thrift.netty5.HttpChannelInitializer;
 import com.ly.java.thrift.netty5.HttpServer;
 
@@ -34,7 +33,12 @@ public class StartUpClient {
 	private static Log log = LogFactory.getLog(HttpServer.class);
 
 	public static void main(String[] args) throws Exception {
-		new MyProcessor();
+
+		// URIProcessor.getIntance().process(HelloWorldServer.class);
+		URIProcessor uriProcessor = new URIProcessor();
+		uriProcessor.process(HelloWorldAction.class);
+		com.ly.java.thrift.netty5.DispatchService.getInstance().setUriProcessor(uriProcessor);
+
 		HttpServer server = new HttpServer();
 		log.info("Http Server listening on 3344 ...");
 		server.start(3344);
@@ -45,13 +49,13 @@ public class StartUpClient {
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 		try {
 			ServerBootstrap b = new ServerBootstrap();
-			b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(new HttpChannelInitializer())
+
+			HttpChannelInitializer channelHandler = new HttpChannelInitializer();
+			b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+					.childHandler(channelHandler)
 					.option(ChannelOption.SO_BACKLOG, 128).childOption(ChannelOption.SO_KEEPALIVE, true);
 
 			ChannelFuture f = b.bind(port).sync();
-
-			// URIProcessor.getIntance().process(HelloWorldServer.class);
-			new URIProcessor().process(HelloWorldServer.class);
 
 			f.channel().closeFuture().sync();
 		} finally {

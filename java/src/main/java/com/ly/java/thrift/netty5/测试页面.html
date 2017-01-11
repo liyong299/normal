@@ -32,7 +32,7 @@ function onClikPOST(){
         console.log(JSON.stringify(pagination));  
 		
 		var port = $("#test_port").val();
-        var url = "http://localhost:" + port + "/site/ticket/v1/createChannel";
+        var url = "http://localhost:" + port + "/demo/order/add";
         $.post(url, {"pagination" : JSON.stringify(pagination)},function(result) {
 				$("#content").html(JSON.stringify(result));
 			});
@@ -46,7 +46,7 @@ function onClikGET(){
         console.log(JSON.stringify(pagination));  
 		
 		var port = $("#test_port").val();
-        var url = "http://localhost:" + port + "/site/ticket/v1/createChannel?AA=BB";
+        var url = "http://localhost:" + port + "/demo/order/add?AA=BB";
         $.get(url, {"pagination" : JSON.stringify(pagination)},function(result) {
 				$("#content").html(JSON.stringify(result));
 			});

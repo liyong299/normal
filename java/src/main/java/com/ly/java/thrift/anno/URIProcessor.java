@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class URIProcessor {
 
-	public static Map<String, URIBean> URI_OBJECT_MAP = new HashMap<>();
+	public Map<String, URIBean> URI_OBJECT_MAP = new HashMap<>();
 
 	private static URIProcessor processor = new URIProcessor();
 

@@ -10,14 +10,12 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.ly.java.thrift.anno.MyProcessor;
-
 public class HttpServer {
 
 	private static Log log = LogFactory.getLog(HttpServer.class);
 
 	public static void main(String[] args) throws Exception {
-		new MyProcessor();
+
 		HttpServer server = new HttpServer();
 		log.info("Http Server listening on 3344 ...");
 		server.start(3344);

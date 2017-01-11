@@ -27,7 +27,7 @@ public class HttpChannelInitializer extends ChannelInitializer<SocketChannel> {
 	/**
 	 * 任务分发服务
 	 */
-	private NettyDispatcherService nettyDispatcherService = new MyDispatcherService();
+	private NettyServiceInfer nettyDispatcherService = new MyServiceImpl();
 
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {

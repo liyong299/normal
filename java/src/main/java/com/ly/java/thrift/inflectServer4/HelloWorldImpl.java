@@ -12,7 +12,7 @@ import com.ly.java.thrift.anno.SAASServerMap;
 public class HelloWorldImpl {
 
 	@SAASServerMap("/add")
-	public String add(String username) throws TException {
+	public String add(String request) throws TException {
 		System.out.println(Thread.currentThread().getName() + " HelloWorldImpl.sayHello ----  "
 				+ System.currentTimeMillis());
 		try {
@@ -20,7 +20,7 @@ public class HelloWorldImpl {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return "hello world, " + username + "-" + System.currentTimeMillis();
+		return "hello world, " + request + "-" + System.currentTimeMillis();
 	}
 
 }

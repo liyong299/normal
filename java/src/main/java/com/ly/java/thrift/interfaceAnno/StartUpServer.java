@@ -52,7 +52,11 @@ public class StartUpServer {
 		TServer server = new TThreadPoolServer(tArgs);
 
 		// URIProcessor.getIntance().process(ServerTThreadPoolServer.class);
-		new URIProcessor().process(ServerTThreadPoolServer.class);
+
+		URIProcessor uriProcessor = new URIProcessor();
+		uriProcessor.process(ServerTThreadPoolServer.class);
+
+		com.ly.java.thrift.inflectServer4.DispatchService.getInstance().setUriProcessor(uriProcessor);
 
 		server.serve(); // 启动服务
 	}
