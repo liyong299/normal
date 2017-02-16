@@ -14,7 +14,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 
 /**
- * @功能描述：
+ * @功能描述：方法句柄只能调用有native的方法。
  * @文件名称：TestMethodHandler.java
  * @author ly
  */
