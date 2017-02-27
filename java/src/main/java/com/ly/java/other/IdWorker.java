@@ -51,17 +51,19 @@ public class IdWorker {
     // 数据标识id部分
     private final long datacenterId;
 
-    public IdWorker(){
+    private IdWorker(){
         this.datacenterId = getDatacenterId(maxDatacenterId);
         this.workerId = getMaxWorkerId(datacenterId, maxWorkerId);
     }
+
+
     /**
      * @param workerId
      *            工作机器ID
      * @param datacenterId
      *            序列号
      */
-    public IdWorker(long workerId, long datacenterId) {
+	public IdWorker(long workerId, long datacenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
         }
@@ -71,6 +73,12 @@ public class IdWorker {
         this.workerId = workerId;
         this.datacenterId = datacenterId;
     }
+
+	private static IdWorker idWorker = new IdWorker();
+
+	public static IdWorker getInstance() {
+		return idWorker;
+	}
     /**
      * 获取下一个ID
      *
@@ -161,9 +169,10 @@ public class IdWorker {
     public static void main(String[] args) {
         IdWorker idWorker = new IdWorker(31,31);
         System.out.println("idWorker="+idWorker.nextId());
-        IdWorker id = new IdWorker();
-        System.out.println("id="+id.nextId());
-        System.out.println(id.datacenterId);
-        System.out.println(id.workerId);
+		System.out.println("id=" + IdWorker.getInstance().nextId());
+
+		double a = 123456.2d;
+		double b = 1.234562E5d;
+		System.out.println(a == b);
     }
 }
