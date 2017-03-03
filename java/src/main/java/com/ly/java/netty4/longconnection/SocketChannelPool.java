@@ -27,23 +27,23 @@ public class SocketChannelPool {
 	private Map<String, SocketChannel> pool;
 	// 增加的时候，使用重入锁控制一下。
 	private ReentrantLock lock = new ReentrantLock();
+	private static SocketChannelPool scPool = new SocketChannelPool();
 
-	public SocketChannelPool() {
-		this(maxCapacity);
-	}
-
-	public SocketChannelPool(int capacity) {
-		this.capacity = capacity;
+	private SocketChannelPool() {
+		this.capacity = maxCapacity;
 		pool = new ConcurrentHashMap<>(capacity);
 	}
 
+	public static SocketChannelPool getInstance() {
+		return scPool;
+	}
 
 	/**
 	 * 增加一个连接通道
 	 * @param channel
 	 * @param clientId
 	 */
-	public void add(SocketChannel channel, String clientId) {
+	public void add(String clientId, SocketChannel channel) {
 		if (pool.size() < capacity) {
 			try{
 				lock.lock();
@@ -66,6 +66,19 @@ public class SocketChannelPool {
 	 */
 	public void remove(String clientId) {
 		pool.remove(clientId);
+	}
+
+	/**
+	 * 增加一个连接通道
+	 * @param channel
+	 * @param clientId
+	 */
+	public void remove(SocketChannel socketChannel) {
+		for (Map.Entry<String, SocketChannel> entry : pool.entrySet()) {
+			if (entry.getValue() == socketChannel) {
+				pool.remove(entry.getKey());
+			}
+		}
 	}
 
 	/**

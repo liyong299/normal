@@ -15,13 +15,21 @@ package com.ly.java.netty4.longconnection.entries;
  * @文件名称：BussinessMsg.java
  * @author ly
  */
-public class ResponeMsg extends BaseMsg {
+public class ResponseMsg extends BaseMsg {
 
 	// 响应对象暂时简化成Map
 	private String content;
 
-	public ResponeMsg() {
+	public ResponseMsg() {
 		this.setType(MsgType.RESPONSE);
+	}
+
+	public ResponseMsg genDemo(BaseMsg msg) {
+		this.setAuth(msg.getAuth());
+		this.setClientId(msg.getClientId());
+		this.setContentType(msg.getContentType());
+
+		return this;
 	}
 
 	/**

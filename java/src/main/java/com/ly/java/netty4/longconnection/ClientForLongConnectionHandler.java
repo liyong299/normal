@@ -9,57 +9,82 @@
  */
 package com.ly.java.netty4.longconnection;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.util.ReferenceCountUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.ly.java.netty4.longconnection.entries.BaseMsg;
+import com.ly.java.netty4.longconnection.entries.LoginMsg;
+import com.ly.java.netty4.longconnection.entries.PingMsg;
+import com.ly.java.netty4.longconnection.entries.ResponseMsg;
 
 /**
  * @功能描述：
  * @文件名称：ClientForStickHandler.java
  * @author ly
  */
-public class ClientForLongConnectionHandler extends SimpleChannelInboundHandler<String> {
+public class ClientForLongConnectionHandler extends SimpleChannelInboundHandler<BaseMsg> {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
-	private int counter;
-	private byte[] req;
 
 	public ClientForLongConnectionHandler() {
-		//这里介绍一下System.getProperty("line.separator") // 直线分隔符  
-		//		req = ("Query Time Order" + System.getProperty("line.separator")).getBytes();
-		req = ("Query Time Order").getBytes();
+
 	}
 	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-
+	protected void channelRead0(ChannelHandlerContext ctx, BaseMsg msg) throws Exception {
 		log.debug("method【channelRead0】  " + "Server say : " + msg);
-		/**
-		 *  客户端会记录服务器发过来的消息数量，我们预期应改收到100条数据。
-		 *  但是实际上客户端只收到1条数据，这很正常，因为我们的服务器端只返回了2条数据，
-		 *  只所以客户端只收到1条数据，是因为服务器发过来的2条数据被粘包了。
-		 */
-		System.out.println("Now is:" + msg + "; the counter is:" + (++counter));
+		messageReceived(ctx, msg);
+	}
+
+	private void messageReceived(ChannelHandlerContext ctx, BaseMsg msg) {
+		switch (msg.getType()) {
+		case LOGIN:
+			LoginMsg loginMsg = new LoginMsg();
+			loginMsg.setUserName("t1");
+			loginMsg.setPassword("t2");
+			ctx.writeAndFlush(loginMsg);
+			break;
+		case PING:
+			System.out.println(" reveice ping from server .....");
+			break;
+		case REQUEST:
+			//			ResponseMsg replyBody = new ResponseMsg().genDemo(msg);
+			//			replyBody.setContent("reveice the server msg ");
+			//			ctx.writeAndFlush(replyBody);
+			System.out.println("请不要请求客户端，我不处理业务。");
+			break;
+		case RESPONSE:
+			ResponseMsg respMsg = (ResponseMsg) msg;
+			System.out.println("服务端的应答信息： " + respMsg.getContent());
+			break;
+		default:
+			break;
+		}
+		ReferenceCountUtil.release(msg);
+	}
+	@Override
+	public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+		if (evt instanceof IdleStateEvent) {
+			IdleStateEvent statEvt = (IdleStateEvent) evt;
+			switch (statEvt.state()) {
+			case WRITER_IDLE:
+				ctx.writeAndFlush(PingMsg.getInstance());
+				System.out.println("send ping to server ..... ");
+				break;
+
+			default:
+				break;
+			}
+		}
 	}
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		log.debug("method【channelActive】  " + "Client channelActive ");
-		ByteBuf message = null;
-		//客户端发送了100次数据,理论上服务器端应该收到100条数据。但实际上服务器只收到2条，很明显发生了粘包。
-		for (int i = 0; i < 100; i++) {
-			if (i % 10 == 9) {
-				req = ("Query Time Order" + System.getProperty("line.separator")).getBytes();
-			} else {
-				req = ("Query Time Order").getBytes();
-			}
-			message = Unpooled.buffer(req.length);
-			message.writeBytes(req);
-			ctx.writeAndFlush(message);
-		}
 	}
 
 	@Override
@@ -72,4 +97,5 @@ public class ClientForLongConnectionHandler extends SimpleChannelInboundHandler<
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		log.warn("Unexpected exception from downstream:" + cause.getMessage());
 	}
+
 }

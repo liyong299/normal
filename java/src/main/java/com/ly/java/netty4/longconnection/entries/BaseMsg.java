@@ -18,6 +18,7 @@ public class BaseMsg {
 
 	private String clientId;
 	private String encryption;
+	private String auth;
 	private MsgType type;
 	private String contentType;
 
@@ -75,5 +76,19 @@ public class BaseMsg {
 	 */
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+
+	/**
+	 * @return the auth
+	 */
+	public String getAuth() {
+		return auth;
+	}
+
+	/**
+	 * @param auth the auth to set
+	 */
+	public void setAuth(String auth) {
+		this.auth = auth;
 	}
 }

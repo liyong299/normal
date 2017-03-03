@@ -15,7 +15,15 @@ package com.ly.java.netty4.longconnection.entries;
  * @author ly
  */
 public class PingMsg extends BaseMsg {
-	public PingMsg() {
+
+	private static PingMsg msg = new PingMsg();
+
+	public static PingMsg getInstance() {
+		return msg;
+	}
+
+	private PingMsg() {
 		this.setType(MsgType.PING);
 	}
+
 }

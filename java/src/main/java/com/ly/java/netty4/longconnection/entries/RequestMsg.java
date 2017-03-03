@@ -9,6 +9,7 @@
  */
 package com.ly.java.netty4.longconnection.entries;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -23,6 +24,16 @@ public class RequestMsg extends BaseMsg {
 
 	public RequestMsg() {
 		this.setType(MsgType.REQUEST);
+	}
+
+	public RequestMsg genDemo(BaseMsg msg) {
+		this.setAuth(msg.getAuth());
+		this.setClientId(msg.getClientId());
+		this.setContentType(msg.getContentType());
+		this.setEncryption(msg.getEncryption());
+		this.params = new HashMap<String, String>();
+		params.put("time", "today");
+		return this;
 	}
 
 	/**

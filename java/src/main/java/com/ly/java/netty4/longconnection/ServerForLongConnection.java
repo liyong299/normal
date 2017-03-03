@@ -12,6 +12,7 @@ package com.ly.java.netty4.longconnection;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -40,12 +41,21 @@ public class ServerForLongConnection {
 	private static final int portNumber = 7878;
 
 	public static void main(String[] args) throws InterruptedException {
+		ServerForLongConnection server = new ServerForLongConnection();
+		server.bind();
+	}
+
+	private void bind() throws InterruptedException {
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 		try {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup);
 			b.channel(NioServerSocketChannel.class);
+			//通过NoDelay禁用Nagle,使消息立即发出去，不用等待到一定的数据量才发出去
+			b.option(ChannelOption.TCP_NODELAY, true);
+			b.option(ChannelOption.SO_BACKLOG, 128);
+			b.option(ChannelOption.SO_KEEPALIVE, true);
 			b.childHandler(new ChannelInitializer<SocketChannel>() {
 
 				@Override
@@ -73,8 +83,9 @@ public class ServerForLongConnection {
 			// 监听服务器关闭监听
 			f.channel().closeFuture().sync();
 
-			// 可以简写为
-			/* b.bind(portNumber).sync().channel().closeFuture().sync(); */
+			if (f.isSuccess()) {
+				System.out.println("server start---------------");
+			}
 		} finally {
 			bossGroup.shutdownGracefully();
 			workerGroup.shutdownGracefully();
