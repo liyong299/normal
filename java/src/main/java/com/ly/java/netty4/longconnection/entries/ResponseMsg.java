@@ -17,6 +17,10 @@ package com.ly.java.netty4.longconnection.entries;
  */
 public class ResponseMsg extends BaseMsg {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 898907650654768361L;
 	// 响应对象暂时简化成Map
 	private String content;
 

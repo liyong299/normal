@@ -9,13 +9,14 @@
  */
 package com.ly.java.netty4.longconnection.entries;
 
+import java.io.Serializable;
+
 /**
  * @功能描述：基本消息内容,应该区分消息头部和消息体
  * @文件名称：BaseMsg.java
  * @author ly
  */
-public class BaseMsg {
-
+public class BaseMsg implements Serializable {
 	private String clientId;
 	private String encryption;
 	private String auth;

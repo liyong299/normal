@@ -16,6 +16,10 @@ package com.ly.java.netty4.longconnection.entries;
  */
 public class PingMsg extends BaseMsg {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8047178895267509225L;
 	private static PingMsg msg = new PingMsg();
 
 	public static PingMsg getInstance() {

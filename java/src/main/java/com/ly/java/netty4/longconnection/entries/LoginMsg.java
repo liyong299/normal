@@ -16,6 +16,10 @@ package com.ly.java.netty4.longconnection.entries;
  */
 public class LoginMsg extends BaseMsg {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1154517462676341839L;
 	private String userName;
 	private String password;
 

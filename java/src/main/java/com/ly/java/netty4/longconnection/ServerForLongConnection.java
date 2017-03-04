@@ -18,15 +18,19 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.DelimiterBasedFrameDecoder;
-import io.netty.handler.codec.Delimiters;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
+
+import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.ly.java.netty4.stickpack.ServerForStick;
 
 /**
  * @功能描述：
@@ -34,16 +38,14 @@ import com.ly.java.netty4.stickpack.ServerForStick;
  * @author ly
  */
 public class ServerForLongConnection {
-	private final static Logger log = LoggerFactory.getLogger(ServerForStick.class);
-	/**
-	 * 服务端监听的端口地址
-	 */
-	private static final int portNumber = 7878;
+	private final static Logger log = LoggerFactory.getLogger(ServerForLongConnection.class);
 
 	public static void main(String[] args) throws InterruptedException {
 		ServerForLongConnection server = new ServerForLongConnection();
 		server.bind();
 	}
+
+	private ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(Constants.CLIENT_NUM);
 
 	private void bind() throws InterruptedException {
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -52,43 +54,55 @@ public class ServerForLongConnection {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup);
 			b.channel(NioServerSocketChannel.class);
-			//通过NoDelay禁用Nagle,使消息立即发出去，不用等待到一定的数据量才发出去
 			b.option(ChannelOption.TCP_NODELAY, true);
 			b.option(ChannelOption.SO_BACKLOG, 128);
 			b.option(ChannelOption.SO_KEEPALIVE, true);
-			b.childHandler(new ChannelInitializer<SocketChannel>() {
+			b.handler(new LoggingHandler(LogLevel.DEBUG));
 
+			b.childHandler(new ChannelInitializer<SocketChannel>() {
 				@Override
 				protected void initChannel(SocketChannel ch) throws Exception {
 				log.debug("method【initChannel】  " + ch.toString());
 				
 					ChannelPipeline pipeline = ch.pipeline();
 
-					// 以("\n")为结尾分割的 解码器   不增加这个解码器 会导致粘包的问题
-					pipeline.addLast("framer",
-							new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
-
-					// 字符串解码 和 编码
-					pipeline.addLast("decoder", new StringDecoder());
-					pipeline.addLast("encoder", new StringEncoder());
-
-					// 自己的逻辑Handler
-					pipeline.addLast("handler", new ServerForLongConnectionHandler());
+					pipeline.addLast(new ObjectEncoder());
+					pipeline.addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)));
+					pipeline.addLast(new ServerForLongConnectionHandler());
 				}
-
 			});
 
 			// 服务器绑定端口监听
-			ChannelFuture f = b.bind(portNumber).sync();
-			// 监听服务器关闭监听
-			f.channel().closeFuture().sync();
+			ChannelFuture f = b.bind(Constants.HTTP_PORT).sync();
 
 			if (f.isSuccess()) {
-				System.out.println("server start---------------");
+				log.debug("server start---------------");
 			}
+
+			checkClient();
+			// 监听服务器关闭监听,关闭之后，服务端不能实时检测客户端是否连接，无法接受客户端请求
+			f.channel().closeFuture().sync();
 		} finally {
 			bossGroup.shutdownGracefully();
 			workerGroup.shutdownGracefully();
+		}
+	}
+
+	/**
+	 * 发送心跳请求，检测客户端是否正常。
+	 */
+	private void checkClient() {
+		try {
+			TimeUnit.SECONDS.sleep(10);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		// TODO 异步定时发消息不能成功为什么？
+		Map<String, SocketChannel> pool = SocketChannelPool.getInstance().getPool();
+		for (Map.Entry<String, SocketChannel> entry : pool.entrySet()) {
+			scheduleService.scheduleAtFixedRate(new ServerCheckClientTask(entry.getValue()), 3, 5,
+					TimeUnit.SECONDS);
 		}
 	}
 }

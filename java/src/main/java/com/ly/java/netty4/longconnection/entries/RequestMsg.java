@@ -19,6 +19,10 @@ import java.util.Map;
  */
 public class RequestMsg extends BaseMsg {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5347980934301800537L;
 	// 请求参数暂时简化成Map
 	private Map<String, String> params;
 

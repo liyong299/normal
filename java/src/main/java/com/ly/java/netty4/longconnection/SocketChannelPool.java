@@ -23,7 +23,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SocketChannelPool {
 
 	private int capacity;
-	private static final int maxCapacity = 65535;
+	private static final int maxCapacity = Constants.CLIENT_NUM;
 	private Map<String, SocketChannel> pool;
 	// 增加的时候，使用重入锁控制一下。
 	private ReentrantLock lock = new ReentrantLock();
@@ -38,6 +38,9 @@ public class SocketChannelPool {
 		return scPool;
 	}
 
+	public Map<String, SocketChannel> getPool() {
+		return pool;
+	}
 	/**
 	 * 增加一个连接通道
 	 * @param channel
