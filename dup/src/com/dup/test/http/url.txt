@@ -1,0 +1,6 @@
+http://a.piaowutong.cc:8015/product/show-sync
+http://a.piaowutong.cc:8015/login-auth
+liyong
+666666
+300000
+1

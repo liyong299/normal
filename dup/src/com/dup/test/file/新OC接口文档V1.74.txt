@@ -1,0 +1,3712 @@
+{
+"code":"001",
+ "msg":"操作成功。",
+ "success":true
+}
+支付确认（新增）
+接口名称
+ confirmOrder
+接口说明
+订单确认，凭证下发
+请求参数
+
+返回参数
+
+请求报文
+{
+“userId”:value,
+“moblile”:value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",{
+  “orderNo”:value,
+      “vouchers”:value,
+}...
+"success":true
+}
+生成支付订单号（新增）
+接口名称
+createPayOrder
+接口说明
+生成支付订单号以便选用支付插件支付
+请求参数
+
+返回参数
+1、金逸、幸福蓝海
+2、中影
+
+请求报文
+{
+“userId”:value,
+”bankNo”:value,
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+ ”payOrderNo”:value,
+“payment”:value,
+”bankNo”:value,
+}...
+"success":true
+}
+会员卡支付(新增)
+接口名称
+ memberCardPay
+接口说明
+会员卡支付
+请求参数
+
+返回参数
+1、幸福蓝海返回
+
+2、金逸返回
+
+
+3、中影返回
+请求报文
+{
+“OrderNo”:value,
+”ExOrderNo”:value,
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+ “orderNo”:value,
+“orderStatus”:value,
+“payStatus”:value,
+}...
+"success":true
+}
+电子券验证（新增）
+接口名称
+validatorCouponTicket
+接口说明
+请求参数
+
+返回参数
+中影返回
+幸福蓝海返回
+
+请求报文
+{
+ "signorderNo":value,
+"tickets":value,
+"sign":value，
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+    "orderNo":value,
+     "userPays":value,
+     "payChannel":value
+}
+"success":true
+}
+
+电子券支付（新增）
+接口名称
+createCouponTicketPay
+接口说明
+请求参数
+
+返回参数
+1、中影
+幸福蓝海
+
+请求报文
+{
+"nickorderNo":value,
+"userId":value,
+"mobile":value,
+"tickets":value,
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+"signorderNo":value,
+"orderStatus":value,
+"payStatus":value,
+"ticketStatus":value,
+"unPaiedCount":value,
+"userPays":value,
+"payChannel":value,
+"userPrice":value,
+}
+"success":true
+}
+
+撤销电子券支付（新增）
+接口名称
+cancelCouponTicketPay
+接口说明
+请求参数
+
+返回参数
+请求报文
+{
+ " tCardNo ":value,
+ “orderNo":value,
+ “userId":value,
+ “sign":value,
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+     "orderNo":value,
+     "orderStatus":value,
+     "orderPrice":value,
+}
+"success":true
+}
+中影通会员卡支付（新增）
+接口名称
+createTCardPay
+接口说明
+请求参数
+
+返回参数
+请求报文
+{
+ " tCardNo ":value,
+ " tCardPwd ":value,
+ " mobile ":value,
+ " orderNo ":value,
+     " payment ":value,
+ " sign ":value,
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+  “orderNo":value,
+ “orderStatus":value,
+ “payStatus":value,
+ “ticketStatus":value,
+}
+"success":true
+}
+虚拟账户支付（新增）
+接口名称
+createAccountPay
+接口说明
+请求参数
+
+返回参数
+
+请求报文
+{
+  “userId":value，
+ “level":value，
+ “mobile":value，
+ “verCode":value，
+ “orderNo":value，
+ “orderType":value，
+ “cinemaNo":value，
+ “payment":value，
+ “sign":value，
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+       ”orderNo":value，
+ “orderStatus":value，
+  ”userId":value，
+ “level":value，
+ “levelName":value，
+       ”curBalance":value，
+ “curSorce":value，
+}
+"success":true
+}
+
+解锁座位（新增）
+接口名称
+ cancelOrder
+接口说明
+请求参数
+
+返回参数
+
+请求报文
+{
+"orderNo":value，
+“userId“":value，
+”sign”":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+"success":true
+}
+
+新增接口（/api/web/film/v1/）
+添加评论
+接口名称
+addComment
+接口说明
+添加评论
+客户端账号可用条件下，添加用户评论；
+请求参数
+返回结果
+
+金逸返回参数
+
+请求报文
+{
+”userId”：value,
+“type”：value,
+”itemNo”：value,
+“content”：value,
+”nick”：value,
+}
+
+返回报文
+{
+"code":"001",
+ "msg":"操作成功。",
+ "success":true
+}
+
+获取用户评论
+接口名称
+getComment
+接口说明
+获取用户评论列表
+请求参数
+返回结果
+中影返回
+请求报文
+{
+”userId”：value,
+    “size”：value,
+    ”pageNo”：value,
+    “type”：value,
+    ”itemNo”：value,
+}
+
+返回报文
+{
+"code":"001",
+ "msg":"操作成功。",
+    {
+"comment":{
+“type”：value,
+              ”itemNo”：value,
+         “content”：value,
+              ”time”：value,
+             “ nick”：value,
+
+}...
+}
+ "success":true
+}
+
+优惠活动接口
+接口名称
+getActivities
+接口说明
+获取优惠活动列表
+请求参数
+返回结果
+中影返回
+
+请求报文
+
+{
+ “areaNo":value,
+  ”id":value,
+  “size":value,
+  ”pageNo":value,
+}
+
+返回报文
+{
+"code":"001",
+ "msg":"操作成功。",
+ {
+
+“activity”:{
+ “id":value,
+  ”title":value,
+  “type":value,
+  ”status":value,
+
+}...
+} 
+"success":true
+}
+
+根据城市编码查询该城市所有区县
+接口名称
+queryCounties
+
+接口说明
+根据城市编码查询该城市所有区县
+请求参数
+返回结果
+
+
+请求报文
+
+{
+“code”:value,
+}
+
+返回报文
+{
+"code":"001",
+ "msg":"操作成功。",
+ {
+“county”{
+ “code":value,
+  ”name":value,
+  “spell":value,
+  ”status":value,
+}
+} 
+"success":true
+}
+
+
+查询会员卡消费流水清单
+接口名称
+/api/web/user/v1/queryCardTransList	Comment by hugoyang: 目录似乎不正确
+
+接口说明
+查询会员卡消费流水清单
+请求参数
+返回结果
+注：返回的所有流水交易状态都是：交易成功；交易号就是每条记录的行数，比如第一条记录就是1，第二条记录就是2，依次类推
+
+请求报文
+
+{
+“customerId”:value,
+”beginTime”:value,
+“endTime”:value,
+”pageNum”:value,
+“pageSize”:value,
+}
+
+返回报文
+{
+"code":"001",
+ "msg":"操作成功。",{
+ “cardTransMessageList”:{
+”cardId":value,
+“journalId":value,
+”publId":value,
+“cash":value,
+
+}...
+}
+"success":true
+}
+
+
+第三方支付（支付宝、网银，微信支付）
+接口名称
+/api/web/pay/v1/thirdPayOrder
+
+接口说明
+支持支付宝和网银付款
+请求参数
+返回结果
+返回参数特殊说明：
+支付前返回：
+支付页面HTML代码如下（支付宝为例子）：
+<html><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><head><title>信息提示页面</title></head><body><form id='myform' name='myform' action='https://mapi.alipay.com/gateway.do?_input_charset=UTF-8' method='post'><input type="hidden" name="sign" value="9c9ba33aeeebeefc04ab9fc48546ff50" /><input type="hidden" name="_input_charset" value="UTF-8" /><input type="hidden" name="total_fee" value="0.01" /><input type="hidden" name="subject" value="[我是奋青]选坐票2张" /><input type="hidden" name="sign_type" value="MD5" /><input type="hidden" name="notify_url" value="http://test1.mopon.cn:8456/gateway.do?service=AliWebPayResponseService&method=doService" /><input type="hidden" name="service" value="create_direct_pay_by_user" /><input type="hidden" name="seller_id" value="2088511811109777" /><input type="hidden" name="partner" value="2088511811109777" /><input type="hidden" name="out_trade_no" value="2015073100521984" /><input type="hidden" name="payment_type" value="1" /><input type="hidden" name="return_url" value="http://192.168.25.158:8080/api/web/pay/v1/thirdPaySyncCallback.json?clientAccount=OC_WECHAT_H5&interfaceSign=6a396529562085eef31cc1b4047597e1&payCode=150731100000021" /></form><script type="text/javascript">document.getElementById('myform').submit(); </script></body></html>
+
+需要前端处理成跳转到一个空页面（支付页面）
+例子：
+<#if response.result == "S">
+${response.resultMessage}
+<#else>
+<!DOCTYPE html>
+<html>
+<head>
+<@common.head />
+<link rel="stylesheet" href="/resources/css/home/index.css" />
+<title>纵横国际影城(第三方支付成功页面)</title>
+</head>
+<body>
+${response.resultMessage}
+</body>
+</html>
+</#if>
+
+网银支付，跳转到网银支付页面；支付宝支付，跳转到支付宝页面。
+
+支付成功后，返回参数列表：
+
+请求报文
+
+{
+“customerId”:value,
+”orderCode”:value,
+“payType”:value,
+”mobile”:value,
+}
+
+返回报文
+支付前
+{
+“code":001,
+“msg":支付页面的HTML代码,
+ "success":true
+}
+支付后
+{
+"code":"001",
+ "msg":"操作成功。",
+“order”:{
+    “id":value,
+    “code":value,
+    “cecCode":value,
+    “mobile":value,
+    “createDate
+}...
+"success":true
+}
+
+
+会员卡支付
+接口名称
+/api/web/pay/v1/cardPayOrder
+
+接口说明
+会员卡支付接口
+请求参数
+返回结果
+请求报文
+{
+"customerId”:value,
+“cardId”:value,
+“password”:value,
+“orderCode”:value,
+“Amount”:value,
+“Mobile”:value,
+
+}
+
+返回报文
+{
+    "code":"001",
+ "msg":"操作成功。",
+“order”:{
+    “id":value,
+    “code":value,
+    “cecCode":value,
+    “mobile":value,
+    “createDate
+
+}...
+"success":true
+}
+
+意见反馈（新增）
+接口名称
+ submitFeedback
+接口说明
+意见反馈
+请求参数
+
+返回参数
+
+请求报文
+{
+"contact":value,
+"content":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+"success":true
+}
+虚拟账户充值（新增）
+接口名称
+createMemberFillOrder
+接口说明
+
+请求参数
+返回参数
+
+请求报文
+{
+"userId":value,
+"mobile":value,
+"fillMoney":value,
+"channelType":value,
+"channelNo":value,
+"extendInfo":{"clientIp":"127.0.0.1"} //微信支付
+"sign":value
+}
+
+返回报文
+{
+    “code":"001",
+"msg":"操作成功。",{
+"payOrderNo":value,
+"payMent":value,
+"bankNo":value,
+"bank":value,
+              "sign":value
+} 
+"success":true
+}
+
+虚拟账户充值记录（新增）
+接口名称
+queryMemberFillOrder
+接口说明
+请求参数
+
+返回参数
+
+请求报文
+{
+"userId":value, 
+"pageIndex":value,
+"pageSize":value,
+"updateTime":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+ "items":[{
+
+ "fillOrderNo":value,
+"orderType":value,
+ "status":value,
+ "payStatus":value,
+"fillStatus":value,
+ "createTime":value,
+ "orderMoney":value
+｝...]
+} 
+"success":true
+}
+查询用户账户交易记录（新增）
+接口名称
+queryUserBalanceLog
+接口说明
+
+请求参数
+
+返回参数
+
+请求报文
+{
+"userId":value, 
+"pageIndex":value,
+"pageSize":value,
+"updateTime":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",{
+ "balances":[{
+"changeMoney":value,
+"curBalance":value,
+"getType":value
+"tradeType":value
+"remark":value
+"createTime":value
+},…]
+}
+"success":true
+}
+
+
+查询用户积分记录（新增）
+接口名称
+queryUserScoreLog
+请求参数
+
+返回参数
+
+请求报文
+{
+"userId":value, 
+"pageIndex":value,
+"pageSize":value,
+"updateTime":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",{
+"scores":[{
+"score":value,
+"lastScore":value,
+"getType":value,
+"scoreType":value,
+"remark":value,
+"createTime":value
+}…]
+} 
+"success":true
+}
+虚拟会员充值金额查询（新增）
+接口名称
+queryVirtualMemberFill
+接口说明
+请求参数
+
+返回参数
+
+请求报文
+{
+"userId":value
+}
+
+返回报文
+{
+”code":"001",
+"msg":"操作成功。",{
+       "record":[{
+"levelNo":value,
+"levelName":value,
+ "fillType":value,
+"fillMoney":value,
+"remark":value
+             },
+             {}...
+             ]
+} 
+"success":true
+}
+
+虚拟充值卡充值（新增）
+接口名称
+accountFillCard
+接口说明
+请求参数
+返回参数
+
+请求报文
+{
+“fillCardNo”:value,
+  fillPwd”:value,
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",{
+“fillOrderNo”:value,
+“fillMoney”:value,
+
+} ...
+"success":true
+}
+查询用户电子券列表（新增）
+接口名称
+queryUserCouponList
+接口说明
+查询订单虚拟会员和影城会员卡价格
+请求参数
+
+返回参数
+
+请求报文
+{
+"userId":value,
+"mobile":value,
+"sendType":value,
+"orderType":value,
+"actNo":value,
+"cinemaNo":value,
+"filmNo":value,
+"showNo":value,
+"hallNo":value,
+"price":value,
+"seats":[],
+"sign":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",{
+"orderNo":value,
+"orderTime":value,
+"orderPrice":value,
+"goods":[
+{
+"goodsNo":value,
+"goodsName":value,
+"imageUrl":value,
+"price":value,
+"priceForShow":value
+},...
+],
+“cards”:[
+   {
+ “cardNo”:value,
+“cardLevel”:value
+“realSignlePrice”:value,
+“realAllPrice”:value,
+“discountFlag”:value,
+“discountName”:value,
+“chargePrice”:value,
+“memberPrice”:value
+  },……
+],
+"sign":value
+}
+"success":true
+}
+
+绑定电子券（新增）
+接口名称
+bindUserCoupon
+接口说明
+用户绑定电子券，单个券只能绑定一次 
+单个券只能绑定一次
+过期的或无效的券，需要提示用户，不能再进行绑定
+单个用户每天只能添加10个电子券（数量可变化，配置文件里设置），之后不允许再绑定
+单个用户每天限制10次绑定失败数量可变化（次数在配置文件里设置），之后不允许再绑定。
+请求参数
+
+返回参数
+
+请求报文
+{
+"userId":value,
+"couponNo":value,
+"sign":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+"success":true
+}
+获取娱乐数据（新增）
+接口名称
+getRecreations
+接口说明
+获取娱乐数据
+请求参数
+返回参数
+
+请求报文
+{
+“clientAccount”:value,
+         “interfaceSign”:value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+"success":true
+}
+移动支付下单接口（新增）
+接口名称
+cMCCPreOrder
+接口说明
+请求参数
+
+返回参数
+
+请求报文
+{
+"userId":value,
+"channelType":value,
+"orderNo":value,
+"orderPrice":value,
+"payment":value,
+"sign":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+"payOrderNo":value,
+"payment":value,
+"channelType":value,
+"bank":[],
+"sign":value
+} 
+"success":true
+}
+
+手机客户端登陆令牌（新增）
+接口名称
+tokenLogin
+接口说明
+此接口为业务平台提供参考例子。业务平台向手机客户端开放接口
+手机客户端向业务平台调用此接口，业务平台接收参数后转发参数 ，向统一用户验证令牌有效性，如果令牌有效则分配业务SessionID会话，作为手机客户端与业务平台业务交互凭证。
+请求参数
+
+返回参数
+请求报文
+{
+     "appKey":value,
+"userId":value,
+"timestamp":value,
+"token":value,
+ "sign":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+         "sessionId":value,
+"userId":value       
+  }
+"success":true
+}
+解除会员卡绑定（新增）
+接口名称
+UnBindMemberCard
+接口说明
+请求参数
+
+返回参数
+
+请求报文
+{
+“CardNo”:value,
+“CardPwd”:value,
+“CinemaNo”:value,
+“IdentityNumber”:value
+“UserID”:value,
+“Sign”:value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+"success":true
+}
+查询卖品列表（新增）
+接口名称
+querySnacks
+接口说明
+查询影院卖品列表
+请求参数
+
+返回参数
+
+请求报文
+{
+"cinemaNo":value,
+"sign":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+{
+"goods":[
+{
+"goodsNo":value,
+"goodsName":value,
+"imageUrl":value,
+"price":value,
+"priceForShow":value
+}...
+]
+}
+"success":true
+}
+意见反馈(新增)
+接口名称
+submitFeedback
+接口说明
+意见反馈
+请求参数
+
+返回参数
+
+请求报文
+{
+"contact":value,
+"content":value
+}
+
+返回报文
+{
+"code":"001",
+"msg":"操作成功。",
+"success":true
+}
+获取影院评论列表（新增）
+接口名称
+getCinemaReviews
+接口说明
+获取影院的评论
+请求参数
+
+返回参数
+
+请求报文
+{
+"head":{请求报文头}
+"body":{
+"cinemaNo":value,
+"numPerPage":value,
+"pageIdx":value
+} 
+}
+
+返回报文
+{
+"head":{返回报文头},
+"body":{
+"pageCount":value,
+"pageIdx":value,
+"reviews":[
+{
+"reviewNo":value,
+"username":value,
+"mobile":value,
+"image":value,
+"title":value,
+"content":value,
+"score":value,
+"datetime":value
+},...
+]
+} 
+}
+更新日志
+异常说明
+
+
+名称	类型	是否必须	描述
+clientAccount	String	必须 	合作伙伴的编号，在此文档中叫渠道编号
+interfaceSign	String	必须	签名
+
+名称	类型	描述
+code	String	操作结果状态码（001: 操作成功，其他均表示操作异常）
+msg	String	操作结果信息描述
+
+名称	类型	是否必须	描述
+
+名称	类型	描述
+citys	List	城市列表
+ city	City	单个城市
+code	String	城市编码
+name	String	城市名称
+spell	String	城市拼音
+status	String	状态，1：启用 2：停用 （返回的热门城市，全部为启用状态）
+hot	Boolean	是否热门，该接口全部为true
+
+名称	类型	是否必须	描述
+
+名称	类型	描述
+provinceCitys	List	影院
+ code	String	省份编号
+ name	String	省份名称
+ citys	List	省份城市列表
+  city	City	城市
+code	String	城市编码
+name	String	城市名称
+spell	Integer	城市拼音
+status	String	状态，1：启用 2：停用 （该接口返回全部为启用状态）
+hot	Boolean	是否热门
+
+名称	类型	是否必须	描述
+citySpell	String	Y	城市拼音
+
+名称	类型	描述
+city	City	单个城市
+code	String	城市编码
+name	String	城市名称
+spell	Integer	城市拼音
+status	String	状态，1：启用 0：停用 
+hot	Boolean	是否热门
+
+名称	类型	是否必须	描述
+code	String	必须	城市编码
+filmNo	String	N	影片编号
+
+名称	类型	描述
+city	City	单个城市
+code	String	城市编码
+name	String	城市名称
+spell	Integer	城市拼音
+status	String	状态，1：启用 0：停用
+hot	Boolean	是否热门
+
+名称	类型	是否必须	描述
+
+名称	类型	描述
+city	City	单个城市
+code	String	城市编码
+name	String	城市名称
+spell	Integer	城市拼音
+status	String	状态，1：启用 0：停用
+hot	Boolean	是否热门
+
+名称	类型	是否必须	描述
+lon	Number	N	经度
+lat	Number	N	经度
+
+名称	类型	描述
+city	City	单个城市
+code	String	城市编码
+name	String	城市名称
+spell	Integer	城市拼音
+status	String	状态，1：启用 0：停用
+hot	Boolean	是否热门
+
+参数名	参数描述	类型	必须	备注
+cityNo	城市编号	String	Y	
+cityName	城市名称	String	Y	
+
+名称	类型	是否必须	描述
+
+参数名	参数描述	类型	必须	备注
+areas	区域数组	Array	Y	如果没有地区信息，则 areas为空数组。
+areaNo	区域编号	String	Y	
+areaName	区域名称	String	Y	
+areaLevel	区域级别	Number	Y	省级	市级
+pAreaNo	父区域编号	String	Y	
+isSellTicket	是否卖票	booble	Y	默认为true
+
+名称	类型	是否必须	描述
+mobile	String	Y	手机号码
+password	String	Y	密码
+
+名称	类型	描述
+user	User	用户
+id	String	用户ID
+openId	String	开放平台id
+nick	String	用户昵称
+mobile	String	用户手机号码
+sex	int	1:男，2：女
+headPic	String	头像地址
+
+名称	类型	是否必须	描述
+mobile	String	Y	手机号码
+
+名称	类型	描述
+user	List	用户
+id	String	用户ID
+openId	String	开放平台Id
+nick	String	昵称
+mobile	String	手机号码
+sex	String	性别
+headPic	String	头像
+status	String	用户状态,1：正常，2：冻结
+
+名称	类型	是否必须	描述
+id	String	Y	用户ID
+
+名称	类型	描述
+user	List	用户
+id	String	用户ID
+openId	String	开放平台Id
+nick	String	昵称
+mobile	String	手机号码
+sex	String	性别
+headPic	String	头像
+status	String	用户状态,1：正常，2：冻结
+
+名称	类型	是否必须	描述
+openId	String	Y	开放平台Id
+
+参数名	参数描述	类型	必须	备注
+mobile	手机号码	String	Y	手机号码
+businessType	业务类型	Number	N	
+orderNo	订单号	String	N	
+payment	支付金额	Deciaml	N	
+Sign	签名	String	N	MD5(mobile+businessType+orderNo+orderAmount+key)
+Type	1：注册短信，2：找回密码	Int	N	
+
+参数名	参数描述	类型	必须	备注
+
+名称	类型	是否必须	描述
+mobile	String	Y	手机号码
+password	String	Y	密码
+captcha	String	Y	短信验证码
+openId	String	N	开放平台Id
+headImg	String	N	头像地址
+sex	String	Y	性别 1：男  2：女
+nick	String	N	昵称（如果不加昵称则昵称默认为手机号码）
+
+名称	类型	描述
+user	User	用户
+id	String	用户ID
+openId	String	开放平台id
+nick	String	用户昵称
+mobile	String	用户手机号码
+sex	String	性别
+headPic	String	头像
+
+名称	类型	是否必须	描述
+mobile	String	Y	手机号码
+password	String	Y	新密码
+captcha	String	Y	短信验证码
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+nick	String	Y	昵称
+sex	String	Y	性别，1：男，2：女
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+oldPassword	String	Y	旧密码
+newPassword	String	Y	新密码
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+
+名称	类型	描述
+cards	List	会员卡列表
+  card	Card	会员卡
+   id	String	会员卡ID
+   customerId	String	用户ID
+   cardNo	String	卡号
+   cinemaName	String	开卡影院名称
+   cinemaCode	String	开卡影院编号
+   cardType	String	卡类型 ，1：实体卡 2：虚拟卡
+   expireDate	Date	过期时间
+   level	String	会员卡级别
+   score	Double	会员卡积分
+   balance	Double	余额
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+cardId	String	Y	会员Id
+
+名称	类型	描述
+card	Card	会员卡
+   id	String	会员卡ID
+   customerId	String	用户ID
+   cardNo	String	卡号
+   cinemaName	String	开卡影院名称
+   cinemaCode	String	开卡影院编号
+   cardType	String	卡类型 ，1：实体卡 2：虚拟卡
+   expireDate	Date	过期时间
+   level	String	会员卡级别
+   score	Double	会员卡积分
+   balance	Double	余额
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+cinemaId	String	Y	影院ID
+cardNo	String	Y	会员卡号
+cardPassword	String	Y	会员卡密码，cardType=2时需要加密	
+cinemaName	String	N	影院名称
+linkNo	String	N	影院链接号
+IdentityNumber	String	N	身份证号码
+cardType	Int	N	会员卡类型：1影院会员卡	2.中影通卡
+sign	String	N	验证秘钥
+
+名称	类型	描述	是否必须
+cards	会员卡列表	Array	Y
+cinemaNo	开卡影院编号	String	N
+cinemaName	开卡影院名称	String	N
+cardNo	会员卡号	Number	Y
+
+参数名	参数描述	类型	必须	备注
+CardNo	会员卡编号	String	Y	
+CardLevel	会员卡级别	String	Y	
+CardLevelName	会员卡级别名称	String	Y	
+CinemaName	发卡影院名称	String	Y	
+UseStatus	会员卡可用状态	Number	Y	由满天星接口返回0:可用 1不可用
+PassTime	会员卡过期时间	String	Y	
+Score	会员卡积分	Number	Y	
+IdentityCard	身份证号码	String	N	
+MobileNo	手机号码	String	N	
+Email	邮箱地址	String	N	
+CardProvinceNo	发卡影院所在省	String	Y	
+CardProvinceName	发卡影院所在省名称	String	Y	
+CardCityNo	发卡影院所在城市	String	Y	
+CardCityName	发卡影院所在城市名称	String	Y	
+CinemaNo	发卡影院编号	String	Y	内部影院编号
+CardState	卡状态                 	Number	Y	
+
+参数名	参数描述	类型	必须	备注
+cards	会员卡列表	Array	Y	会员卡列表数组
+cinemaNo	开卡影院编号	String	Y	
+cinemaName	开卡影院名称	String	Y	
+linkNo	影院链接号	String	Y	
+cardNo	会员卡号	Number	Y	
+cardLevel	卡级别	String	Y	
+isDefault	是否默认	Number	Y	1默认，0非默认
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+cardId	String	Y	会员卡ID
+CardNo	String	N	会员卡编号
+CardPwd	String	N	会员卡密码，编码规则：	1:先将数据反转	2:再调换头尾的字符	例如：abc123为真实的密码,采用规则后先反转(321cba),再调换头尾字符(a21cb3)
+CinemaNo	String	N	发卡影院编号
+IdentityNumber	String	N	身份证号码
+UserID	String	N	注册会员ID
+Sign	String	N	标识：MD5((CardNo+CardPwd+CinemaNo+IdentityNumber+UserID+key)小写)小写	注：	key由平台分配（客户端密码）	CardPwd用编码后的数据
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+cardId	String	Y	会员卡ID
+newPassword	String	Y	新密码
+
+名称	类型	描述
+
+参数名	参数描述	类型	必须	备注
+CardNo	会员卡编号	String	Y	
+CinemaNo	发卡影院编号	String	Y	
+UserID	注册会员ID	String	Y	
+OldCardPwd	旧密码	String	Y	编码规则：	1:先将数据反转	2:再调换头尾的字符	例如：abc123为真实的密码,采用规则后先反转(321cba),再调换头尾字符(a21cb3)
+NewCardPwd	新密码	String	Y	编码规则：	1:先将数据反转	2:再调换头尾的字符	例如：abc123为真实的密码,采用规则后先反转(321cba),再调换头尾字符(a21cb3)
+Sign			Y	MD5((CardNo+CinemaNo+UserID+OldCardPwd+NewCardPwd +key)小写)小写	注：	key由平台分配（客户端密码）	OldCardPwd用编码后的数据	NewCardPwd用编码后的数据
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+CardNo	会员卡编号	String	Y	
+CardPwd	会员卡密码	String	Y	编码规则：	1:先将数据反转	2:再调换头尾的字符	例如：abc123为真实的密码,采用规则后先反转(321cba),再调换头尾字符(a21cb3)
+CinemaNo	发卡影院编号	String	Y	
+UserID	注册会员ID	String	Y	
+CityNo	城市编号	String	Y	
+MobileNumber	手机号码	String	Y	
+RechargeMoney	充值金额	Number(0,2)	Y	保留两位小数,大于0
+Remark	充值备注	String	N	
+PayOrganizationNo	支付机构编号	String	Y	参见支付机构定义
+PayChannelNo	支付渠道编号	String	Y	参见支付渠道定义
+Sign	标识	String	Y	MD5((CardNo+CardPwd+CinemaNo+UserID+ CityNo+ MobileNumber +RechargeMoney+Remark+ PayOrganizationNo + PayChannelNo +key)小写)小写	注：	key由平台分配（客户端密码）
+
+参数名	参数描述	类型	必须	备注
+payOrderNo	支付订单号	String	Y	如果为支付宝插件支付，此值为统一支付平台生成的订单流水号	如果为支付宝web支付，则为空
+payment	支付金额	Number	Y	精确到小数点后两位，单位为元
+bankNo	机构编号	String	Y	参见机构类型定义
+bank	支付插件所需信息	Array	Y	此数组会根据channelType返回不同的数据。
+orderNo	充值订单编号	String	Y	
+sign	检验码	String	Y	sign=MD5(payOrderNo+payment+ PayChannelNo +orderNo+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+UserID	注册会员ID	String	Y	
+
+参数名	参数描述	类型	必须	备注
+IsBind	是否绑定	bool	Y	0：否 1：是
+CardNo	会员卡编号	String	Y	IsBind=1时有值，否则为空
+CardLevel	会员卡级别	String	Y	IsBind=1时有值，否则为空
+CardLevelName	会员卡级别名称	String	Y	IsBind=1时有值，否则为空
+CinemaName	发卡影院名称	String	Y	IsBind=1时有值，否则为空
+CardState	会员卡状态	Number	Y	0:可用 1:不可用	IsBind=1时有值，否则为空
+PassTime	会员卡过期时间	String	Y	IsBind=1时有值，否则为空
+Score	会员卡积分	Number	Y	IsBind=1时有值，否则为空
+IdentityCard	身份证号码	String	N	IsBind=1时有值，否则为空
+MobileNo	手机号码	String	N	IsBind=1时有值，否则为空
+Email	邮箱地址	String	N	IsBind=1时有值，否则为空
+CardProvinceNo	发卡影院所在省	String	Y	IsBind=1时有值，否则为空
+CardProvinceName	发卡影院所在省名称	String	Y	IsBind=1时有值，否则为空
+CardCityNo	发卡影院所在城市	String	Y	IsBind=1时有值，否则为空
+CardCityName	发卡影院所在城市名称	String	Y	IsBind=1时有值，否则为空
+CinemaNo	发卡影院编号	String	Y	IsBind=1时有值，否则为空	内部影院编号
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+cinemaNo	影院编号	String	Y	
+cardNo	卡号	String	Y	
+cardPwd	卡密码	String	Y	
+
+参数名	参数描述	类型	必须	备注
+cardNo	会员卡号	String	Y	
+cinemaNo	影院编号	String	Y	
+cardBalance	会员卡余额	Deciaml	Y	精确到小数点后两位，单位为元	查询失败返回：-100
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+tCardTypeId	类型Id	String	Y	
+tCardTypeName	类型名称	String	Y	
+openCardMoney	开卡金额	Deciaml	Y	
+
+参数名	参数描述	类型	必须	备注
+userId	用户编号	string	Y	
+mobile	手机号	String	Y	
+tCardTypeId	卡类型编号	Number	Y	
+cardMoney	开卡金额	Deciaml	Y	保留两位小数,大于0
+payChannelNo	支付渠道	String	Y	UPMP3 =银联支付 	ALIPAY10=支付宝
+sign	签名	String	Y	MD5(userId+mobile+ tCardTypeId+ cardMoney + payChannelNo +key)
+
+参数名	参数描述	类型	必须	备注
+payOrderNo	支付订单号	String	Y	
+payment	支付金额	Deciaml	Y	精确到小数点后两位，单位为元
+payChannelNo	支付渠道	String	Y	UPMP3 =银联支付 	ALIPAY10=支付宝
+bank	支付插件所需信息	Array	Y	
+sign	检验码	String	Y	sign=MD5(payOrderNo+payment+ payChannelNo +key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+userId	用户编号	string	Y	
+
+参数名	参数描述	类型	必须	备注
+Record	列表	Array	Y	
+cardNo	中影通会员卡号	String	Y	
+fillMoney	充值金额	String	Y	如：(300,500) 多个金额,分开
+tCardMoney	余额	Deciaml	Y	两位小数
+tCardPassDate	有效日期	String	Y	yyyy-MM-dd
+
+参数名	参数描述	类型	必须	备注
+userId	用户编号	string	Y	
+mobile	手机号	String	Y	
+tCardNo	充值卡号	String	Y	
+fillMoney	充值金额	Deciaml	Y	
+payChannelNo	支付渠道	String	Y	UPMP3 =银联支付 	ALIPAY10=支付宝
+sign	签名	String	Y	MD5(userId+mobile+fillMoney+ payChannelNo ++key)
+
+参数名	参数描述	类型	必须	备注
+payOrderNo	支付订单号	String	Y	
+payment	支付金额	Deciaml	Y	精确到小数点后两位，单位为元
+payChannelNo	支付渠道	String	Y	UPMP3=银联支付 	ALIPAY10=支付宝
+bank	支付插件所需信息	Array	Y	
+sign	检验码	String	Y	sign=MD5(payOrderNo+payment+ payChannelNo +key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+pageSize	页大小	Int	Y	默认20条
+pageIndex	页码	Int	Y	默认1
+updateTime	更新时间	String	N	日期格式	(yyyyMMddHHmmss)
+
+参数名	参数描述	类型	必须	备注
+pageCount	总页数	Number	Y	
+pageIdx	当前页编号	Number	Y	
+Items	充值订单列表	Array	Y	
+fillOrderNo	订单编号	String	Y	
+orderType	订单类型	Int	Y	1:充值	2:退款充值
+fillStatus	充值状态	Int	Y	1、未处理	2、充值成功	3、充值失败
+payStatus	支付状态	Int	Y	1:未支付	2:已支付	3:支付失败
+payTime	充值时间	string	Y	(yyyyMMddHHmmss)
+orderMoney	充值金额	Deciaml	Y	保留小数点后两位
+
+参数名	参数描述	类型	必须	备注
+userId	用户Id	String	Y	
+mobileNo	手机号	String	Y	
+filmNo	影片编号	String	Y	
+status	状态	Number		0=否  1=是
+actionType	类型	Number		1=喜欢，2=不喜欢，3=想看
+sign	签名			sign=MD5(userId+mobileNo+filmNo+ actionType + key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+UserID	注册会员ID	String	Y	
+
+参数名	参数描述	类型	必须	备注
+Datas	数组	Array	Y	
+ProvinceNo	省编号	String	Y	
+ProvinceName	省名称	String	Y	
+CityNo	城市编号	String	Y	
+CityName	城市名称	String	Y	
+CinemaNo	影院编号	String	Y	
+CinemaName	影院名称	String	Y	
+
+名称	类型	是否必须	描述
+cityCode	String	Y	城市编码
+areaCode	String	N	区域编号(当为空时搜索取城市下的影院)
+filmNo	String	N	影片编号
+
+名称	类型	描述
+cinemas	List	影院列表
+ cinema	List	单个影院
+  id	String	影院ID
+code	String	影院编码
+name	String	影院名称
+address	String	影院地址
+logo	String	影院LOGO(影院logo地址，只有一个)
+url	String	影院网址
+tel	String	客服电话
+devicePos	String	终端机位置说明
+deviceImg	String	终端位置图片
+grade	String	综合评分
+intro	String	简介
+busLine	String	公交路线
+metro	String	地铁
+longitude	String	经度
+latitude	String	纬度
+feature	String	特色
+ordinal	Integer	排序号
+accessType	String	接入商
+secondLevelDomain	String	二级域名
+prePolicy	String	优惠政策
+persDescription	String	个性化说明
+featureHall	List	特色影厅
+  feature		特色影厅
+    keyValue	String	特色影厅类型 2:IMAX,7:3D,8:VIP,10:DOBLY
+    explain	String	特色影厅说明
+featureService	List	特色服务
+  feature		特色服务
+    keyValue	String	特色服务类型 1：可停车，2：取票机
+    explain	String	特色服务说明
+perfectSurr	List	周边设施
+  feature		周边设施
+    keyValue	String	周边设施类型 17：周边餐饮，18:周边休闲
+    explain	String	周边设施说明
+cinemaMien	List<String>	影院风采 图片路径
+
+参数名	参数描述	类型	必须	备注
+cinemas	影院数组	Array	Y	如果没有影院信息，则 cinemas为空数组。
+cinemaNo	影院编号	String	Y	
+cinemaName	影院名称	String	Y	
+address	影院地址	String	Y	
+cinemaPhone	影院电话	String	y	
+route	交通信息	String	N	
+latlng	经纬度	String	Y	纬度和经度以英文逗号隔开，格式：lat,lng
+cinemaImg	影院图片	String 	N	
+
+参数名	参数描述	类型	必须	备注
+cinemas	影院数组	Array	Y	如果没有影院信息，则 cinemas为空数组。
+cinemaNo	影院编号	String	Y	
+cinemaName	影院名称	String	Y	
+sellFlag	售票标志	Number	Y	1．仅选座	2．仅通兑	3．选座和通兑	4．仅查排期
+lowestPrice	最低价	Number	Y	当sellFlag=1时，此价格为当前影片的最低价	当sellFlag=2时，此价格为通兑标最低价;
+remainCount	剩余场次	Number	N	请求报文中filmNo不为空时，需返回此参数
+screenDate	放映日期	String	N	请求报文中filmNo不为空时，需返回此参数，格式如下：	（影片首映日期）yyyyMMdd
+areaNo	影院所属区编号	String	Y	行政区级别编号
+areaName	影院所属区名称	String	Y	
+latlng	经纬度	String	Y	纬度和经度以英文逗号隔开，格式：lat,lng
+score	影院评分	Number	Y	精确到小数点后1位
+address	影院地址	String	N	
+
+参数名	参数描述	类型	必须	备注
+cinemas	影院数组	Array	Y	如果没有影院信息，则cinemas为空数组。
+cinemaNo	影院编号	String	Y	
+cinemaName	影院名称	String	Y	
+providerNo	接入商编号（英文）	String	Y	Phenix：火凤凰 	Okticket：满天星
+address	影院地址	String	Y	
+cinemaPhone	影院电话	String	y	
+route	交通信息	String	N	
+latlng	经纬度	String	Y	纬度和经度以英文逗号隔开，格式：lat,lng
+cinemaImg	影院图片	String 	N	
+isNFC	是否NFC影院	Tinyint		0--不是1—是
+
+名称	类型	是否必须	描述
+cinemaCode	String	Y	影院编码
+
+名称	类型	描述
+cinema	List	单个影院
+  id	String	影院ID
+code	String	影院编码
+name	String	影院名称
+address	String	影院地址
+logo	String	影院LOGO(影院logo地址，只有一个)
+url	String	影院网址
+tel	String	客服电话
+devicePos	String	终端机位置说明
+deviceImg	String	终端位置图片
+grade	String	综合评分
+intro	String	简介
+busLine	String	公交路线
+metro	String	地铁
+longitude	String	经度
+latitude	String	纬度
+feature	String	特色
+ordinal	Integer	排序号
+accessType	String	接入商
+secondLevelDomain	String	二级域名
+prePolicy	String	优惠政策
+persDescription	String	个性化说明
+featureHall	List	特色影厅
+  feature		特色影厅
+    keyValue	String	特色影厅类型 2:IMAX,7:3D,8:VIP,10:DOBLY
+    explain	String	特色影厅说明
+featureService	List	特色服务
+  feature		特色服务
+    keyValue	String	特色服务类型 1：可停车，2：取票机
+    explain	String	特色服务说明
+perfectSurr	List	周边设施
+  feature		周边设施
+
+参数名	参数描述	类型	必须	备注
+cinemaName	影院名称	String	Y	
+hallCount	影厅数量	Number	N	
+hallNames	影厅名称列表	String	Y	1号厅、2号厅，多个用“、”分隔
+SeatNum	影院座位数	Number	Y	
+RestMemo	优惠信息	String	Y 	
+description	影院介绍	String	N	
+images	影院图片地址集合	Array	N	
+address	影院地址	String	N	
+route	行车路线	String	N	
+latlng	经纬度	String	Y	纬度和经度以英文逗号隔开，格式：lat,lng
+linkMethod	联系方式	String	N	
+score	影院评分	Number	Y	精确到小数点后1位
+terminalImage	终端设备位置图	String	N	
+terminalDesc	终端描述	String	N	
+
+参数名	参数描述	类型	必须	备注
+cinemaName	影院名称	String	Y	
+hallCount	影厅数量	Number	N	
+description	影院介绍	String	N	
+images	影院图片地址集合	Array	N	
+address	影院地址	String	N	
+route	行车路线	String	N	
+latlng	经纬度	String	Y	纬度和经度以英文逗号隔开，格式：lat,lng
+linkMethod	联系方式	String	N	
+score	影院评分	Number	Y	精确到小数点后1位
+terminalImage	终端设备位置图	String	N	
+terminalDesc	终端描述	String	N	
+cinemaLogo	影院图片	String	Y	
+latitude	纬度	String	N	
+longitude	经度	String	N	
+
+名称	类型	是否必须	描述
+status	Sting	Y	1:正在热映 2:即将上映，3：有排期影片
+cityCode	String	Y	当前城市
+cinemaCode	String	N	影院编码
+name	String	N	当传入时会以该参数作为条件进行过滤
+pageNo	String	N	分页序号,默认为1
+pageSize	Stirng	N	每页记录数，默认为10
+
+名称	类型	描述
+pageCount	int	总页数
+count	int	总记录数
+pageNo	String	分页序号
+pageSize	String	每页记录数
+films	List	影片列表
+ film	List	单个影片
+code	String	影片编码
+name	String	影片名称
+duration	Integer	时长
+publishDate	String	公映日期
+publisher	String	发行商
+director	String	导演
+cast	String	演员
+intro	String	简介
+showTypes	String	放映类型
+country	String	发行国家
+type	String	影片类型
+language	String	影片语言
+poster	String	海报图片
+stills	String	剧照，多个以,号分割
+highlight	String	精彩看点
+screening	Boolean	是否放映中（当前城市是否有该影片排期）
+score	Double	综合评分
+trailers	List	预告片
+ trailer		预告片
+  thumbnail	String	缩略图
+  vedioUrl	String	视频路径
+  desc	String	视频描述
+
+参数名	参数描述	类型	必须	备注
+films	影片信息数组	Array	Y	如果没有影片信息，则 films为空数组。
+filmNo	影片编号	String	Y	
+cName	影片中文名称	String	Y	
+showType	放映类型	Int	Y	2D0	3D1	4D4	IMAX 2D3	IMAX 3D5	中国巨幕    6	DMAX 3D     7
+filmType	影片类型	String	Y	动作、科幻等
+thumbnail	缩略图地址	String	Y	
+hobbyPrecent	喜欢百分比例	Number	Y	喜欢百分比例
+remark 	备注	String	N	
+
+参数名	参数描述	类型	必须	备注
+films	影片信息数组	Array	Y	如果没有影片信息，则 films为空数组。
+filmNo	影片编号	String	Y	
+cName	影片中文名称	String	Y	
+lang	语种	String	Y	
+duration	片长	Number	Y	单位为分钟
+filmType	影片类型	String	Y	动作、科幻等
+byCompany	制片公司	String	Y	
+director	导演	String	Y	
+actors	主演	String	Y	
+memo	剧情介绍	String	Y	
+firstDate	首映日期	String	N	格式yyyy-MM-dd
+poster	海报地址	String	Y	
+thumbnail	缩略图	String	Y	
+still	剧照图片地址集合	Array	Y	数组中为剧照地址
+video	片花地址	Array	N	
+score	影迷评分	Number	Y	精确到小数点后1位(影迷评分)
+imdbScore	IMDB评分	Number	Y	精确到小数点后1位(综合评分)
+numOfPerson	购买人数	Number	N	
+numOfCinemas	上映影院数量	Number	Y	3.0.3新增
+numOfShows	热映排期数量	Number	Y	3.0.3新增
+
+参数名	参数描述	类型	必须	备注
+films	影片信息数组	Array	Y	如果没有影片信息，则 films为空数组。
+filmNo	影片编号	String	Y	
+cName	影片中文名称	String	Y	
+thumbnail	缩略图地址	String	Y	
+firstDate	首映日期	String	N	格式yyyy-MM-dd
+filmType	影片类型	String	Y	动作、科幻等
+showType	放映类型	Int	y	2D0	3D1	4D4	IMAX 2D3	IMAX 3D5	中国巨幕    6	DMAX 3D     7
+hobbyPrecent	想看	Number	Y	想看人数
+remark 	备注	String	n	
+
+参数名	参数描述	类型	必须	备注
+films	影片信息数组	Array	Y	如果没有影片信息，则 films为空数组。
+fid	影片id	String	Y	
+filmNo	影片编号	String	Y	
+cName	影片中文名称	String	Y	
+eName	影片英文名称	String	N	
+lang	语种	String	Y	
+duration	片长	Number	Y	单位为分钟
+filmType	影片类型	String	Y	动作、科幻等
+byCompany	制片公司	String	Y	
+director	导演	String	Y	
+actors	主演	String	Y	
+memo	剧情介绍	String	Y	
+firstDate	首映日期	String	N	格式yyyy-MM-dd
+firstAddress	首映地址	String	N	
+poster	海报地址	String	Y	
+thumbnail	缩略图地址	String	Y	
+still	剧照图片地址集合	Array	Y	数组中为剧照地址
+video	片花地址	Array	N	
+score	影迷期待值	Number	Y	精确到小数点后1位(影迷评分)
+imdbScore	综合期待值	Number	Y	精确到小数点后1位(综合评分)
+numOfPerson	关注人数	Number	N	
+Status	状态	Number	Y	
+
+名称	类型	是否必须	描述
+cityCode	String	N	当前城市
+code	String	Y	影片编号
+
+名称	类型	描述
+film	List	单个影片
+code	String	影片编码
+name	String	影片名称
+duration	Integer	时长
+publishDate	String	公映日期
+publisher	String	发行商
+director	String	导演
+cast	String	演员
+intro	String	简介
+showTypes	String	放映类型
+country	String	发行国家
+type	String	影片类型
+language	String	影片语言
+poster	String	海报图片
+stills	String	剧照，多个以,号分割
+highlight	String	精彩看点
+screening	Boolean	是否放映中（当前城市是否有该影片排期）
+score	Double	综合评分
+trailers	List	预告片
+  trailer		预告片
+    thumbnail	String	缩略图
+    vedioUrl	String	视频路径
+    desc	String	视频描述
+
+参数名	参数描述	类型	必须	备注
+filmNo	影片编号	String	Y	
+filmName	影片名称	String	Y	
+showType	影片放映类型	String	Y	2D\3D\IMAGX…
+filmType	影片类型	String	Y	战争、爱情….
+filmImg	影片图片（小图）	String	Y	
+still	剧照图片地址集合	Array	Y	数组中为剧照地址
+stillUrl	链接地址	String	N	
+videoUrl	视频播放地址集合	String	N	预告片播放地址集合,兼容老接口临时定义，此字段后续作废
+videoUrls	视频播放地址集合	Array	N	预告片播放地址集合
+videoId	视频ID	String	N	
+thumbnail	视频缩约图	String	N	
+videoFormat	视频格式	Number	N	1.MP4,2.MPEG,3.AVI,4.3GP 5.flv 6其他
+vurl	视频播放地址	String	N	
+videoDesc	视频描述	String	N	
+duration	视频时长	String	N	
+vidcoAds	广告图片地址	String	N	
+adTime	广告播放时长	String	N	
+filmDesc	剧情介绍	String	N	
+mainActors	主要演员	String	Y	
+directors	导演	String	Y	
+duration	放映时长	number	Y	
+originArea	原产地	String	N	
+firstShowDate	上映时间	String	Y	
+hobbyPrecent	喜欢百分比例	Number	Y	喜欢百分比例，取整（新增）
+wantSee	想看	Nubmer	Y	
+
+名称	类型	是否必须	描述
+cityCode	String	Y	当前城市
+filmCodes	String	Y	影片编号 多个以,号分割
+
+名称	类型	描述
+filmMinPrices	List	影片价格
+  filmCode	String	影片编号
+  minPrice	Double	最低价
+
+参数名	参数描述	类型	必须	备注
+cinemaNo	影院编号	String	N	
+showNo	排期编号	String	Y	
+hallNo	影厅编号	String	N	
+
+参数名	参数描述	类型	必须	备注
+hallName	影厅名称	String	Y	
+sections	场区数组	Array	Y	
+sectionNo	场区编号	String	Y	
+sectionName	场区名称	String	Y	
+rows	座位数组	Array	Y	
+rowNo	行编号	String	Y	锁定座位用(座位行)
+rowName	行名称	String	Y	绘图用(影厅物理行)
+columns	列数据	Array	Y	
+colNo	列编号	String	Y	
+colName	列名称	String	Y	
+type	座位类型	Number	Y	走廊	单座	情侣座
+status	座位状态	Number	Y	可选	已售	维修
+
+名称	类型	是否必须	描述
+position	String	Y	广告位置,1:web首页滚动 2.微信H5  3.优惠活动滚动
+cinemaId	String	N	影院ID(可为空)
+
+名称	类型	描述
+adverts	List	广告列表
+ advert	List	单个广告
+path	String	路径
+url	String	链接
+title		标题
+
+名称	类型	是否必须	描述
+type	String	Y	类型,1、首页公告；2：影院公告
+showType	String	N	显示方式（首页公告时有效），1：首页Tip,2:首页弹窗，影院公告时不穿该参数
+expire	String	N	是否排期过期公告 1：是，0：否，默认为1
+
+名称	类型	描述
+notices	List	公告列表
+ notice	List	单个公告
+id	String	公告ID
+content	String	内容
+title	String	标题
+showType	String	显示方式（首页公告时有效）1：首页Tip,2:首页弹窗
+modifyDate	Date	最后修改时间
+
+名称	类型	是否必须	描述
+noticeId	String	Y	公告ID
+
+名称	类型	描述
+notice	List	单个公告
+id	String	公告ID
+content	String	内容
+title	String	标题
+showType	String	显示方式（首页公告时有效）1：首页Tip,2:首页弹窗
+modifyDate	Date	最后修改时间
+
+参数名	参数描述	类型	必须	备注
+syncTime	同步时间标识	String	Y	
+imageSizeType	图片大小类型编号	Number	Y	图片大小编号定义：	320X480	480X800	640X960	1280X768
+
+参数名	参数描述	类型	必须	备注
+syncTime	同步时间标识	String	Y	
+images	图片列表	Array	Y	图片地址列表
+image	图片	String	N	
+adTime	播放广告时间	String	N	
+
+参数名	参数描述	类型	必须	备注
+cityNo	城市	String	Y	
+cinemaNo	影院编号	String	N	非必要条件，存在时根据影院显示活动
+
+参数名	参数描述	类型	必须	备注
+adList	列表	Array		
+adId	编号	String	Y	广告或活动编号
+adType	类型	Number	Y	1-活动 2-广告
+adImgUrl	图片链接地址	String	Y	
+advPicUrl	广告链接地址	String	N	活动时，此字段值为空；广告时，方有值
+
+参数名	参数描述	类型	必须	备注
+adList	列表	Arrary		
+adId	编号	String	Y	广告或活动编号
+adType	类型	Number	Y	1-抢票活动 2-资讯广告 3-综合活动 4-虚拟会员充值活动 5-APP排期推广活动 6-其它
+adImgUrl	图片链接地址	String	Y	
+advPicUrl	广告链接地址	String	N	活动时，此字段值为空；广告时，方有值
+IsLogin	是否需要登陆	Tinyint	Y	不需要	需要
+AdExtend	扩展属性	String	N	多个扩展属性以英文”&”隔开，格式如下：adID=120554&orderNo=O05425
+
+参数名	参数描述	类型	必须	备注
+actId	请求的活动ID	String	Y	
+
+参数名	参数描述	类型	必须	备注
+actId	请求的活动ID	String	Y	
+title	活动标题		Y	
+cinemaType	影院数据类型	number	Y	多家或所有影院	单家影院
+cinemaList	影院列表	array	Y	
+cinemaNo	影院编号	String	n	
+cinemaName	影院名称	String	n	
+filmType	影片数据类型	number	y	多部或所有影片	单个影片
+filmList	影片列表	Array	y	
+filmNo	影片编号	String	n	
+filmName	影片名称	String	n	
+startTime	开始时间	String	Y	格式：2015-01-01 18:00:00
+endTime	结束时间	String	Y	格式：2015-01-01 18:00:00
+numberPerson	参与人数	Number	Y	
+appImage	活动图片	String	y	
+surplusTime	剩余时间	String	N	格式：10天20小时5分钟
+appMemo	活动简介	String	N	
+appInfo	活动详情	String	N	
+
+参数名	参数描述	类型	必须	备注
+actId	请求的活动ID	String	Y	
+mobileNo	手机号码	String	Y	
+sgin	签名	String	Y	sign=MD5(actId +mobileNo+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+filmNo	影片编号	String	Y	
+cinemaNo	影院编号	String	N	
+
+参数名	参数描述	类型	必须	备注
+filmNo	影片编号	String	Y	
+filmName	影片名称	String	Y	
+advList	影片广告集合	Array	Y	
+advTitle	图片标题	String	N	
+startTime	开始时间	String	Y	精确到秒	(2015-1-1 00:00:00)
+endTime	结束时间	String	Y	精确到秒	(2015-1-30 12:59:59)
+seconds	播放时长	String	Y	单位：秒,如：30
+imagePathUrl	广告图片地址	String	Y	
+linkUrl	广告链接地址	String	N	
+
+参数名	参数描述	类型	必须	备注
+actNo	活动编号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+title	活动标题	String	Y	
+numOfPeople	当前活动人数	Number	Y	
+numFocus	当前关注人数	Number	Y	
+maxNum	最大活动人数限制	Number	Y	
+type	活动类型	Number	Y	1:价格活动	2:折扣活动	3:礼品活动	4:优惠支付	5:买N送1
+goodsType	活动商品类型	Number	Y	1:通兑票	2:选座票
+imageUrl	活动封面图片	String	Y	
+dateRange	活动时间范围	String	Y	
+maxTicketCount	用户可购票数量	Number	Y	
+minTicketCount	用户最少购票数量	Number	N	0:不限	具体的数字表至少限购数量
+status	状态	Number	Y	0：信息未审核	1：正常（活动中）	2：财务未审核(信息审核通过)	3:信息审核未通过	4:财务审核未通过	5：暂停	6：已结束(活动结束)	7：删除	8：过期
+leftTime	活动剩余时间	String	Y	格式：ddHHmmss	(3.0.3新增)
+description	活动安排详情	String	N	
+pays	活动支付方式	String	Y	格式：AlixPay,AliWapPay
+seatTicket	选座票节点	Array	Y	
+areaNo	区域编号	String	Y	
+areaName	区域名称	String	Y	
+commTicket	通兑票节点	Array	Y	
+ticketNo	票编号	String	Y	
+ticketName	票名称	String	Y	
+ticketType	票类型	Number	Y	1.2D	2.3D	3.4D	4.IMAX	5.点卡
+oldPrice	原价	Number	Y	精确到小数点后两位，单位为元
+price	价格	Number	Y	精确到小数点后两位，单位为元
+validType	有效期类型	Number	Y	有效期以天的形式	有效期是日期段的形式
+validDate	有效期	String	Y	validType =1时，有效期为天	validType-2时，有效期是日期段的形式，格式如下：yyMMdd-yyMMdd	例：120405-120630
+range	使用范围	String	Y	
+memo	产品说明	String	Y	
+
+参数名	参数描述	类型	必须	备注
+actNo	活动编号	String	Y	
+areaNo	区域编号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+cinemas	影院数组	Array	Y	
+cinemaNo	影院编号	String	Y	
+cinemaName	影院名称	String	Y	
+
+名称	类型	是否必须	描述
+cityCode	String	Y	城市编号
+cinemaCode	String	Y	影院编码
+showDate	String	N	放映日期，不传为查询当天以及当天以后的排期
+status	String	N	状态：1、有效的排期，0：有效、过期的排期
+
+名称	类型	描述
+cinemaShows	List	影院排期
+  film		
+code	String	影片编码
+name	String	影片名称
+duration	Integer	时长
+publishDate	String	公映日期
+publisher	String	发行商
+director	String	导演
+cast	String	演员
+intro	String	简介
+showTypes	String	放映类型
+country	String	发行国家
+type	String	影片类型
+language	String	影片语言
+poster	String	海报图片
+stills	String	剧照，多个以,号分割
+highlight	String	精彩看点
+screening	Boolean	是否放映中（当前城市是否有该影片排期）
+score	Double	综合评分
+trailers	List	预告片
+    trailer		预告片
+      thumbnail	String	缩略图
+      vedioUrl	String	视频路径
+      desc	String	视频描述
+  CommentCount	String	影片评论数
+shows		排期列表
+  show		排期
+    productCode	String	排期编号
+    cinemaCode	String	影院编号
+    cinemaName	String	影院名称
+    hallCode	String	影厅编号
+    hallName	String	影厅名称
+    seatCount	Integer	座位数量
+    filmCode	String	影片编号
+    showTime	Date	放映时间
+    stopSellTime	Date	停售时间
+    showType	String	放映类型1:2D;2:3D;3:MAX2D;4:MAX3D
+stdPrice	Double	标准价
+minPrice	Double	最低价
+salePrice	Double	销售价
+status	String	排期状态 1、正常，3、过期
+endTime	Date	放映结束时间
+language	String	语言
+duration	Integer	时长
+
+名称	类型	是否必须	描述
+cityCode	String	Y	城市编号
+cinemaCode	String	Y	影院编码
+status	String	N	状态：1、有效的排期，0：有效、过期的排期
+
+名称	类型	描述
+days	List	影院排期日期
+  showDay		排期日期
+   day	String	日期
+
+名称	类型	是否必须	描述
+cityCode	String	Y	城市编号
+filmCode	String	Y	影片编码
+showDate	String	N	放映日期，不传为查询当天以及当天以后的排期
+status	String	N	状态：1、有效的排期，0：有效、过期的排期
+cinemaCode	String	N	注：目前新oc没有实现，但幸福蓝海有该需求
+
+名称	类型	描述
+filmShows	List	影院排期
+cinema	List	单个影院
+    id	String	影院ID
+code	String	影院编码
+name	String	影院名称
+address	String	影院地址
+logo	String	影院LOGO(影院logo地址，只有一个)
+url	String	影院网址
+tel	String	客服电话
+devicePos	String	终端机位置说明
+deviceImg	String	终端位置图片
+grade	String	综合评分
+intro	String	简介
+busLine	String	公交路线
+metro	String	地铁
+longitude	String	经度
+latitude	String	纬度
+feature	String	特色
+ordinal	Integer	排序号
+accessType	String	接入商
+secondLevelDomain	String	二级域名
+prePolicy	String	优惠政策
+persDescription	String	个性化说明
+featureHall	List	特色影厅
+    feature		特色影厅
+      keyValue	String	特色影厅类型 2:IMAX,7:3D,8:VIP,10:DOBLY
+      explain	String	特色影厅说明
+featureService	List	特色服务
+    feature		特色服务
+      keyValue	String	特色服务类型 1：可停车，2：取票机
+      explain	String	特色服务说明
+perfectSurr	List	周边设施
+    feature		周边设施
+shows		排期列表
+  show		排期
+    productCode	String	排期编号
+    cinemaCode	String	影院编号
+    cinemaName	String	影院名称
+    hallCode	String	影厅编号
+    hallName	String	影厅名称
+    seatCount	Integer	座位数量
+    filmCode	String	影片编号
+    showTime	Date	放映时间
+    stopSellTime	Date	停售时间
+    showType	String	放映类型1:2D;2:3D;3:MAX2D;4:MAX3D
+stdPrice	Double	标准价
+minPrice	Double	最低价
+salePrice	Double	销售价
+status	String	排期状态 1、正常，3、过期
+endTime	Date	放映结束时间
+language	String	语言
+duration	Integer	时长
+
+参数名	参数描述	类型	必须	备注
+weekList	日期数组	Array	Y	
+weekName	日期名称	String	Y	今天、明天、星期…
+showdate	放映日期	String	Y	日期
+shows	排期数组	Array	Y	排期为空时，返回空数组
+showNo	排期编号	String	Y	
+showType	放映类型	String	Y	2D，3D，4D，IMAX
+hallName	影厅名称	String	Y	
+price	售价	Number	Y	精确到小数点后两位，单位为元
+lang	语种	String	Y	
+showTime	放映时间	String	Y	
+showEndTime	放映结束时间	String		
+hallSeat	影厅座位数量	Number	y	
+seatNumber	影厅剩余座位	Number	y	
+remark	排期备注说明	String	N	
+
+参数名	参数描述	类型	必须	备注
+shows	排期数组	Array	Y	排期为空时，返回空数组
+showNo	排期编号	String	Y	
+date	日期	String	Y	日期
+time	放映时间	String	Y	
+showType	影片类型	String	Y	2D，3D，4D，IMAX
+hallNo	影厅编号	String	Y	
+hallName	影厅名称	String	Y	
+isCanSell	是否可售	Boolean	Y	true,false
+isExtra	是否外部购票排期	Boolean	Y	
+webUrl	网址	String	N	如果isExtra=true，则需要返回此参数
+price	售价	Number	Y	精确到小数点后两位，单位为元
+standard	影院门市价	Number	Y	精确到小数点后两位，单位为元
+lang	语种	String	Y	
+duration	时长	Number	Y	
+AccessProviderNo	接入商	String	Y	
+ProviderNo	省编号	String	Y	
+
+名称	类型	是否必须	描述
+cityCode	String	Y	城市编号
+filmCode	String	Y	影片编码
+status	String	N	状态：1、有效的排期，0：有效、过期的排期
+
+名称	类型	描述
+days	List	排期日期
+  showDay		排期日期
+   day	String	日期
+
+名称	类型	是否必须	描述
+cityCode	String	Y	城市编号
+status	String	N	状态：1、有效的排期，0：有效、过期的排期
+
+名称	类型	描述
+days	List	排期日期
+  showDay		排期日期
+   day	String	日期
+
+名称	类型	是否必须	描述
+cinemaCode	String	Y	影院编号
+filmCode	String	Y	影片编号
+showDate	String	N	放映日期，不传为查询当天以及当天以后的排期
+status	String	N	状态：1、有效的排期，0：有效、过期的排期
+
+名称	类型	描述
+shows	List	排期列表
+  show		
+    productCode	String	排期编号
+    cinemaCode	String	影院编号
+    cinemaName	String	影院名称
+    hallCode	String	影厅编号
+    hallName	String	影厅名称
+    seatCount	Integer	座位数量
+    filmCode	String	影片编号
+    showTime	Date	放映时间
+    stopSellTime	Date	停售时间
+    showType	String	放映类型1:2D;2:3D;3:MAX2D;4:MAX3D
+stdPrice	Double	标准价
+minPrice	Double	最低价
+salePrice	Double	销售价
+status	String	排期状态 1、正常，3、过期
+endTime	Date	放映结束时间
+language	String	语言
+duration	Integer	时长
+
+名称	类型	是否必须	描述
+productCode	String	Y	排期编号
+
+名称	类型	描述
+show		
+  productCode	String	排期编号
+  cinemaCode	String	影院编号
+  cinemaName	String	影院名称
+  hallCode	String	影厅编号
+  hallName	String	影厅名称
+  seatCount	Integer	座位数量
+  filmCode	String	影片编号
+  showTime	Date	放映时间
+  stopSellTime	Date	停售时间
+  showType	String	放映类型1:2D;2:3D;3:MAX2D;4:MAX3D
+stdPrice	Double	标准价
+minPrice	Double	最低价
+salePrice	Double	销售价
+status	String	排期状态 1、正常，3、过期
+endTime	Date	放映结束时间
+language	String	语言
+duration	Integer	时长
+
+名称	类型	是否必须	描述
+productCode	String	Y	排期编号
+status	String	N	座位状态。0：不可售，1：可售，不传为默认查询全部
+
+名称	类型	描述
+maxRow	int	最大行
+maxCol	int	最大列
+seats		座位列表
+  seat		座位
+    code	String	座位编号
+    groupCode	String	
+    colNum	String	列号
+rowNum	String	行号
+xcoord	int	横坐标
+ycoord	int	竖坐标
+status	String	状态 0：不可售，1：可售
+type	String	座位类型（1：普通 2：情侣）
+loveCode	String	情侣座编码。当座位类型是情侣座时才有该编码，情侣座编码相同的两个座位互相关联
+
+参数名	参数描述	类型	必须	备注
+actNo	活动编号	String	Y	
+areaNo	区域编号	String	Y	
+cinemaNo	影院编号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+films	影片列表	Array	Y	
+filmNo	影片编号	String	Y	
+cName	影片中文名称	String	Y	参见 eq \o\ac(○,1)
+weekList	排期数组	Array	Y	排期为空时，返回空数组
+weekName	时间名称	String	Y	预留
+showdate	日期	String	Y	日期:2014-05-13
+shows	排期数组	Array	Y	排期为空时，返回空数组
+date	日期	String	Y	日期
+show	排期节点	show	Y	
+showNo	排期编号	String	Y	
+showTime	放映时间	String	Y	格式：16:12
+showType	影片类型	String	Y	2D，3D，4D，IMAX
+hallNo	影厅编号	String	Y	
+hallName	影厅名称	String	Y	
+isCanSell	是否可售	Boolean	N	预留
+isExtra	是否外部购票排期	Boolean	Y	预留
+webUrl	网址	String	N	如果isExtra=true，则需要返回此参数	预留
+price	票价	Number	Y	精确到小数点后2位
+standard	市场价（原价）	Number	Y	精确到小数点后2位
+lang	语种	String	Y	
+duration	时长	Number	Y	
+showEndTime	放映结束时间	String		
+hallSeat	影厅座位数量	Number	y	
+seatNumber	影厅剩余座位	Number	y	
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+mobile	String	N	订单手机号码
+dealStart	String	N	订单创建开始时间，格式:yyyy-MM-dd
+dealEnd	String	N	订单创建截至时间，格式:yyyy-MM-dd
+payStatus	String	N	支付状态，1：未支付，2：支付失败，3：支付成功。
+pageNum	int	Y	页码
+pageSize	int	Y	每页显示记录数
+code	String	N	订单号
+status	int	N	订单状态：	1：锁座成功 2：过期  3：取消
+
+名称	类型	描述
+count	int	总记录数
+pageCount	int	总页数
+pageNo	int	当前页数
+pageSize	int	当前每页显示记录数
+orders		订单列表
+  order		订单
+    id	String	订单ID
+    code	String	订单编号
+    cecCode	String	CEC平台订单号
+    mobile	String	订单手机号
+    createDate	Date	下单时间
+    filmCode	String	影片编号
+    filmName	String	影片名称
+    hallName	String	影厅名称
+    showType	String	放映类型
+    productCode	String	场次编号
+    showTime	Date	放映时间
+    showLanguage	String	放映语言
+    cinemaName	String	影院名称
+    cinemaCode	String	影院编号
+    seats		座位列表
+      seat		座位号
+        groupCode	String	座位分组编号
+        seatCode	String	座位编码
+        seatrow	String	行
+        seatcol	String	列
+    stdPrice	Double	标准价
+    saleAmount	Double	网售价
+    payAmount	Double	实付款
+    serviceFee	Double	服务费
+    ticketCount	int	票数
+    status	String	订单状态，1：锁座成功，2：过期，3：取消
+    payStatus	String	支付状态,1:未支付，2：支付失败，3：支付成功，4：已退款
+expireDate	Date	失效时间
+expireFlag	Boolean	是否失效
+Client	String	客户端，1：web
+ticketStatus	String	出票状态，1、未出票，2：出票成功，3、出票失败，4、已退票，5、出票中，6、出票异常
+
+参数名	参数描述	类型	必须	备注
+pageCount	总页数	Number	Y	
+pageIdx	当前页编号	Number	Y	
+orders	订单列表	Array	Y	
+orderNo	订单号	String	Y	
+orderPrice	订单金额	Number	Y	精确到小数点后两位，单位为元
+orderTime	订单时间	String	Y	格式yyyy-MM-ddHH:mm
+status	订单状态	Number	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款	9.未出票	10.已出票
+showDate	放映日期	Date		
+showTime	放映时间	Time		
+Seat	座位	String		
+cinemaNo	影院编号	String		
+cinemaName	影院名称	String		
+filmNo	影片编号	String		
+filmName	影片名称	String		
+hallNo	影厅编号	String		
+hallName	影厅名称	String		
+showType	放映类型			
+sellStatus	卖品状态	Number	N	0.默认没有卖品	1.未支付	2.部分支付	3.已支付
+goods	卖品信息	Array	N	卖品信息数组
+ProCode	卖品编号	String	Y	
+ProName	卖品名称	String	Y	
+ImgUrl	图片地址	String	Y	
+ProNum	数量	Int	Y	
+Memo	商品描述	String	Y	
+
+参数名	参数描述	类型	必须	备注
+pageCount	总页数	Number	Y	
+pageIdx	当前页编号	Number	Y	
+orders	订单列表	Array	Y	
+orderNo	订单号	String	Y	
+orderPrice	订单金额	Number	Y	精确到小数点后两位，单位为元
+orderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+detail	订单明细	Array	Y	
+goodsName	名称	String	Y	
+orderType	订单类型	Number		1.选座票	2.通兑票	3.卖品	4.兑换券	5.现金券	6.点卡
+total	金额	Number	Y	精确到小数点后两位，单位为元
+goodsPrice	单价	Number	Y	精确到小数点后两位，单位为元
+count	数量	Number	Y	
+status	订单状态	Number	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+enterpriseName	影院名称	String	Y	
+filmName	影片名称	String	Y	
+showDate	放映日期	String	Y	格式yyyy-MM-dd 例2013-04-17
+showTime	放映时间	String	Y	格式hh:mm 例19:00
+hallName	影厅名称	String	Y	
+
+参数名	参数描述	类型	必须	备注
+pageCount	总页数	Number	Y	
+pageIdx	当前页编号	Number	Y	
+orders	订单列表	Array	Y	
+orderNo	订单号	String	Y	
+mobile	手机号	String	Y	接收取票号手机号
+orderPrice	订单金额	Deciaml	Y	精确到小数点后两位，单位为元
+orderTime	订单时间	String	Y	格式yyyy-MM-dd HH:mm
+orderStatus	订单状态	Int	Y	1:已成功	2:失败	3:取消	4:未处理	5:退款成功
+payStatus	支付状态	Int	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+ticketStatus	出票状态	Number	Y	1未出票	2出票失败	3已出票
+showDate	放映日期	Date		yyyy-MM-dd
+showTime	放映时间	String		HH:mm
+seat	座位	String		多个座位 ‘,’分隔
+cinemaNo	影院编号	String		
+cinemaName	影院名称	String		
+filmNo	影片编号	String		
+filmName	影片名称	String		
+hallNo	影厅编号	String		
+hallName	影厅名称	String		
+showType	放映类型	String		2D,3D..
+payment	支付金额	Deciaml	Y	精确到小数点后两位，单位为元
+chargePrice	服务费（总价）	Deciaml	Y	例子：1.50
+ticketNo	取票号	String	N 	
+payChannel	支付渠道	String	N	ALIPAY10=支付宝	UPMP3=银联	CPTPAY=电子券	TCARDPAY=中影通卡	USERCARD=影院会员卡
+isUse	是否已使用	Number	Y	1、使用	2、未使用
+surplusTime	 剩余支付时间	Int 	Y	返回“秒”
+goods	卖品信息	Array	Y	卖品信息数组
+goodsNo	卖品编号	String	Y	
+goodsName	卖品名称	String	Y	
+imageUrl	图片地址	String	Y	
+price	卖品单价	Deciaml	Y	精确到小数点后两位，单位为元
+priceForShow	原价	Deciaml	Y	精确到小数点后两位，单位为元
+count	数量	Int	Y	
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+orderCode	String	Y	订单号
+
+名称	类型	描述
+order		订单
+    id	String	订单ID
+    code	String	订单编号
+    cecCode	String	CEC平台订单号
+    mobile	String	订单手机号
+    createDate	Date	下单时间
+    filmCode	String	影片编号
+    filmName	String	影片名称
+    hallName	String	影厅名称
+    showType	String	放映类型
+    productCode	String	场次编号
+    showTime	Date	放映时间
+    showLanguage	String	放映语言
+    cinemaName	String	影院名称
+    cinemaCode	String	影院编号
+    seats	String	座位列表
+      seat	String	座位号
+        groupCode	String	座位分组编号
+        seatCode	String	座位编码
+        seatrow	String	行
+        seatcol	String	列
+    stdPrice	Double	标准价
+    saleAmount	Double	网售价
+    payAmount	Double	实付款
+    serviceFee	Double	服务费
+    ticketCount	int	票数
+    status	String	订单状态，1：锁座成功，2：过期，3：取消
+    payStatus	String	支付状态,1:未支付，2：支付失败，3：支付成功，4：已退款
+expireDate	Date	失效时间
+expireFlag	Boolean	是否失效
+client	String	客户端，1：web
+ticketStatus	String	出票状态，1、未出票，2：出票成功，3、出票失败，4、已退票，5、出票中，6、出票异常
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+payCode	String	Y	支付订单号
+
+名称	类型	描述
+order		订单
+    id	String	订单ID
+    code	String	订单编号
+    cecCode	String	CEC平台订单号
+    mobile	String	订单手机号
+    createDate	Date	下单时间
+    filmCode	String	影片编号
+    filmName	String	影片名称
+    hallName	String	影厅名称
+    showType	String	放映类型
+    productCode	String	场次编号
+    showTime	Date	放映时间
+    showLanguage	String	放映语言
+    cinemaName	String	影院名称
+    cinemaCode	String	影院编号
+    stdPrice	Double	标准价
+    saleAmount	Double	网售价
+    payAmount	Double	实付款
+    serviceFee	Double	服务费
+    ticketCount	int	票数
+    status	String	订单状态，1：锁座成功，2：过期，3：取消
+    payStatus	String	支付状态,1:未支付，2：支付失败，3：支付成功，4：已退款
+expireDate	Date	失效时间
+expireFlag	Boolean	是否失效
+client	String	客户端，1：web
+ticketStatus	String	出票状态，1、未出票，2：出票成功，3、出票失败，4、已退票，5、出票中，6、出票异常
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+productCode	String	Y	排期编号
+seatCodes	String	Y	座位编号，多个以，号分隔。
+mobile	String	N	订单手机号，可在提交支付接口传该参数
+source	String	Y	来源
+sendType	Number	Y	发送方式：0不发，1短信 
+orderType	Number	Y	订单类型：	1.正常订单	2.活动订单
+actNo	String	N	活动编号 ：从活动入口进入时，即orderType=2时，要把活动编号带上
+showNo	String	Y	排期编号
+price	Deciaml	Y	价格参数都是用两位小数
+seats	Array	Y	座位数组：	数组项结构	sectionNo|rowNo|colNo,	sectionNo|rowNo|colNo	多个逗号分隔
+goods	Array	N	卖品数组：goodsNo_count|goodsNo_count
+sign	String	Y	签名：sign=MD5(userId+mobile+sendType+orderType+showNo+price +key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+名称	类型	描述
+orderCode	String	订单号
+lockTime	Integer	锁坐时间（单位分钟）
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+orderPrice	订单金额	Number	Y	精确到小数点后两位，单位为元
+cmcc_Pric	移动支付金额	Number	Y	精确到小数点后两位，单位为元
+hasGoods	是否有卖品	Boolean	Y	hasGoods=false时，goods数组为空
+goods	卖品信息	Array	N	卖品信息数组
+ProCode	卖品编号	String	Y	
+ProName	卖品名称	String	Y	
+ImgUrl	图片地址	String	Y	
+SettlePrice	卖品单价	Deciaml	Y	精确到小数点后两位，单位为元
+StdPrice	原价	Deciaml	Y	精确到小数点后两位，单位为元
+ProNum	数量	Int	Y	
+cards	可用卡列表	Array	Y	可用会员卡支付列表
+cardNo	会员卡号	String	Y	
+cardLevel	卡级别	String	Y	
+realSinglePrice	真实单价	String	Y	例子：11.5|11.5|9.5|9.5
+realAllPrice	真实总价	Number	Y	例子：42
+discountFlag	优惠标识	String	Y	例子：1|1|0|0
+discountName	优惠票名称	String	Y	例子：成人票|成人票|学生票|学生票
+chargePrice	手续费	Number	Y	例子：1.50
+memberPrice	会员价	String	Y	例子：10|10|8|8
+isGuiCard	是否尊享卡	Int	N	0-默认（否）1-是
+hasAccountPay	是否支持虚拟账户支付	Boolean	Y	是否支持虚拟账户支付	hasAccountPay=false时，accountInfo 数组为空
+accountInfo	用户账户信息	Array	Y	用户虚拟账户信息
+userId	用户ID	String	Y	用户ID
+level	用户等级	Number	Y	用户等级编号
+levelName	用户等级名称	String	Y	用户等级名称
+balance	账户余额	Number	Y	用户账户余额
+score	账户积分	Number	Y	用户账户积分
+discount	享受折扣	Number	Y	享受折扣
+orderPrice	订单金额	Number	Y	订单需要支付的金额
+disAmount	优惠金额	Number	Y	订单优惠金额
+sign	签名	String	Y	sign=MD5(orderNo+orderTime+orderPrice+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+orderPrice	订单金额	Number	Y	精确到小数点后两位，单位为元
+hasGoods	是否有卖品	Boolean	Y	hasGoods=false时，goods数组为空
+goods	卖品信息	Array	Y	卖品信息数组
+goodsNo	卖品编号	String	Y	
+goodsName	卖品名称	String	Y	
+imageUrl	图片地址	String	Y	
+price	卖品单价	Number	Y	精确到小数点后两位，单位为元
+priceForShow	原价	Number	N	精确到小数点后两位，单位为元
+cinemaNo	影院编号	String	Y	
+cinemaName	影院名称	String	Y	
+clientNo	客户端编号	String	Y	
+selledAmount	已销售数量	Number	Y	
+isProhibitAmount	是否限制数量	Number	Y	0:不限制	1:限制
+prohibitAmount	限制数量	Number	Y	
+productType	商品类型	Number	Y	1:选座	2:通兑	3：卖品	4: 兑换券	5:现金券	6：点卡
+saleObject	销售对象	Number	Y	1:个人	2：企业	3:个人+企业	4：限制渠道
+sign	签名	String	Y	sign=MD5(orderNo+orderTime+orderPrice+key)	key由平台分配
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+orderPrice	订单金额	Deciaml	Y	精确到小数点后两位，单位为元
+hasGoods	是否有卖品	Boolean	Y	hasGoods=false时，goods数组为空
+goods	卖品信息	Array	Y	卖品信息数组
+goodsNo	卖品编号	String	Y	
+goodsName	卖品名称	String	Y	
+imageUrl	图片地址	String	Y	
+price	卖品单价	Deciaml	Y	精确到小数点后两位，单位为元
+count	卖品数量	Number	Y	
+priceForShow	原价	Deciaml	N	精确到小数点后两位，单位为元
+cards	可用卡列表	Array	Y	可用影院会员卡支付列表（可为空）
+cardNo	会员卡号	String	Y	
+balance	会员卡余额	Decimal	Y	当等-100时，查询余额失败
+realSinglePrice	真实单价	String	Y	例子：11.5|11.5|9.5|9.5
+realAllPrice	真实总价	Deciaml	Y	例子：42
+discountFlag	优惠标识	String	N	例子：1|1|0|0
+discountName	优惠票名称	String	N	例子：成人票|成人票|学生票|学生票
+chargePrice	手续费(单价)	Deciaml	Y	例子：1.50
+memberPrice	会员价	String	Y	例子：10|10|8|8
+accountInfo	用户中影通卡支付信息	Array	Y	用户中影通卡支付信息（可为空）
+tCardNo	中影通会员卡号	String	Y	卡号
+balance	账户余额	Deciaml	Y	用户账户余额
+orderPrice	支付金额	Deciaml	Y	订单需要支付的金额
+disAmount	优惠金额	Deciaml	Y	订单优惠金额
+chargePrice	手续费(单价)	Deciaml	Y	例子：1.50
+payCharges	支付手续费信息	Array	Y	支付渠道手续费集合
+payChannel	渠道编号	String	Y	ALIPAY10=支付宝	UPMP3=银联
+channelCharge	渠道手续费(总价)	Deciaml	Y	
+payPrice	实际支付金额	Deciaml	Y	保留两位小数
+sign	签名	String	Y	sign=MD5(orderNo+orderTime+orderPrice+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+orderCode	String	Y	排期编号
+mobile	String	Y	订单手机号
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+dealStart	String	N	订单创建开始时间，格式:yyyy-MM-dd
+dealEnd	String	N	订单创建截至时间，格式:yyyy-MM-dd
+code	String	N	订单编号
+keyWord	String	N	搜索关键字
+pageNum	int	Y	页码
+pageSize	int	Y	每页显示记录数
+status	String	N	充值状态，1：未充值，2：充值成功，3、充值失败，4、已退款，5、已取消
+payStatus	String	N	支付状态 1:未支付，2：支付失败，3：支付成功，4：已退款
+
+名称	类型	描述
+count	int	总记录数
+pageCount	int	总页数
+pageNo	int	当前页数
+pageSize	int	当前每页显示记录数
+orders	List	订单列表
+   rechargeOrder		充值订单
+     code	String	订单号
+     cardNo	String	会员卡号
+     client	String	客户端
+     source	String	订单来源
+     amount	Double	充值金额
+     payAmount	Double	支付金额
+     status	String	充值状态，1：未充值，2：充值成功，3、充值失败，4、已退款，5、已取消
+     payStatus	String	支付状态 1:未支付，2：支付失败，3：支付成功，4：已退款
+createDate	Date	创建时间
+cinemaName	String	影院名称
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+code	String	Y	订单编号
+
+名称	类型	描述
+order		充值订单
+     code	String	订单号
+     cardNo	String	会员卡号
+     client	String	客户端
+     source	String	订单来源
+     amount	Double	充值金额
+     payAmount	Double	支付金额
+     status	String	充值状态，1：未充值，2：充值成功，3、充值失败，4、已退款，5、已取消
+     payStatus	String	支付状态 1:未支付，2：支付失败，3：支付成功，4：已退款
+createDate	Date	创建时间
+cinemaName	String	影院名称
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+orderCode	String	Y	订单号
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+customerId	String	必须	用户ID
+code	String	必须	订单号
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+orderCode	String	Y	订单号
+mobile	String	N	手机
+payCode	String	Y	支付号
+
+名称	类型	描述
+voucher		凭证信息
+  voucherCode	String	凭证号
+  printCode	String	取票号
+  verifyCode	String	验证码
+  devicePos	String	取票机位置
+
+参数名	参数描述	类型	必须	备注
+OrderNo	订单号	string	Y	
+orderStatus 	订单状态	number	Y	1:已成功	2:失败	3:取消	4:未处理	5:退款成功
+cinemaName	影院名称	string	Y	
+exOrderNo	外部订单号	string	Y	由满天星生成
+ticketNo	票号	string	N	由满天星生成的订单验证码
+producttype	商品类型	string	Y	1选座票	2:通兑票	3:卖品	4:点卡	5:外部商品
+goodsname	商品名称	string	Y	
+GoodsAmount	商品数量	Number	Y	
+vender	来源接入商	string	Y	
+seatNo	座位号	string	Y	
+ShowDate	放映日期	string	Y	
+showTime	观影时间	String	Y	
+showType	放映类型	string	Y	
+HallNo	影厅编号	string	Y	
+hallName	影厅名称	string	Y	
+filmName	影片的名称	string	Y	
+CinemaNo	影院编号	string	Y	
+OrganizationNo	机构编号	string	Y	
+Traffic	交通信息	string	Y	
+PhoneNo	办公电话	string	Y	
+Position	职务	string	Y	
+Area	地址	string	Y	
+PrintText	商品打印说明	string	N	
+WebMemo	网站备注	string	N	
+userid	用户id	string	N	
+voucherNo	凭证号	string	Y	
+VID	用于验证的凭证ID	string	Y	
+voucherType	凭证类型	Number	Y	选座票  51	通兑票52,	储值卡53	点卡 54,	卖品55,
+num	数量	Number	Y	总共次数
+leftNum	余量	Number	Y	
+voucherName	凭证标题	string	Y	
+status	凭证状态	Number	Y	1.未使用	2.已使用	3.使用完	4.过期	5.作废	6冻结
+barcodeUrl	二维码地址	string	Y	
+IsPassword	是否验证密码	Number	Y	0:不验证	1:验证
+StartTime	有效日期起	string	Y	
+EndTime	有效日期止	string	Y	
+smsContent	转发短信内容	string	Y	
+sendtime	下发时间	string	Y	
+syncstatus	同步状态	Number	Y	
+validDate	凭证日期段	string	Y	格式：	yyMMddHHmmss-yyMMddHHmmss
+hasPwd	是否有密码	Booler	Y	
+voucherContent	凭证内容	string	Y	HTML字符串
+createTime	凭证创建日期	string	Y	格式:	yyyy-MM-dd HH:mm:ss
+
+参数名	参数描述	类型	必须	备注
+UserID	注册会员ID	String	Y	
+OrderNo	订单编号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+OrderNo	订单号	string	Y	
+orderStatus 	订单状态	number	Y	1:已成功	2:失败	3:取消	4:未处理	5:退款成功
+cinemaName	影院名称	string	Y	
+exOrderNo	外部订单号	string	Y	由满天星生成
+ticketNo	票号	string	N	由满天星生成的订单验证码
+producttype	商品类型	string	Y	1选座票	2:通兑票	3:卖品	4:点卡	5:外部商品
+goodsname	商品名称	string	Y	
+GoodsAmount	商品数量	Number	Y	
+vender	来源接入商	string	Y	
+seatNo	座位号	string	Y	
+ShowDate	放映日期	string	Y	
+showTime	观影时间	String	Y	
+showType	放映类型	string	Y	
+HallNo	影厅编号	string	Y	
+hallName	影厅名称	string	Y	
+filmName	影片的名称	string	Y	
+CinemaNo	影院编号	string	Y	
+OrganizationNo	机构编号	string	Y	
+Traffic	交通信息	string	Y	
+PhoneNo	办公电话	string	Y	
+Position	职务	string	Y	
+Area	地址	string	Y	
+PrintText	商品打印说明	string	N	
+WebMemo	网站备注	string	N	
+userid	用户id	string	N	
+voucherNo	凭证号	string	Y	
+VID	用于验证的凭证ID	string	Y	
+voucherType	凭证类型	Number	Y	选座票  51	通兑票52,	储值卡53	点卡 54,	卖品55,
+num	数量	Number	Y	总共次数
+leftNum	余量	Number	Y	
+voucherName	凭证标题	string	Y	
+status	凭证状态	Number	Y	1.未使用	2.已使用	3.使用完	4.过期	5.作废	6冻结
+barcodeUrl	二维码地址	string	Y	
+IsPassword	是否验证密码	Number	Y	0:不验证	1:验证
+StartTime	有效日期起	string	Y	
+EndTime	有效日期止	string	Y	
+smsContent	转发短信内容	string	Y	
+sendtime	下发时间	string	Y	
+syncstatus	同步状态	Number	Y	
+validDate	凭证日期段	string	Y	格式：	yyMMddHHmmss-yyMMddHHmmss
+hasPwd	是否有密码	Booler	Y	
+voucherContent	凭证内容	string	Y	HTML字符串
+createTime	凭证创建日期	string	Y	格式:	yyyy-MM-dd HH:mm:ss
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+syncTime	同步时间	String	N	同步时间为空时，同步所有凭证，否则同步未同步的凭证
+
+参数名	参数描述	类型	必须	备注
+syncTime	同步时间	String	Y	
+vouchers	凭证列表	Array	Y	
+status	凭证状态	Number	Y	1.未使用	2.已使用	3.使用完	4.过期	5.作废	6冻结
+barcodeUrl	二维码地址	String	Y	
+filmName	影片名称	String	Y	
+showType	放映类型	String	Y	
+Lang	语言			
+cinemaName	影院			
+hallName	影厅	String	Y	
+seatNo	座位号	String	Y	
+showTime	观影时间	String	Y	
+TicketNo	取票号			
+Goods	卖品信息	Array	N	卖品信息数组
+ProCode	卖品编号	String	Y	
+ProName	卖品名称	String	Y	
+ImgUrl	图片地址	String	Y	
+ProNum	数量	Int	Y	
+Memo	商品描述	String	Y	
+
+参数名	参数描述	类型	必须	备注
+syncTime	同步时间	String	Y	
+vouchers	凭证列表	Array	Y	
+voucherNo	凭证号	String	Y	
+voucherName	凭证名称	String	Y	
+voucherType	凭证类型	Number	Y	51.选座票	52.通兑票	53.储值卡	54.点卡	55.卖品
+status	凭证状态	Number	Y	1.未使用	2.已使用	3.使用完	4.过期	5.作废	6冻结
+validDate	凭证日期段	String	Y	格式：	yyMMddHHmmss-yyMMddHHmmss
+barcodeUrl	二维码地址	String	Y	
+hasPwd	是否有密码	Boolean	Y	
+vender	来源(接入商)	String	Y	
+voucherContent	凭证内容			HTML字符串
+smsContent	转发短信内容	String	Y	
+cinemaName	影院名称	String		
+filmName	影片的名称	String	Y	
+showType	影片的类型	String	Y	
+hallName	观看电影的影厅	String	Y	
+seatNo	座位号	String	Y	
+showTime	观影时间	String	Y	
+createTime	凭证创建日期	String	Y	
+num	数量	Number	Y	
+leftNum	余量	Number	Y	
+exOrderNo	外部订单编号	String	Y	由满天星生成
+ticketNo	票号	string	Y	由满天星生成的订单验证码
+OrderNo	订单号	string	Y	
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+voucherNo	凭证编号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+UserID	注册用户	String	Y	
+OrderNo	充值订单编号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+OrderNo	充值订单编号	String	Y	
+OrderMoney	充值金额	Number	Y	
+OrderTime	充值时间	String	Y	格式yyyyMMddHHmmss
+Status	状态	Number		充值状态 1 未充值 2 充值成功 3 充值失败
+
+参数名	参数描述	类型	必须	备注
+UserID	注册用户	String	Y	
+MobilePhone	手机号	String	Y	
+SendType	凭证发送方式	Number	Y	0不发 1短信 2彩信 3短彩信
+SeqNo	排期编号	String	Y	
+SinglePrice	单张票价	Number(0,2)	Y	精确到小数点后两位，单位为元
+Seats	购买座位	string	Y	格式：区_行_列,多个用竖线分隔	如：01_01_01|01_01_02
+CityNo	城市编号	String	Y	
+Sign	签名	String	Y	MD5((UserID + MobilePhone + SendType + SeqNo + SinglePrice + Seats + CityNo+key)小写)小写	key由平台分配
+
+参数名	参数描述	类型	必须	备注
+OrderNo	订单编号	String	Y	由金逸平台生成
+OrderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+ExOrderNo	外部订单编号	String	Y	由满天星生成
+OrderPrice	订单金额	Number(0,2)	Y	
+会员卡相关参数：
+IsUsableCard	是否有可用的会员卡	Number	Y	0 无 1 有
+Cards	会员卡信息	Array	N	当IsUsableCard=0时，没有会员卡信息(见返回报文)
+CardNo	会员卡卡号	String	Y	
+CinemaNo	发卡影院编号	String	Y	
+CardType	会员卡类型	String	Y	
+MemberPrice	会员价	Number(0,2)	Y	
+SaveMoney	节省金额	Number(0,2)	Y	
+MobilePhone	手机号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+mobile	手机号	String	Y	
+orderNo	订单号	String	Y	
+orderPrice	订单总金额	Number		
+payment	支付金额	Number		
+sendType	短信发送类型	Number		0不发，1短信，2彩信，3短彩信
+payChannelNo	支付渠道编号	String	Y	由统一支付平台统一分配
+bankSerialNum	支付流水号	string	N	对账使用
+sign	签名	String	Y	sign=MD5(userId+mobile+orderNo+orderPrice+payment+sendType+payChannelNo+bankSerialNum+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+vouchers	凭证	Array	Y	
+voucherNo	凭证编号	String	Y	
+barcodeImg	凭证地址	String	Y	
+isHasPwd	是否有密码	boolean	N	
+password	密码	String	N	
+voucherType	凭证类型	String	N	
+status	凭证状态	String	Y	
+startTime	有效期开始时间	String	Y	
+endTime	有效期结束时间	String	Y	
+content	凭证内容	String	Y	
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+orderNo	订单号	Number	Y	
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单号	String	Y	
+orderPrice	订单金额	Number	Y	单位为元
+orderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+status	订单状态	Number	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款	9.订单取消
+exOrderNo	外部订单号	String	Y	
+ticketNo	订单验证码	String	N	
+seatType	座类	String	Y	如普通区
+Detail	订单明细	Array	Y	
+goodsName	名称	String	Y	票类名称，如选坐票
+total	金额	Number	Y	单位为元
+goodsPrice	单价	Number	Y	单位为元
+count	数量	Number	Y	
+enterpriseName	影院名称	String	Y	如cmts电影城
+seatNo	座位列表	String	Y	格式8排1座;9排1座
+filmName	影片名称	String	Y	如速度与激情
+showDate	放映日期	String	Y	格式yyyy-MM-dd 例2013-04-17
+showTime	放映时间	String	Y	格式hh:mm 例19:00
+hallName	影厅名称	String	Y	如2号厅
+voucherId	凭证号(自助机取票号)	String	N	17位凭证号
+barcodeImage	二维码图片地址	string	N	例"http://www.test.com/barcodePic/2013032816/2013032804230983885.jpg"
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	第三方接入商传值手机号
+mobile	手机号	String	Y	
+orderNo	订单号	Sting	Y	
+sign	签名	String	Y	sign=MD5(userId+mobile+orderNo+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+orderPrice	订单金额	Number	Y	精确到小数点后两位，单位为元
+hasGoods	是否有卖品	Boolean	Y	hasGoods=false时，goods数组为空
+Goods	卖品信息	Array	N	卖品信息数组
+ProCode	卖品编号	String	Y	
+ProName	卖品名称	String	Y	
+ImgUrl	图片地址	String	Y	
+SettlePrice	卖品单价	Deciaml	Y	精确到小数点后两位，单位为元
+StdPrice	原价	Deciaml	Y	精确到小数点后两位，单位为元
+ProNum	数量	Int	Y	
+cards	可用卡列表	Array	Y	可用会员卡支付列表
+cardNo	会员卡号	String	Y	
+cardLevel	卡级别	String	Y	
+realSinglePrice	真实单价	String	Y	例子：11.5|11.5|9.5|9.5
+realAllPrice	真实总价	Number	Y	例子：42
+discountFlag	优惠标识	String	Y	例子：1|1|0|0
+discountName	优惠票名称	String	Y	例子：成人票|成人票|学生票|学生票
+chargePrice	手续费	Number	Y	例子：1.50
+memberPrice	会员价	String	Y	例子：10|10|8|8
+isGuiCard	是否尊享卡	Int	Y	0-否（默认），1-是
+hasAccountPay	是否支持虚拟账户支付	Boolean	Y	是否支持虚拟账户支付	hasAccountPay=false时，accountInfo 数组为空
+accountInfo	用户账户信息	Array	Y	用户虚拟账户信息
+userId	用户ID	String	Y	用户ID
+level	用户等级	Number	Y	用户等级编号
+levelName	用户等级名称	String	Y	用户等级名称
+balance	账户余额	Number	Y	用户账户余额
+score	账户积分	Number	Y	用户账户积分
+discount	享受折扣	Number	Y	享受折扣
+orderPrice	订单金额	Number	Y	订单需要支付的金额
+disAmount	优惠金额	Number	Y	订单优惠金额
+sign	签名	String	Y	sign=MD5(orderNo+orderTime+orderPrice+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+bankNo	机构编号	String	Y	参见机构类型定义
+channelType	渠道类型	String	Y	参见支付渠道类型定义
+orderNo	订单编号	String	Y	
+orderPrice	订单金额	Number	Y	精确到小数点后两位，单位为元
+payment	支付金额	Number	Y	精确到小数点后两位，单位为元
+cardNo	尊享卡号	String	N	非必须字段
+cardPwd	尊享卡密码	String	N	尊享卡号存在时，必填
+unifyPayOrderNo	统一支付订单号	String	N	移动支付时，为必填项
+verifycode	手机验证码	String	N	移动支付时，为必填项
+extendInfo	扩展信息	Object	N	银行扩展信息，默认为空	1.农行K码的扩展信息，增加键值对	mobile:value	PayCardNoEnd:value	微信支付扩展信息，增加	clientIp:value
+sign	检验码	String	Y	sign=MD5(userId+channelType+orderNo+orderPrice+payment+unifyPayOrderNo+verifycode+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+payOrderNo	支付订单号	String	Y	
+payment	支付金额	Number	Y	精确到小数点后两位，单位为元
+bankNo	机构编号	String	Y	参见机构类型定义
+bank	支付插件所需信息	Array	Y	此数组会根据channelType返回不同的数据。
+cmccResult	移动支付提交结果	String	N	移动支付时，此参数会返回值	“0”：失败   “1”:成功
+sign	检验码	String	Y	sign=MD5(payOrderNo+payment+channelType+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+OrderNo	订单编号	String	Y	
+UserID	用户编号	String	Y	
+AliUserID	支付宝用户id	String	Y	
+AliTradeNo	支付宝交易号	String	N	AliUserID/ AliTradeNo二者必须有一个要有值
+Sign	签名	String	Y	MD5((OrderNo + UserID +key)小写)小写	key由平台分配
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+userID	用户id	String	Y	 
+
+参数名	参数描述	类型	必须	备注
+alipayPassId	支付宝卡券id	String	Y	
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+orderNo	订单编号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderStatus	订单状态	Int	Y	1:已成功	2:失败	3:取消	4:未处理	5:退款成功
+payStatus	支付状态	Int	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+ticketStatus	出票状态	Number	Y	1未出票	2出票失败	3已出票
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+status	订单状态	Number	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+sellStatus	卖品状态	Number	N	0.默认没有卖品	1.未支付	2.部分支付	3.已支付
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+status	订单状态	Number	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	第三方接入商传值手机号
+mobile	手机号	String	Y	
+orderNo	订单号	Sting	Y	
+sign	签名	String	Y	sign=MD5(userId+mobile+orderNo+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+orderPrice	订单金额	Deciaml	Y	精确到小数点后两位，单位为元
+hasGoods	是否有卖品	Boolean	Y	hasGoods=false时，goods数组为空
+goods	卖品信息	Array	Y	卖品信息数组
+goodsNo	卖品编号	String	Y	
+goodsName	卖品名称	String	Y	
+imageUrl	图片地址	String	Y	
+price	卖品单价	Deciaml	Y	精确到小数点后两位，单位为元
+priceForShow	原价	Deciaml	Y	精确到小数点后两位，单位为元
+count	数量	Int	Y	
+cards	可用卡列表	Array	Y	可用影院会员卡支付列表（可为空）
+cardNo	会员卡号	String	Y	
+balance	会员卡余额	Decimal	Y	当等-100时，查询余额失败
+realSinglePrice	真实单价	String	Y	例子：11.5|11.5|9.5|9.5
+realAllPrice	真实总价	Deciaml	Y	例子：42
+discountFlag	优惠标识	String	N	例子：1|1|0|0
+discountName	优惠票名称	String	N	例子：成人票|成人票|学生票|学生票
+chargePrice	手续费(单价)	Deciaml	Y	例子：1.50
+memberPrice	会员价	String	Y	例子：10|10|8|8
+accountInfo	用户中影通卡支付信息	Array	Y	用户中影通卡支付信息（可为空）
+tCardNo	中影通会员卡号	String	Y	卡号
+balance	账户余额	Deciaml	Y	用户账户余额
+orderPrice	支付金额	Deciaml	Y	订单需要支付的金额
+disAmount	优惠金额	Deciaml	Y	订单优惠金额
+chargePrice	手续费(单价)	Deciaml	Y	例子：1.50
+payCharges	支付手续费信息	Array	Y	支付渠道手续费集合
+payChannel	渠道编号	String	Y	ALIPAY10=支付宝	UPMP3=银联
+channelCharge	渠道手续费(总价)	Deciaml	Y	
+payPrice	实际支付金额	Deciaml	Y	保留两位小数
+sign	签名	String	Y	sign=MD5(orderNo+orderTime+orderPrice+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderTime	订单时间	String	Y	格式yyyyMMddHHmmss
+orderPrice	订单金额	Number	Y	精确到小数点后两位，单位为元
+hasGoods	是否有卖品	Boolean	Y	hasGoods=false时，goods数组为空
+goods	卖品信息	Array	N	卖品信息数组
+ProCode	卖品编号	String	Y	
+ProName	卖品名称	String	Y	
+ImgUrl	图片地址	String	Y	
+SettlePrice	卖品单价	Deciaml	Y	精确到小数点后两位，单位为元
+StdPrice	原价	Deciaml	Y	精确到小数点后两位，单位为元
+ProNum	数量	Int	Y	
+cards	可用卡列表	Array	Y	可用会员卡支付列表
+cardNo	会员卡号	String	Y	
+cardLevel	卡级别	String	Y	
+realSinglePrice	真实单价	String	Y	例子：11.5|11.5|9.5|9.5
+realAllPrice	真实总价	Number	Y	例子：42
+discountFlag	优惠标识	String	Y	例子：1|1|0|0
+discountName	优惠票名称	String	Y	例子：成人票|成人票|学生票|学生票
+chargePrice	手续费	Number	Y	例子：1.50
+memberPrice	会员价	String	Y	例子：10|10|8|8
+isGuiCard	是否尊享卡	Int	Y	0-否（默认），1-是
+hasAccountPay	是否支持虚拟账户支付	Boolean	Y	是否支持虚拟账户支付	hasAccountPay=false时，accountInfo 数组为空
+accountInfo	用户账户信息	Array	Y	用户虚拟账户信息
+userId	用户ID	String	Y	用户ID
+level	用户等级	Number	Y	用户等级编号
+levelName	用户等级名称	String	Y	用户等级名称
+balance	账户余额	Number	Y	用户账户余额
+score	账户积分	Number	Y	用户账户积分
+discount	享受折扣	Number	Y	享受折扣
+orderPrice	订单金额	Number	Y	订单需要支付的金额
+disAmount	优惠金额	Number	Y	订单优惠金额
+sign	签名	String	Y	sign=MD5(orderNo+orderTime+orderPrice+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+名称	类型	是否必须	描述
+orderCode	String	Y	订单号
+payType	String	Y	支付方式 1、支付宝，2:、银联
+mobile	String	N	手机号码
+
+名称	类型	描述
+orderCode	String	业务订单号
+payOrderCode	String	支付订单号
+payCode	String	第三方支付流水，非终端渠道时为空
+payAmount	Double	支付金额
+
+名称	类型	是否必须	描述
+orderCode	String	N	订单号
+payType	String	Y	支付方式 1、支付宝，2:、银联
+cardId	String	Y	会员卡ID
+amount	Double	Y	支付金额
+source	String	N	来源
+
+名称	类型	描述
+orderCode	String	业务订单号
+payOrderCode	String	支付订单号
+payCode	String	第三方支付流水，非终端渠道时为空
+payAmount	Double	支付金额
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+cardId	String	Y	会员卡ID(填cardId，不是cardNo)
+password	String	Y	会员卡密码
+orderCode	String	Y	订单号
+amount	Double	Y	支付金额
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+orderCode	String	Y	订单号
+
+名称	类型	描述
+cinemaPays		影院支付方式
+  pay		
+    payType	String	支付方式
+    payTypeName	String	支付方式名称
+payAmount	Double	支付价格
+ remark	String	支付方式备注
+cardDiscounts		会员卡折扣价
+   id	String	会员卡ID
+cardNo	String	会员卡号
+cinemaCode	String	开卡影院编号
+cardType	String	卡类型
+expireDate	String	到期时间
+discountPrice	Double	折扣价
+level	String	会员卡等级
+balance	Double	会员卡余额
+
+名称	类型	是否必须	描述
+orderId	String	Y	支付订单号
+amount	String	Y	付款金额
+orderCode	String	Y	订单号
+amount	Double	Y	支付金额
+result	String	Y	支付成功标志 T:成功,F:失败
+payTime	String	Y	支付成功时间
+sign	String	Y	签名
+transactionId	String	Y	支付流水
+
+名称	类型	描述
+
+名称	类型	是否必须	描述
+orderId	String	Y	支付订单号
+amount	String	Y	付款金额
+orderCode	String	Y	订单号
+amount	Double	Y	支付金额
+result	String	Y	支付成功标志 T:成功,F:失败
+payTime	String	Y	支付成功时间
+sign	String	Y	签名
+transactionId	String	Y	支付流水
+
+名称	类型	描述
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+mobile	手机号	String	Y	
+orderNo	订单号	String	Y	
+orderPrice	订单总金额	Number		
+payment	支付金额	Number		
+sendType	短信发送类型	Number		0不发，1短信，2彩信，3短彩信
+payChannelNo	支付渠道编号	String	Y	由统一支付平台统一分配
+bankSerialNum	支付流水号	string	N	对账使用
+sign	签名	String	Y	sign=MD5(userId+mobile+orderNo+orderPrice+payment+sendType+payChannelNo+bankSerialNum+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+vouchers	凭证	Array	Y	
+voucherNo	凭证编号	String	Y	
+barcodeImg	凭证地址	String	Y	
+isHasPwd	是否有密码	boolean	N	
+password	密码	String	N	
+voucherType	凭证类型	String	N	
+status	凭证状态	String	Y	
+startTime	有效期开始时间	String	Y	
+endTime	有效期结束时间	String	Y	
+content	凭证内容	String	Y	
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+bankNo	机构编号	String	Y	参见机构类型定义
+channelType	渠道类型	String	N	参见支付渠道类型定义
+orderNo	订单编号	String	Y	
+orderPrice	订单金额	Number	Y	精确到小数点后两位，单位为元
+payment	支付金额	Number	Y	精确到小数点后两位，单位为元
+cardNo	尊享卡号	String	N	非必须字段（幸福蓝海）
+cardPwd	尊享卡密码	String	N	尊享卡号存在时，必填（幸福蓝海）
+unifyPayOrderNo	统一支付订单号	String	N	移动支付时，为必填项（幸福蓝海）
+verifycode	手机验证码	String	N	移动支付时，为必填项（幸福蓝海）
+extendInfo	扩展信息	Object	N	银行扩展信息，extern_token必须设置	1.农行K码的扩展信息，增加键值对	mobile:value	extern_token:value	格式:{“extern_token”:” appopenB0c780a3e8a2849a7b5442b916b2a4d61”,”mobile”:”13000000000” }
+sign	检验码	String	Y	sign=MD5(userId+channelType+orderNo+orderPrice+payment+key)	Key由平台分配
+channelCharge	渠道手续费(总价)	Deciaml	N	
+isCouponPay	是否电子券支付	Bool	N	
+unPaiedCount	补差座位数	Int	N	默认0
+
+参数名	参数描述	类型	必须	备注
+payOrderNo	支付订单号	String	Y	
+payment	支付金额	Number	Y	精确到小数点后两位，单位为元
+bankNo	机构编号	String	Y	参见机构类型定义
+bank	支付插件所需信息	Array	Y	此数组会根据channelType返回不同的数据。
+cmccResult	移动支付提交结果	String	N	移动支付时，此参数会返回值	“0”：失败   “1”:成功
+sign	检验码	String	Y	sign=MD5(payOrderNo+payment+channelType+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+payOrderNo	支付订单号	String	Y	
+payment	支付金额	Deciaml	Y	精确到小数点后两位，单位为元
+payChannel	渠道编号	String	Y	ALIPAY10=支付宝	UPMP3=银联
+bank	支付插件所需信息	Array	Y	
+sign	检验码	String	Y	sign=MD5(payOrderNo+payment+ payChannel+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+CinemaNo	发卡影院编号	String	N	
+mobile	手机号	String	Y	
+orderNo	订单号	String	Y	
+CinemaLineType	院线类型	String	N	数字型字符串1:满天星接入商
+payment	支付金额	Number	N	
+OrderMoney	订单金额	Number(0,2)	N	
+RealPayMoney	实际支付金额	Number(0,2)	N	
+sendType	发送方式	Number	Y	0不发，1短信，2彩信，3短彩信
+cardNo	会员卡号	String	Y	
+cardLevel	会员卡级别		N	
+cardPwd	会员卡密码	String	Y	
+realSinglePrice	真实单价	String	N	例子：11.5|11.5|9.5|9.5
+realAllPrice	真实总价	Number	N	例子：42.00
+discountFlag	优惠标识	String	N	例子：1|1|0|0
+discountName	优惠票名称	String	N	例子：成人票|成人票|学生票|学生票
+chargePrice	手续费	Number	Y	例子：1.50
+memberPrice	会员价	String	N	例子：10|10|8|8
+sign	签名	String	Y	sign=MD5(userId+mobile +orderNo+payment+sendType+cardNo+cardLevel+cardPwd+realSinglePrice+realAllPrice+discountFlag+discountName+chargePrice+memberPrice + key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+OrderNo	订单编号	String	Y	
+ExOrderNo	外部订单编号	String	Y	由满天星系统生成
+TicketNo	订单的票号	String	Y	相当于订单的验证码
+VoucherID	凭证ID	String	Y	
+VoucherErrCode	凭证错误码	String	Y	
+VoucherDesc	凭证描述	String	Y	
+BarCodeImgarUrl	凭证二维码图片地址	String	Y	
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderStatus	订单状态	Int	Y	0:正在处理	1:已成功	2:失败	3:取消	4:未处理	5:退款成功
+payStatus	支付状态	Int	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+ticketStatus	出票状态	Number	Y	1．未出票	2．出票失败	3．已出票
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	string	Y	
+tickets	电子券列表	string	Y	逗号隔开
+sign	检验码	String	Y	sign=MD5(orderNo +tickets+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	订单编号
+userPays	用户补差金额	Array	Y	不用补差返回空[]
+payChannel	渠道编号	String	Y	ALIPAY10=支付宝	UPMP3=银联
+userPrice	补差金额	Deciaml	Y	默认0.00
+items	Array		Y	券列表
+ticketNo	券号	String	Y	
+status	券兑换的状态	string	Y	1、正常	-8600券不存在	-8601不可用	-8602影院不存在	-8603 卖家客户端不支持使用	-8604影院不支持使用该券	-8605特殊节假日不能使用该券	-8606 影片不支持该团购券	-8607影片放映类型不支持该券	-8608 该券需要用户补差不支持终端机上兑换	-8629影厅不支持使用该券	
+statusRemark	状态描述	String	N	Status=1时，返回：	1：1或20元
+showType	电子券券类型	string	Y	-1 不可用券	0  2D券	1  3D券	3  imax2D	5  imax3D券	4   4D券	6   中国巨幕	7   dmax3D
+mapIndex	兑换第几个座位	Int	Y	(0-4) 0不可兑换	0标示不兑换	1-4标示座位序号（每笔订单只有4个座位）
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	订单编号
+spreadPrice	影票补差价	Deciaml	Y	影票补差价金额
+sellPrice	卖品补差价	Deciaml	Y	卖品补差价金额
+items	Array		Y	券列表
+ticketNo	券号	String	Y	
+status	券兑换的状态	string	Y	1、正常	-8600券不存在	-8601不可用	-8602影院不存在	-8603 卖家客户端不支持使用	-8604影院不支持使用该券	-8605特殊节假日不能使用该券	-8606 影片不支持该电子券	-8607影片放映类型不支持该券	-8608 该券需要用户补差不支持终端机上兑换	
+statusRemark	状态描述	String	N	
+showType	电子券券类型	string	Y	-1 不可用券	0  2D券	1  3D券	3.或5  imax券	4   4D券
+mapIndex	兑换第几个座位	Int	Y	(0-4) 0不可兑换	0标示不兑换	1-4标示座位序号（每笔订单只有4个座位）
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	string	Y	
+userId	用户ID	String	Y	
+mobile	手机号	String	N	接收取票号手机号
+tickets	电子券列表	string	Y	券号,券号(用逗号隔开)
+sign	检验码	String  	Y	sign=MD5(orderNo +userId+tickets+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	string	Y	
+orderStatus	订单状态	Int	Y	0:正在处理出票	1:已成功	2:失败	3:取消	4:未处理	5:退款成功
+payStatus	支付状态	Int	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+ticketStatus	出票状态	Int	Y	未出票	出票失败	已出票
+unPaiedCount	补差座位数	Int	Y 	默认0
+userPays	用户补差金额	Array	Y	不用补差返回空[]
+payChannel	渠道编号	String	Y	ALIPAY10=支付宝	UPMP3=银联
+userPrice	补差金额	Deciaml	Y	默认0.00
+sign	检验码	String	Y	sign=MD5(orderNo+ orderStatus + payStatus + ticketStatus + unPaiedCount +key)
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	string	Y	
+orderStatus	订单状态	Int	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+spreadPrice	订单补差价	Money	N	补差金额
+sign	检验码	String	Y	sign=MD5(orderNo+spreadPrice+orderStatus+key)
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	string	Y	
+userId	用户ID	String	Y	
+sign	检验码	String	Y	sign=MD5(orderNo +userId+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	string	Y	
+orderStatus	订单状态	Int	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+orderPrice	订单金额	Deciaml	N	订单金额
+sign	检验码	String	Y	sign=MD5(orderNo+orderPrice+orderStatus+key)
+
+参数名	参数描述	类型	必须	备注
+tCardNo	中影通会员卡号	String	Y	
+tCardPwd	卡密码	String	Y	MD5加密
+mobile	手机号	String	Y	接收取票号手机号
+orderNo	订单编号	String	Y	
+payment	支付金额	Deciaml	Y	精确到小数点后两位，单位为元
+sign	检验码	String	Y	sign=MD5(TCardNo+TCardPwd +orderNo+payment+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderStatus	订单状态	Int	Y	0:正在处理	1:已成功	2:失败	3:取消	4:未处理	5:退款成功
+payStatus	支付状态	Int	Y	1.未支付	2.部分支付	3.已支付	4.部分退款	5.内部部分退款	6.内部全额退款	7.无需支付	8.银行全额退款
+ticketStatus	出票状态	Number	Y	1．未出票	2．出票失败	3．已出票
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+level	账户等级	String	Y	虚拟账户等级不能为空
+mobile	手机号	String	Y	
+verCode	手机验证码	String	Y	
+orderNo	订单编号	String	Y	
+orderType	订单类型	Int	Y	1:在线订单	2:活动订单
+cinemaNo	影院编号	String	Y	
+payment	支付金额	Number	Y	精确到小数点后两位，单位为元
+sign	检验码	String	Y	sign=MD5(userId+level+ mobile+verCode+orderNo+ orderType + cinemaNo+payment+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单编号	String	Y	
+orderStatus	订单状态	String	Y	
+userId	用户ID	String	Y	
+level	会员等级	Number	Y	
+levelName	会员等级名称	String	Y	
+curBalance	当前余额	Number	Y	
+curSorce	当前积分	Number	Y	
+
+参数名	参数描述	类型	必须	备注
+orderNo	订单号	String	Y	
+userId	用户ID	String	N	
+sign	检验码	String	N	sign=MD5(orderNo +userId+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+
+名称	类型	是否必须	描述
+userId	String	Y	用户ID
+type	String	Y	评论类型: 1.表示影片短评	     2.表示影院短评
+itemNo	String	Y	评论类型为1时，itemNo为影片编号；	评论类型为2时，itemNo为影院编号
+content	String	Y	评论内容，不超过256个中文
+nick	String	N	用户昵称
+title	String	N	标题
+score	Number	N	评分
+
+名称	类型	描述
+
+参数名	参数描述	类型	必须	备注
+reviewType	评论类型	Number	Y	影片短评	影院评论
+avScore	综合评分	Number	Y	精确到小数点后1位
+
+名称	类型	是否必须	描述
+userId	String	Y	用户ID（当为影院短评时，必须传入）
+size	int	Y	页大小，即一页多少条纪录
+pageNo	int	Y	要获取的页码，从1开始计数
+type	String	Y	评论类型（1是影片短评，2是影院短评或我的建议）
+itemNo	String	N	影片或者影院编号（当为影片短评时，必须传入）
+
+名称	类型	描述
+comments	List	评论列表
+comment	Comment	单个评论
+type	String	评论类型（1是影片短评，2是影院短评或我的建议）
+itemNo	String	影片或者影院编号
+content	String	评论内容，不超过256个中文
+time	String	评论时间,以yyyy-MM-dd hh:mm:ss 格式保存
+  nick	String	用户昵称
+
+参数名	参数描述	类型	必须	备注
+pageCount	页总数	Number	Y	
+pageIdx	页编号	Number	Y	
+reviews	短评列表	Array	Y	
+filmNo	用户名	String	Y	
+filmName	内容	String	Y	
+datetime	评论时间	String	N	格式：yyyyMMddHHmmss
+content	评论内容	String	n	
+
+名称	类型	是否必须	描述
+areaNo	String	Y	区域编码
+size	int	Y	页大小
+pageNo	int	Y	需要获取的页码
+cinemaNo	String	N	非必要条件，存在时根据影院显示活动
+
+名称	类型	描述
+activities	List	活动列表
+activity	Activity	单个活动
+id	String	活动编码
+title	String	活动名称
+type	String	活动类型 :1.价格活动；2.折扣活动；3.礼品活动； 4.优惠支付；5.买N送1
+gType	String	商品类型 : 1.通兑票；2.选座票
+cType	String	兑换类型 : 1.抢票活动（App本地活动）；2.H5充值虚拟会员活动；3.特价活动，跳转到H5页面
+url	String	H5链接地址
+imageUrl	String	活动图片
+from	String	活动起始日期
+to	String	活动结束日期
+state	String	状态
+
+参数名	参数描述	类型	必须	备注
+pageCount	总页数	Number	Y	
+pageIdx	当前页编号	Number	Y	
+activities	活动列表	Array	Y	
+actNo	活动编号	String	Y	
+title	活动名称	String	Y	
+type	活动类型	Number	Y	1:价格活动	2:折扣活动	3:礼品活动	4:优惠支付	5:买N送1
+goodsType	活动商品类型	Number	Y	1:通兑票	2:选座票
+changeType	活动本地类型	int	Y	抢票活动（App本地活动）	H5充值虚拟会员活动	特价活动，跳转到H5页面
+H5Url	活动跳转H5地址	String	N	如果changeType是2、3的话，必须要此参数
+imageUrl	活动封面图片	String	Y	
+dateRange	活动时间范围	String	Y	
+status	状态	Number	Y	0：信息未审核 	1：正常（活动中）	2：财务未审核(信息审核通过)	3:信息审核未通过	4:财务审核未通过	5：暂停	6：已结束(活动结束)	7：删除	8：过期
+
+名称	类型	是否必须	描述
+code	String	Y	城市编码
+
+名称	类型	描述
+county	County	区列表
+  code	string	区域编码
+  name	string	区域名称
+  spell	string	拼音
+  status	string	状态 （0停用，1启用）
+
+名称	类型	是否必须	描述
+customerId	String	Y   	用户ID
+beginTime	String	Y	开始时间 yyyy-MM-dd HH:mm:ss
+endTime	String	Y	结束时间yyyy-MM-dd HH:mm:ss
+pageNum	int	N	页码
+pageSize	int	N	每页大小（不传表示查询此卡所有时间段的流水清单）
+
+名称	类型	描述
+cardTransMessageList	List	会员卡消费流水清单
+cardId	string	交易卡号
+journalId	string	交易编号
+publId	string	发卡机构编号（页面不显示）
+cash	string	实际交易金额
+flow	string	金额方向（页面不显示）卡必选（1 进账  2 出账）
+serviceType	string	交易类别 1充值、2退售、3消费、4消费撤销
+balance	double	卡余额（页面不显示）
+timeStamp	string	交易时间 yyyy-MM-dd HH:mm:ss
+numberTotal	string	总交易数目（页面不显示）
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID              
+orderCode	String	Y	订单号
+payType	String	Y	支付方式 （支付宝ALIPAY02，网银CHINAPAY，微信支付WEIXINV3）
+mobile	String	Y	手机号
+
+名称	类型	描述
+code	int	成功001，其它状态码，失败
+msg	string	支付页面的HTML代码
+
+名称	类型	描述
+code	int	成功001，其它状态码，失败
+msg	string	提示信息
+order		订单(基本信息)
+    id	String	订单ID
+    code	String	订单编号
+    cecCode	String	CEC平台订单号
+    mobile	String	订单手机号
+    createDate	Date	下单时间
+    filmCode	String	影片编号
+    filmName	String	影片名称
+    hallName	String	影厅名称
+    showType	String	放映类型
+    productCode	String	场次编号
+    showTime	Date	放映时间
+    showLanguage	String	放映语言
+    cinemaName	String	影院名称
+    cinemaCode	String	影院编号
+    stdPrice	Double	标准价
+    saleAmount	Double	网售价
+    payAmount	Double	实付款
+    serviceFee	Double	服务费
+    ticketCount	int	票数
+    status	String	订单状态，1：锁座成功，2：过期，3：取消
+    payStatus	String	支付状态,1:未支付，2：支付失败，3：支付成功，4：已退款
+expireDate	Date	失效时间
+expireFlag	Boolean	是否失效
+client	String	客户端，1：web
+ticketStatus	String	出票状态，1、未出票，2：出票成功，3、出票失败，4、已退票，5、出票中，6、出票异常
+
+名称	类型	是否必须	描述
+customerId	String	Y	用户ID
+cardId	String	Y	会员卡ID
+password	String	Y	会员卡密码
+orderCode	String	Y	订单号
+amount	String	Y	金额
+mobile	String	Y	手机号
+
+名称	类型	描述
+code	int	成功001，其它状态码，失败
+msg	string	提示信息
+order		订单(基本信息)
+    id	String	订单ID
+    code	String	订单编号
+    cecCode	String	CEC平台订单号
+    mobile	String	订单手机号
+    createDate	Date	下单时间
+    filmCode	String	影片编号
+    filmName	String	影片名称
+    hallName	String	影厅名称
+    showType	String	放映类型
+    productCode	String	场次编号
+    showTime	Date	放映时间
+    showLanguage	String	放映语言
+    cinemaName	String	影院名称
+    cinemaCode	String	影院编号
+    stdPrice	Double	标准价
+    saleAmount	Double	网售价
+    payAmount	Double	实付款
+    serviceFee	Double	服务费
+    ticketCount	int	票数
+    status	String	订单状态，1：锁座成功，2：过期，3：取消
+    payStatus	String	支付状态,1:未支付，2：支付失败，3：支付成功，4：已退款
+expireDate	Date	失效时间
+expireFlag	Boolean	是否失效
+client	String	客户端，1：web
+ticketStatus	String	出票状态，1、未出票，2：出票成功，3、出票失败，4、已退票，5、出票中，6、出票异常
+
+参数名	参数描述	类型	必须	备注
+content	意见内容	String	Y	
+contact	联系方式	String 	N	
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+userId	用户编号	string	Y	
+mobile	手机号	String	Y	
+fillMoney	充值金额	Number	Y	
+channelType	渠道类型	String	Y	ICBC ALIPAY4
+channelNo	渠道编号	String	Y	如：ICBC ALIPAY
+unifyPayOrderNo	统一支付订单号	String	N	移动支付时，为必填项
+verifycode	手机验证码	String	N	移动支付时，为必填项
+extendInfo	扩展信息	Object	N	银行扩展信息，默认为空	1.农行K码的扩展信息，增加键值对	mobile:value	PayCardNoEnd:value	微信支付扩展信息，增加	clientIp:value	
+sign	签名	String	Y	MD5(userId+mobile+fillMoney+channelType+channelNo+key)
+
+参数名	参数描述	类型	必须	备注
+payOrderNo	支付订单号	String	Y	
+payment	支付金额	Number	Y	精确到小数点后两位，单位为元
+bankNo	机构编号	String	Y	参见机构类型定义
+bank	支付插件所需信息	Array	Y	此数组会根据channelType返回不同的数据。
+url	充值活动URL	String	N	充值成功活动跳转地址
+cmccResult	移动支付提交结果	String	N	移动支付时，此参数会返回值	“0”：失败   “1”:成功
+sign	检验码	String	Y	sign=MD5(payOrderNo+payment+channelType+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+pageSize	页大小	Int	Y	默认20条
+pageIndex	页码	Int	Y	默认1
+updateTime	更新时间	String	N	日期格式	(yyyyMMddHHmmss)
+
+参数名	参数描述	类型	必须	备注
+items	充值订单列表	Array	Y	
+fillOrderNo	订单编号	String	Y	
+orderType	订单类型	Int	Y	1:充值	2:退款充值
+status	订单状态	Int	Y	1:未处理	2:成功	3:取消
+fillStatus	充值状态	Int	Y	1、未处理	2、充值成功	3、充值失败
+payStatus	支付状态	Int	Y	1:未支付	2:已支付	3:支付失败
+payTime	充值时间	string	Y	(yyyyMMddHHmmss)
+orderMoney	充值金额	number	Y	保留小数点后两位
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+pageSize	页大小	Int	Y	默认20条
+pageIndex	页码	Int	Y	默认1
+updateTime	更新时间	String		N	日期格式（可以为空）	(yyyyMMddHHmmss)
+
+参数名	参数描述	类型	必须	备注
+balances	帐户交易列表	Array	Y	
+changeMoney	交易金额	String	Y	保留小数点后两位
+curBalance	当前最新余额	Number	Y	保留小数点后两位
+getType	来源类型	Number	Y	1充值	2消费	3积分兑换	4退款
+tradeType	交易类型	Number	Y	1.存入	2.支出
+remark	备注	String	N	
+createTime	操作时间	String	Y	格式yyyyMMddHHmmss
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+pageSize	页大小	Int	Y	默认20条
+pageIndex	页码	Int	Y	默认1
+updateTime	更新时间	String	N	日期格式（可以为空）	(yyyyMMddHHmmss)
+
+参数名	参数描述	类型	必须	备注
+scores	积分列表	Array	Y	
+score	积分	String	Y	
+lastScore	当前最新积分	Number	Y	
+getType	积分来源类型	Number	Y	1充值	2消费	3积分兑换	4退款
+scoreType	积分交易类型	Number	Y	1.存入	2.支出
+remark	备注	String	N	
+createTime	操作时间	String	Y	格式yyyyMMddHHmmss
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+
+参数名	参数描述	类型	必须	备注
+record	列表	Array	Y	
+levelNo	虚拟会员等级	String	Y	
+levelName	虚拟会员名称	String	Y	
+fillType	充值类型	int	Y	1 首充 2 续充
+fillMoney	充值金额	String	Y	用户不是虚拟会员则返回首充金额	用户是虚拟会员则返回续充金额
+remark	备注	String	Y	
+
+参数名	参数描述	类型	必须	备注
+fillCardNo	充值卡号	String	Y	
+fillPwd	充值卡密码			
+userId	充值账户			
+mobileNo	手机号			注册账户对应的手机号
+sign	签名			sign=MD5(userId+mobileNo+fillCardNo+fillPwd+ key)	 key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+fillOrderNo	充值的订单号	String		
+fillMoney	充值金额	String		精确到小数点两位
+userId	用户ID	String	Y	
+level	最新会员等级	Number	Y	
+levelName	最新等级名称	String	Y	
+curBalance	最新余额	Number	Y	
+curSorce	最新积分	Number	Y	
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	第三方接入商传值手机号
+mobile	手机号	String	Y	
+numPerPage	每页记录数	Number	Y	
+pageIdx	页编号	Number	Y	
+
+参数名	参数描述	类型	必须	备注
+CouponNos	电子券号	Array	Y	
+CouponNo	电子券号	String	Y	
+CouponName	电子券名称	String	Y	
+LimitDate	有效时间	String	Y	2014-11-10 00:00:00~2014-12-31 23:59:59
+Status	状态	Int	Y	未使用	消费冻结	已使用	过期	作废	冻结
+UseTime	使用时间	DateTime	N	已使用时间
+UrlDetails	使用说明跳转地址	String	Y	电子券使用规则H5页面	使用完整的地址
+Source	来源	Int	Y	购买	分享	其它
+useChange	使用渠道	String	n	格式：APP,前台,终端机
+exchangeType	兑换类型	String	n	格式：2D\3D\IMAX2D\IMAX3D
+valiCiname	验证影院	String	n	影院名称
+valiFilm	验证影片	String	N	影片名称
+
+参数名	参数描述	类型	必须	备注
+userId	用户ID	String	Y	
+mobileNo	手机号			注册账户对应的手机号
+couponNo	电子券号	String	Y	
+password	电子券密码	String	N	预留
+sign	签名	String	Y	sign=MD5(userId+couponNo+mobileNo+key)	key由平台分配（生成签名使用的价格参数都是用两位小数，其他接口也是一样）
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+mobile	手机号	String	Y	
+orderNo	订单编号	String	Y	orderNo=CreateMemberFillOrderType 表示是移动充值虚拟会员
+orderPrice	订单金额	Number	Y	充值金额，不需要上加手续费
+sign	检验码	String	Y	sign=MD5(mobile+orderNo+orderPrice+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+unifyPayOrderNo	统一支付订单号	String	N	移动支付下单成功后，返回一个订单号，并在生产支付订单号接口回传该参数
+sign	检验码	String	Y	sign=MD5(unifyPayOrderNo+key)	Key由平台分配
+
+参数名	参数描述	类型	必须	备注
+appKey	客户端ID	String	Y	客户端编号（统一用户平台返回）
+userId	用户ID	Number	Y	用户登录ID
+timestamp	时间戳	String	Y	格式yyyyMMddHHmmss
+token	令牌编号	String	N	随机数32位
+sign	签名	String	N	（统一用户平台返回）
+
+参数名	参数描述	类型	必须	备注
+sessionId	业务平台Session	String	Y	业务平台分给客户端Sessionid
+userId	用户ID	Number	Y	用户ID
+
+参数名	参数描述	类型	必须	备注
+CardNo	会员卡编号	String	Y	
+CardPwd	会员卡密码	String	Y	编码规则：	1:先将数据反转	2:再调换头尾的字符	例如：abc123为真实的密码,采用规则后先反转(321cba),再调换头尾字符(a21cb3)
+CinemaNo	发卡影院编号	String	Y	
+IdentityNumber	身份证号码	String	N	
+UserID	注册会员ID	String	Y	
+Sign	标识	String	Y	MD5((CardNo+CardPwd+CinemaNo+IdentityNumber+UserID+key)小写)小写	注：	key由平台分配（客户端密码）	CardPwd用编码后的数据
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+cinemaNo	影院编号	String	Y	
+
+参数名	参数描述	类型	必须	备注
+goods	卖品信息	Array	Y	卖品信息数组
+goodsNo	卖品编号	String	Y	
+goodsName	卖品名称	String	Y	
+imageUrl	图片地址	String	Y	
+price	卖品单价	Deciaml	Y	精确到小数点后两位，单位为元
+priceForShow	原价	Deciaml	N	精确到小数点后两位，单位为元
+memo	商品描述	String	Y	
+
+参数名	参数描述	类型	必须	备注
+contact	联系方式	String	Y	手机号或者邮箱
+content	意见内容	String	Y	
+
+参数名	参数描述	类型	必须	备注
+
+参数名	参数描述	类型	必须	备注
+cinemaNo	影片编号	String	Y	
+numPerPage	页记录数量	Number	Y	
+pageIdx	页编号	Number	Y	
+
+参数名	参数描述	类型	必须	备注
+pageCount	页总数	Number	Y	
+pageIdx	页编号	Number	Y	
+reviews	短评列表	Array	Y	
+reviewNo	短评编号	String	Y	
+username	用户名	String	Y	
+mobile	手机	String	Y	
+image	头像地址	String	N	
+title	标题	String	N	
+content	内容	String	Y	
+score	评分	Number	Y	精确到小数点后1位
+datetime	评论时间	String	N	格式：yyyyMMddHHmmss
+imageNo	用户头像编号	Number		imageNo>=0时，取手机端内置的头像编号imageNo=-1时，取image的字段值 
+
+日期	版本	说明	作者
+2015-08-28	V1.5	新老OC接口的兼容性合并	Terry
+
+Code	Msg
+001	操作成功
+101	未找到指定的影院
+102	影院已被停用
+103	影院已暂停售卖
+104	影厅已被禁用
+105	渠道已暂停售卖
+106	排期已过期
+107	排期已删除
+108	产品已下架
+109	产品已失效
+110	未找到指定的产品
+111	产品已暂停售卖
+112	订单金额与销售价格不匹配
+113	锁座失败
+114	未找到指定的订单
+115	订单不是未支付状态
+116	释放座位失败
+117	已超出停售额度
+118	订单状态无效
+119	订单已过期
+120	确认订单失败
+121	验证签名失败
+122	重发验证码失败
+123	凭证未找到
+124	凭证已验证
+125	凭证已过期
+126	未找到指定的影片
+127	产品未失效
+128	未生成替代产品
+129	凭证不可用
+130	订单座位编码不匹配
+131	未找到指定的影厅
+132	凭证非平台下发
+133	产品已停售
+134	访问被禁止
+601	该订单下已存在卖品
+602	没有找到卖品
+603	订单号不存在
+604	订单号和用户id不能都为空
+900	未找到指定的渠道
+901	渠道已被关闭
+997	XXX不能为空（说明：参数验证失败提示，XXX为不能为空的参数名称，多个则以”|”分隔 ）
+998	验证签名失败
+999	发生未知异常
+
+  / 
+
+耗时：1701

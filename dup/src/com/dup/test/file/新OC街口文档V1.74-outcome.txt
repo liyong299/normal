@@ -1,0 +1,32 @@
+支付确认（新增） confirmOrder
+生成支付订单号（新增）createPayOrder
+会员卡支付(新增) memberCardPay
+电子券验证（新增）validatorCouponTicket
+电子券支付（新增）createCouponTicketPay
+撤销电子券支付（新增）cancelCouponTicketPay
+中影通会员卡支付（新增）createTCardPay
+虚拟账户支付（新增）createAccountPay
+解锁座位（新增） cancelOrder
+添加评论addComment
+获取用户评论getComment
+优惠活动接口getActivities
+根据城市编码查询该城市所有区县queryCounties
+查询会员卡消费流水清单/api/web/user/v1/queryCardTransList	Comment by hugoyang: 目录似乎不正确
+第三方支付（支付宝、网银，微信支付）/api/web/pay/v1/thirdPayOrder
+会员卡支付/api/web/pay/v1/cardPayOrder
+意见反馈（新增） submitFeedback
+虚拟账户充值（新增）createMemberFillOrder
+虚拟账户充值记录（新增）queryMemberFillOrder
+查询用户账户交易记录（新增）queryUserBalanceLog
+查询用户积分记录（新增）queryUserScoreLog
+虚拟会员充值金额查询（新增）queryVirtualMemberFill
+虚拟充值卡充值（新增）accountFillCard
+查询用户电子券列表（新增）queryUserCouponList
+绑定电子券（新增）bindUserCoupon
+获取娱乐数据（新增）getRecreations
+移动支付下单接口（新增）cMCCPreOrder
+手机客户端登陆令牌（新增）tokenLogin
+解除会员卡绑定（新增）UnBindMemberCard
+查询卖品列表（新增）querySnacks
+意见反馈(新增)submitFeedback
+获取影院评论列表（新增）getCinemaReviews

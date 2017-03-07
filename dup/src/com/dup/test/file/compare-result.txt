@@ -1,0 +1,101 @@
+支付确认（新增） confirmOrder
+会员卡支付(新增) memberCardPay
+解锁座位（新增） cancelOrder
+查询会员卡消费流水清单/api/web/user/v1/queryCardTransList	Comment by hugoyang: 目录似乎不正确
+意见反馈（新增） submitFeedback
+绑定电子券（新增）bindUserCoupon
+解除会员卡绑定（新增）UnBindMemberCard
+
+
+
+获取热门城市queryHotCitys
+获取启用省份、城市 queryProvinceCitys
+获取单个城市信息（根据拼音）queryCityBySpell
+获取单个城市信息（根据编号）queryCityByCode
+查询默认城市queryDefaultCity
+根据经纬度获取城市信息(新增)getCityByLatlong
+查询区域列表(新增)getCityList
+登录接口 login
+查询用户（根据手机号码）queryUser
+查询用户（根据用户id）queryUserById
+查询用户（根据开放平台ID）queryUserByOpenId
+"发送验证码 （中影）sendSmsCaptcha vcSendVerifyCode（中影）"
+注册接口registered
+重置密码resetPassword
+修改用户资料updateUser
+修改用户密码modifyUserPassword
+查询用户会员卡列表queryUserCards
+查询会员卡信息queryUserCard
+绑定会员卡bindUserCard
+会员卡解绑(新增)unbindUserCard
+修改会员卡密码modifyCardPassword
+修改会员卡密码（新增）ModifyMemberCardPwd
+会员卡充值（新增）CardRecharge
+查询是否已绑定会员卡（新增）IsBindMemberCard
+影院会员卡余额查询  （新增）queryCardBalance
+查询中影通卡会员卡开卡类型（新增）queryTCardType
+创建中影通会员卡开卡订单（新增）createTCardOpenOrder
+中影通会员卡充值金额查询（中影新增）queryTCardFillMoney
+创建中影通会员卡充值订单(新增）createMemberFillOrder
+中影通会员卡充值记录(新增）queryMemberFillOrder
+用户点赞或喜欢接口(新增）selfWantSee
+查询发放会员卡的影院及地区QueryPutMemberCardAreaAndCinema
+查询影院列表接口queryCinemas
+查询影院接口queryCinema
+查询影片列表接口queryFilms
+查询单个影片queryFilm
+查询影片最低价queryFilmsMinPrice
+查询影厅实时座位  （新增）getSeat
+查询广告列表接口queryAdverts
+查询公告列表queryNotices
+查询单个公告queryNotice
+同步开机广告画面（新增）syncAds
+手机客户端广告（新增）getAdList
+APP电影推广活动详情（新增）appGeneralize
+更新APP电影推广活动参与人次（新增）updateGeneralizeNumber
+预告片广告（新增）getVideoAdvertiseList
+获取活动详情（新增）getActivityDetail
+获取活动影院（新增）getActivityCinema
+查询影院排期queryCinemaShows
+查询影院排期日期queryCinemaShowDays
+查询影片排期queryFilmShows
+查询影片排期日期queryFilmShowDays
+查询城市排期日期queryCityShowDays
+查询影院影片排期queryCinemaFilmShows
+查询排期详情queryShow
+查询排期座位列表queryShowSeats
+获取活动影片和排期（新增）getActivityFilm
+查询选座票订单列表queryTicketOrders
+根据订单号查询订单queryTicketOrderByCode
+根据支付订单号查询订单queryTicketOrderByPayCode
+提交选座票订单lockSeat
+修改订单手机号码updateOrderMobile
+查询会员卡充值订单列表queryRechargeOrders
+根据订单号查询充值订单queryRechargeOrders
+取消选座票订单cancelOrder
+取消充值订单cancelChargeOrder
+查询订单凭证信息queryOrderVoucher
+查询凭证详细（新增）QueryVoucherDetailByOrderNo
+同步凭证信息（新增）syncVouchers
+删除凭证（新增）removeVoucher
+查询充值订单详细（新增）QueryRechargeOrderDetail
+创建选座订单（新增）CreateOrderWithSeat
+订单确认（新增）checkOrder
+查询订单详情（新增）qryOrderDetail
+查询订单会员价格（新增）queryOrderMemberPrice
+向支付宝钱包添加用户凭证信息（新增）AddAlipassVoucherInfo
+根据订单号获取支付宝卡券信息（新增）getAlipayPassInfoByOrderNo
+查看订单状态 （新增）checkOrderStatus
+查询订单支付价格（新增）queryOrderMemberPrice
+提交选座票支付订单（第三方支付）submitTicketPayOrder
+提交会员订单、创建支付订单submitCardRechargeOrder
+选座票订单会员卡支付cardPay
+查询选座票订单支付方式queryCinemaPays
+选座票支付通知ticketPayNotify
+会员卡充值支付通知cardRechargeNotify
+支付确认（新增）confirmOrder
+会员卡支付(新增)memberCardPay
+解锁座位（新增）cancelOrder
+查询会员卡消费流水清单/api/web/user/v1/queryCardTransList
+ 绑定电子券（新增）bindUserCoupon
+会员卡绑定

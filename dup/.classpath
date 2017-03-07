@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="main/|main/java/|main/java/redis/|main/java/redis/clients/|test/java/redis/clients/" kind="src" path="src"/>
+	<classpathentry kind="src" path="resource"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/com.google.common-guava-18.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-pool2-2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/etcd-client-0.33.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fastjson-1.2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpasyncclient-4.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-4.4.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-4.4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-ab-4.4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-nio-4.4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jedis-2.7.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsoup.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jxl-2.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-data-redis-1.3.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/coo.base-2.1.8.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cec.api-2.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cec.core-2.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cec.task-2.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.31.jar"/>
+	<classpathentry kind="lib" path="D:/home/mopon/.m2/repository/org/mybatis/mybatis/3.3.1/mybatis-3.3.1.jar"/>
+	<classpathentry kind="lib" path="E:/01_work/02_cec/03_需求/03_幸福蓝海/13_SAAS化/rmp参考代码/components/mopon_pay_server/develop/doc/v2.0/部部署转测/项目包/20151009/pay_test/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
