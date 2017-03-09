@@ -16,9 +16,9 @@ package com.ly.java.netty4.longconnection;
  */
 public interface Constants {
 
-	int CLIENT_NUM = 3;
+	int CLIENT_NUM = 1024;
 
 	int HTTP_PORT = 8789;
 
-	String HTTP_HOST = "localhost";
+	String HTTP_HOST = "192.168.26.23";
 }

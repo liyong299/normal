@@ -69,7 +69,7 @@ public class ClientForLongConnectionHandler extends SimpleChannelInboundHandler<
 			IdleStateEvent statEvt = (IdleStateEvent) evt;
 			switch (statEvt.state()) {
 			case WRITER_IDLE: {
-				ctx.writeAndFlush(pingMsg);
+				//				ctx.writeAndFlush(pingMsg);
 				log.debug("send ping to server ..... ");
 				break;
 			}

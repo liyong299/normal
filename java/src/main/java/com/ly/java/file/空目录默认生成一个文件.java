@@ -6,7 +6,7 @@ import java.io.IOException;
 public class 空目录默认生成一个文件 {
 
 	public static void main(String[] args) throws IOException {
-		readAndgen("D:\\Work\\Workspace\\scec_dis\\archite-test");
+		readAndgen("D:\\Work\\Workspace\\other\\dup");
 	}
 	
 	private static void readAndgen(String dir) throws IOException {
