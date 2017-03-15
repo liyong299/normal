@@ -17,10 +17,6 @@ public class THsHaClientDemo {
 		String aa = client.startClient("Michael");
 	}
 
-	/**
-	 * 
-	 * @param userName
-	 */
 	public String startClient(String userName) {
 		// 设置传输通道
 		TTransport transport = null;

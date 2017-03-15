@@ -8,7 +8,7 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <stringProp name="TestPlan.user_define_classpath">D:\Work\Workspace\other\java\java</stringProp>
+      <stringProp name="TestPlan.user_define_classpath">C:\workspace\normal_java\normal_java.jar</stringProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TThreadPoolServer测试" enabled="true">
@@ -29,7 +29,7 @@
         <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
           <stringProp name="BeanShellSampler.query">
 import com.ly.java.thrift.compareServer.*;
-HelloClientDemo client = new HelloClientDemo();
+THsHaClientDemo client = new THsHaClientDemo();
 		String aa = client.startClient(&quot;Michael&quot;);
 		return aa;</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
