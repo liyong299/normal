@@ -7,40 +7,36 @@ import org.apache.thrift.server.TServer;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TNonblockingServerSocket;
 
-import com.ly.java.thrift.HelloWorld;
-import com.ly.java.thrift.HelloWorldImpl;
-import com.ly.java.thrift.TNonblockingServer.HelloServerDemo;
+/**
+ * 使用非阻塞式IO，服务端和客户端需要指定 TFramedTransport 数据传输的方式 TNonblockingServer 服务模型
+ * 
+ * @author ly
+ * 
+ */
+public class TNonblockingServerDemo {
 
-public class HelloTNonblockingServerDemo {
-	public static final int SERVER_PORT = Constant.SERVER_PORT;
- 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		HelloServerDemo server = new HelloServerDemo();
+		TNonblockingServerDemo server = new TNonblockingServerDemo();
 		server.startServer();
 	}
 
 	public void startServer() {
 		try {
-			System.out.println("HelloWorld TNonblockingServer start ....");
- 
-			TProcessor tprocessor = new HelloWorld.Processor<HelloWorld.Iface>(
-					new HelloWorldImpl());
- 
-			TNonblockingServerSocket tnbSocketTransport = new TNonblockingServerSocket(
-					SERVER_PORT);
-			TNonblockingServer.Args tnbArgs = new TNonblockingServer.Args(
-					tnbSocketTransport);
+			System.out.println("UserService HelloTNonblockingServerDemo start ....");
+
+			TProcessor tprocessor = new UserService.Processor<UserService.Iface>(new UserServiceImpl());
+			TNonblockingServerSocket tnbSocketTransport = new TNonblockingServerSocket(Constant.SERVER_PORT);
+			TNonblockingServer.Args tnbArgs = new TNonblockingServer.Args(tnbSocketTransport);
 			tnbArgs.processor(tprocessor);
 			tnbArgs.transportFactory(new TFramedTransport.Factory());
 			tnbArgs.protocolFactory(new TCompactProtocol.Factory());
- 
-			// 使用非阻塞式IO，服务端和客户端需要指定TFramedTransport数据传输的方式
+
 			TServer server = new TNonblockingServer(tnbArgs);
 			server.serve();
- 
+
 		} catch (Exception e) {
 			System.out.println("Server start error!!!");
 			e.printStackTrace();

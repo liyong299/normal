@@ -16,6 +16,6 @@ package com.ly.java.thrift.compareServer;
  */
 public interface Constant {
 
-	int SERVER_PORT = 8086;
+	int SERVER_PORT = 8081;
 	String SERVER_ADDR = "localhost";
 }

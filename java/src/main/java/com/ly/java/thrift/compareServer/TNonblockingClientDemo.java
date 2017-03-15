@@ -1,11 +1,12 @@
 package com.ly.java.thrift.compareServer;
 
-import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
-public class HelloClientDemo {
+public class TNonblockingClientDemo {
 
 	public static final String SERVER_IP = Constant.SERVER_ADDR;
 	public static final int SERVER_PORT = Constant.SERVER_PORT;
@@ -17,13 +18,14 @@ public class HelloClientDemo {
 	 */
 	public String startClient(String userName) {
 		// 设置传输通道
-		TTransport transport = new TSocket(SERVER_IP, SERVER_PORT, TIMEOUT);
-		// 协议要和服务端一致
-		// 使用二进制协议
-		TProtocol protocol = new TBinaryProtocol(transport);
-		// 创建Client
-		UserService.Client client = new UserService.Client(protocol);
+		TTransport transport = null;
 		try {
+			// 协议要和服务端一致
+			transport = new TFramedTransport(new TSocket(SERVER_IP, SERVER_PORT, TIMEOUT));
+			TProtocol protocol = new TCompactProtocol(transport);
+
+			// 创建Client
+			UserService.Client client = new UserService.Client(protocol);
 
 			transport.open();
 			String result = client.getUser(userName);
@@ -43,7 +45,7 @@ public class HelloClientDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		HelloClientDemo client = new HelloClientDemo();
+		TNonblockingClientDemo client = new TNonblockingClientDemo();
 		String aa = client.startClient("Michael");
 
 	}
