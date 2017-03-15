@@ -1,4 +1,4 @@
-package com.ly.java.thrift.THsHaServer;
+package com.ly.java.thrift.compareServer;
 
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -9,9 +9,10 @@ import org.apache.thrift.transport.TNonblockingServerSocket;
 
 import com.ly.java.thrift.HelloWorld;
 import com.ly.java.thrift.HelloWorldImpl;
+import com.ly.java.thrift.TNonblockingServer.HelloServerDemo;
 
-public class HelloServerDemo {
-	public static final int SERVER_PORT = 8090;
+public class HelloTHsHaServerDemo {
+	public static final int SERVER_PORT = Constant.SERVER_PORT;
 
 	public void startServer() {
 		try {
