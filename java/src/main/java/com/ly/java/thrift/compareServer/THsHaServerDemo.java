@@ -7,9 +7,11 @@ import org.apache.thrift.server.TServer;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TNonblockingServerSocket;
 
-import com.ly.java.thrift.TNonblockingServer.HelloServerDemo;
-
-public class HelloTHsHaServerDemo {
+public class THsHaServerDemo {
+	public static void main(String[] args) {
+		THsHaServerDemo server = new THsHaServerDemo();
+		server.startServer();
+	}
 
 	public void startServer() {
 		try {
@@ -33,13 +35,4 @@ public class HelloTHsHaServerDemo {
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		HelloServerDemo server = new HelloServerDemo();
-		server.startServer();
-	}
-
 }
