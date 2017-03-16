@@ -4,7 +4,6 @@ import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.server.TNonblockingServer;
 import org.apache.thrift.server.TServer;
-import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TNonblockingServerSocket;
 
 /**
@@ -30,8 +29,9 @@ public class TNonblockingServerDemo {
 			TProcessor tprocessor = new UserService.Processor<UserService.Iface>(new UserServiceImpl());
 			TNonblockingServerSocket tnbSocketTransport = new TNonblockingServerSocket(Constant.SERVER_PORT);
 			TNonblockingServer.Args tnbArgs = new TNonblockingServer.Args(tnbSocketTransport);
+
 			tnbArgs.processor(tprocessor);
-			tnbArgs.transportFactory(new TFramedTransport.Factory());
+			//			tnbArgs.transportFactory(new TFramedTransport.Factory());
 			tnbArgs.protocolFactory(new TCompactProtocol.Factory());
 
 			TServer server = new TNonblockingServer(tnbArgs);

@@ -5,7 +5,6 @@ import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TThreadPoolServer;
-import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TServerSocket;
 
 /**
@@ -23,7 +22,7 @@ public class TThreadPoolServerDemo {
 		TThreadPoolServer.Args tArgs = new TThreadPoolServer.Args(serverTransport);
 		tArgs.processor(tprocessor);
 		// 客户端协议要一致
-		tArgs.transportFactory(new TFramedTransport.Factory());
+		//		tArgs.transportFactory(new TFramedTransport.Factory());
 		tArgs.protocolFactory(new TBinaryProtocol.Factory());
 
 		// 线程池服务模型，使用标准的阻塞式IO，预先创建一组线程处理请求。
