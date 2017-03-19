@@ -37,9 +37,11 @@ public class TThreadPoolClientDemo {
 		try {
 
 			transport.open();
+			// TimeUnit.SECONDS.sleep(100);
 			openConnCnt.incrementAndGet();
 			String result = client.getUser(userName);
-			//			System.out.println(Thread.currentThread().getName() + "  result : " + result);
+			// System.out.println(Thread.currentThread().getName() +
+			// "  result : " + result);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
