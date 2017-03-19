@@ -9,6 +9,7 @@
  */
 package com.ly.java.thrift.compareServer;
 
+import java.lang.reflect.Method;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -22,28 +23,47 @@ public class ThreadPoolForTest {
 
 	private ExecutorService executorService = Executors.newFixedThreadPool(200);
 
-	private void testForTThreadPoolClient() throws InterruptedException {
-		for (int i = 0; i < 200; i++) {
-			executorService.submit(new Runnable() {
-				@Override
-				public void run() {
-					for (int j = 0; j < 10; j++) {
-						TThreadPoolClientDemo client = new TThreadPoolClientDemo();
-						String aa = client.startClient("Michael");
-					}
-				}
-			});
-			TimeUnit.MILLISECONDS.sleep(200);
-		}
-	}
-	
 	/**
 	 * 
 	 * @param args
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		new ThreadPoolForTest().testForTThreadPoolClient();
 	}
 
+	public void testForTHsHaClient() throws InterruptedException {
+		testForClient(THsHaClientDemo.class);
+	}
+
+	public void testForTNonblockingClient() throws InterruptedException {
+		testForClient(TNonblockingClientDemo.class);
+	}
+
+	public void testForTThreadedSelectorClient() throws InterruptedException {
+		testForClient(TThreadedSelectorClientDemo.class);
+	}
+
+	public void testForTThreadPoolClient() throws InterruptedException {
+		testForClient(TThreadPoolClientDemo.class);
+	}
+
+	private void testForClient(final Class cls) throws InterruptedException {
+		for (int i = 0; i < 200; i++) {
+			executorService.submit(new Runnable() {
+				@Override
+				public void run() {
+					for (int j = 0; j < 100; j++) {
+						try {
+							Method method = cls.getMethod("startClient", String.class);
+							method.invoke(cls.newInstance(), "Michael");
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			});
+			TimeUnit.MILLISECONDS.sleep(1000);
+		}
+	}
 }
