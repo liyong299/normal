@@ -1,0 +1,1 @@
+nohup java -Dconfig_path=../config/ -Xms128m -Xmx512m -jar ../saas-price-consumer.jar >/dev/null &

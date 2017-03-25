@@ -4,25 +4,15 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.ly.dubbox.api.UserService;
  
 public class DemoConsumer {
  
-    public static void main(String[] args) {
+    public static void demo(String[] args) {
         final String port = "8888";
  
         //测试Rest服务
         getUser("http://localhost:" + port + "/services/users/1.json");
         getUser("http://localhost:" + port + "/services/users/1.xml");
- 
-        //测试常规服务
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:META-INF/spring/*.xml");
-        context.start();
-        UserService userService = context.getBean(UserService.class);
-        System.out.println(userService.getUser(1L));
     }
  
  
