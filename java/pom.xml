@@ -237,13 +237,12 @@
 		</dependency>
 
 		<!-- thrift begin -->
-		<dependency>
-			<groupId>org.apache.thrift</groupId>
-			<artifactId>libthrift</artifactId>
-			<version>0.10.0</version>
-		</dependency>
-		<!-- thrift end -->
-
+		<dependency>  
+            <groupId>org.apache.thrift</groupId>  
+            <artifactId>libthrift</artifactId>  
+            <version>0.10.0</version>  
+        </dependency>   
+        <!-- thrift end -->
 
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
