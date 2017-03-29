@@ -9,12 +9,12 @@
  */
 package com.ly.java.sort;
 
-
 /**
- * @功能描述：快速排序（Quicksort）是对冒泡排序的一种改进。
- * 快速排序由C. A. R. Hoare在1962年提出。
- * 它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，
- * 然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
+ * @功能描述：快速排序（Quicksort）是对冒泡排序的一种改进。 快速排序由C. A. R. Hoare在1962年提出。
+ *                                   它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分
+ *                                   ，其中一部分的所有数据都比另外一部分的所有数据都要小，
+ *                                   然后再按此方法对这两部分数据分别进行快速排序
+ *                                   ，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
  * @文件名称：QuickSort.java
  * @author ly
  */
@@ -29,6 +29,7 @@ public class QuickSort<E> extends AbstractSort {
 	}
 
 	public void sort0(Object[] array) {
+		print(array);
 		quickSort(array, 0, array.length - 1);
 	}
 
@@ -38,23 +39,40 @@ public class QuickSort<E> extends AbstractSort {
 			System.out.println("不用比较，  startIdx  :  " + startIdx + ", endIdx  : " + endIdx);
 			return;
 		}
+		int tmpStartIdx = startIdx;
+		int tmpEndIdx = endIdx;
 		Object midVal = array[startIdx];
-		int tmpIdx = startIdx;
-		System.out.println("startIdx  :  " + startIdx + ", endIdx  : " + endIdx);
-		while (startIdx < endIdx) {
-			while (lt(array[endIdx], midVal) && startIdx < endIdx) {
-				startIdx++;
+
+		System.out.println("startIdx  :  " + startIdx + ", endIdx  : " + endIdx + ", midVal  : " + midVal);
+		while (tmpStartIdx < tmpEndIdx) {
+
+			while (gt(array[tmpEndIdx], midVal) && tmpStartIdx < tmpEndIdx) {
+				tmpEndIdx--;
 			}
-			while (gt(array[endIdx], midVal) && startIdx < endIdx) {
-				endIdx--;
+			System.out.println("||__  startIdx  :  " + tmpStartIdx + ", endIdx  : " + tmpEndIdx);
+			if (tmpStartIdx < tmpEndIdx) {
+				swap(array, tmpStartIdx, tmpEndIdx);
+				tmpStartIdx++;
 			}
-			swap(array, startIdx, endIdx);
+			System.out.println();
+			print(array);
+
+			while (lt(array[tmpStartIdx], midVal) && tmpStartIdx < tmpEndIdx) {
+				tmpStartIdx++;
+			}
+			System.out.println("||__  startIdx  :  " + tmpStartIdx + ", endIdx  : " + tmpEndIdx);
+			if (tmpStartIdx < tmpEndIdx) {
+				swap(array, tmpStartIdx, tmpEndIdx);
+				tmpEndIdx--;
+			}
+			System.out.println();
+			print(array);
+
 		}
-		swap(array, tmpIdx, startIdx);
 
-		print(array);
-
-		quickSort(array, tmpIdx, startIdx - 1);
-		quickSort(array, startIdx + 1, endIdx);
+		if (tmpStartIdx > startIdx)
+			quickSort(array, startIdx, tmpStartIdx - 1);
+		if (tmpEndIdx < endIdx)
+			quickSort(array, tmpStartIdx + 1, endIdx);
 	}
 }

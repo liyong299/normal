@@ -32,6 +32,7 @@ public abstract class AbstractSort<E> {
 				System.out.println();
 			}
 		}
+		System.out.println();
 	}
 
 	public abstract void sort0(E[] numbers);
