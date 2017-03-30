@@ -21,12 +21,12 @@ public class NumberUtil {
 	 * @param length
 	 * @return
 	 */
-	public static Object[] genIntArray(int length, int min, int max) {
+	public static Integer[] genIntArray(int length, int min, int max) {
 		if (length < 1) {
 			System.out.println("长度有误：" + length);
 			return null;
 		}
-		Object[] randoms = new Object[length];
+		Integer[] randoms = new Integer[length];
 		int range = max - min;
 		for (int i = 0; i < length; i++){
 			randoms[i] = (int) (Math.random() * range + min);
@@ -39,7 +39,7 @@ public class NumberUtil {
 	 * @param length
 	 * @return
 	 */
-	public static Object[] genIntArray(int length) {
+	public static Integer[] genIntArray(int length) {
 		return genIntArray(length, 0, 100000);
 	}
 
