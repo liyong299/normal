@@ -24,7 +24,6 @@ public class NUCompleteBinaryTree<K, V> {
 	private TreeNode<K, V> root;
 	private TreeNode<K, V>[] nodes;
 	private final static int DEFAULT_SIZE = 16;
-	private static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
 	public NUCompleteBinaryTree() {
 		this.count = 0;
