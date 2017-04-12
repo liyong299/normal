@@ -30,5 +30,4 @@ public class Order {
 	public void setStatus(OrderStateEnum status) {
 		this.status = status;
 	}
-
 }
