@@ -24,9 +24,9 @@ public class OrderStateFactory {
 		case LOCKED:
 			return new StateLocked();
 		case PAIED:
-			return new StateLocked();
+			return new StatePaied();
 		case SUCCESS:
-			return new StateLocked();
+			return new StateSuccess();
 		default:
 			throw new RuntimeException("状态错误，不能生成状态机");
 		}

@@ -18,8 +18,21 @@ public class OrderContext {
 	private State state;
 	private Order order;
 
+	public static void main(String[] args) {
+		Order order = new Order();
+		order.setStatus(OrderStateEnum.LOCKED);
+		OrderContext oc = new OrderContext(order);
 
+		oc.request();
+		oc.request();
+		oc.request();
+	}
+
+	public OrderContext(Order order) {
+		this.order = order;
+	}
 	public void request() {
+
 		state = OrderStateFactory.getState(order);
 
 		state.handler(order);
